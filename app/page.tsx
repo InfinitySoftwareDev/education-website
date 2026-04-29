@@ -120,7 +120,7 @@ export default function HomePage() {
               className="font-heading text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6"
             >
               10+ Years of{" "}
-              <span className="text-gradient-blue">Recruitment</span>{" "}
+              <span className="text-white">Recruitment</span>{" "}
               <br className="hidden sm:block" />
               Excellence
             </motion.h1>
