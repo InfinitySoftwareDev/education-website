@@ -94,33 +94,6 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      {/* Google Form Embed */}
-      <section className="py-20 bg-white">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-            <span className="section-label">Share Your Experience</span>
-            <h2 className="font-heading text-3xl font-bold text-slate-900 mt-3">Leave a Review</h2>
-            <p className="text-slate-500 mt-3">Your feedback helps us serve employers and job seekers better.</p>
-          </motion.div>
-          <div className="card p-0 overflow-hidden">
-            <iframe
-              src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
-              width="100%"
-              height="600"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              title="Job Portal Review Form"
-              className="w-full"
-            >
-              Loading…
-            </iframe>
-          </div>
-          <p className="text-center text-slate-400 text-xs mt-4">
-            * Replace YOUR_GOOGLE_FORM_ID with your actual Google Form ID in the code.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }
