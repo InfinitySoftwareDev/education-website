@@ -6,6 +6,7 @@ import {
   CheckCircle, TrendingUp, Zap, Shield, Building2, ChevronRight,
 } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import FAQSection from "@/components/FAQSection";
 
 /* ── Variants ─────────────────────────────────── */
 const fadeUp = {
@@ -397,7 +398,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 7. CTA BANNER ══════════════════════════════ */}
+      {/* ═══ 7. FAQ SECTION ═════════════════════════════ */}
+      <FAQSection />
+
+      {/* ═══ 8. CTA BANNER ══════════════════════════════ */}
       <section className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div
