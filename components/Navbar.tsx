@@ -49,8 +49,12 @@ export default function Navbar() {
             <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-amber-400 border-2 border-white" />
           </div>
           <div className="leading-tight">
-            <span className="font-heading font-800 text-xl text-slate-900">Job</span>
-            <span className="font-heading font-800 text-xl text-blue-600">Portal</span>
+            {/* <span className="font-heading font-800 text-xl text-slate-900">Job</span>
+            <span className="font-heading font-800 text-xl text-blue-600">Portal</span> */}
+              <span className="font-heading font-800 text-xl text-slate-900">Talent</span>
+            <span className="font-heading font-800 text-xl text-blue-600">Connect</span>
+              <span className="font-heading font-800 text-xl text-blue-800">India</span>
+           
             <div className="text-[10px] font-semibold text-slate-400 tracking-wider -mt-1">RECRUITMENT SOLUTIONS</div>
           </div>
         </Link>
