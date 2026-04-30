@@ -35,7 +35,7 @@ export default function ContactPage() {
               {[
                 { icon: Phone, label: "Phone / WhatsApp", value: "+91 98765 43210", color: "bg-blue-50 text-blue-600" },
                 { icon: Mail, label: "Email", value: "info@jobportal.in", color: "bg-emerald-50 text-emerald-600" },
-                { icon: MapPin, label: "Head Office", value: "Andheri East, Mumbai, Maharashtra — 400069", color: "bg-amber-50 text-amber-600" },
+                { icon: MapPin, label: "Head Office", value: "Talent Connect India, Shlok Apartment, near Dinosour Gardern, Pimple Gurav, Pune  -411061", color: "bg-amber-50 text-amber-600" },
                 { icon: Clock, label: "Working Hours", value: "Mon–Sat: 9:00 AM – 7:00 PM IST", color: "bg-purple-50 text-purple-600" },
               ].map(({ icon: Icon, label, value, color }) => (
                 <div key={label} className="flex items-start gap-5">
