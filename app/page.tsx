@@ -27,7 +27,7 @@ const stats = [
 ];
 
 const comparisons = [
-  { feature: "Job Posting Cost", jobportal: "₹199 Only", naukri: "₹3,000+", apna: "₹1,500+", workindia: "₹1,000+" },
+  { feature: "Job Posting Cost", jobportal: "₹199 Only", naukri: "₹1,000+", apna: "₹1,000+", workindia: "₹2,000+" },
   { feature: "AI Calling System", jobportal: "Yes", naukri: "No", apna: "No", workindia: "No" },
   { feature: "Verified Leads", jobportal: "Yes", naukri: "Partial", apna: "Partial", workindia: "Yes" },
   { feature: "Dedicated Recruiter", jobportal: "Yes", naukri: "No", apna: "No", workindia: "No" },
@@ -59,7 +59,7 @@ const industries = [
 ];
 
 const testimonials = [
-  { name: "Rahul Sharma", role: "HR Manager, TechCorp", stars: 5, text: "Job Portal filled 30 positions within 2 weeks. The AI calling saved us 60% of our time!" },
+  { name: "Rahul Sharma", role: "HR Manager, TechCorp", stars: 5, text: "Talent Connect India filled 30 positions within 2 weeks. The AI calling saved us 60% of our time!" },
   { name: "Priya Patel", role: "Founder, RetailPro", stars: 5, text: "At ₹199 per job post, this is unbeatable. We got 150+ verified applications in 3 days." },
   { name: "Amit Singh", role: "Operations Head, LogiCo", stars: 5, text: "Their recruiter network is massive. We hired 50 warehouse staff across 5 cities easily." },
   { name: "Neha Gupta", role: "HR Director, PharmaCare", stars: 5, text: "Verified leads are a game-changer. No more fake CVs or wrong numbers." },
@@ -216,12 +216,12 @@ export default function HomePage() {
 
           {/* Comparison Table */}
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
-            <span className="section-label">Why Job Portal?</span>
+            <span className="section-label">Why Talent Connect India?</span>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-slate-900 mt-3">
               We Beat the Competition
             </h2>
             <p className="text-slate-500 mt-4 max-w-xl mx-auto">
-              Compare and see why thousands of employers choose Job Portal over Naukri, Apna, and WorkIndia.
+              Compare and see why thousands of employers choose Talent Connect India over Naukri, Apna, and WorkIndia.
             </p>
           </motion.div>
 
@@ -236,7 +236,7 @@ export default function HomePage() {
                 <tr className="bg-linear-to-r from-blue-700 to-blue-600 text-white">
                   <th className="text-left px-6 py-4 font-semibold text-sm w-48">Feature</th>
                   <th className="px-6 py-4 text-sm font-bold">
-                    <span className="bg-amber-400 text-slate-900 px-3 py-1 rounded-full">Job Portal</span>
+                    <span className="bg-amber-400 text-slate-900 px-3 py-1 rounded-full">TCI</span>
                   </th>
                   <th className="px-6 py-4 text-sm font-semibold opacity-80">Naukri</th>
                   <th className="px-6 py-4 text-sm font-semibold opacity-80">Apna</th>

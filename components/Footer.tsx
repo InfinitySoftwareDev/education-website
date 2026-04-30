@@ -63,18 +63,18 @@ export default function Footer() {
             <div className="relative w-12 h-12 rounded-2xl bg-linear-to-br from-blue-500 via-blue-600 to-indigo-700 flex items-center justify-center shadow-xl shadow-blue-900/40 group-hover:shadow-blue-500/30 transition-all duration-500 hover:scale-105 group-hover:-rotate-3 overflow-hidden">
               {/* Animated Shine Effect */}
               <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-              
+
               {/* Glass Border */}
               <div className="absolute inset-0 rounded-2xl border border-white/20" />
-              
+
               <Briefcase className="w-6 h-6 text-white relative z-10 animate-float-slow" />
-              
+
               {/* Notification Dot with Pulse */}
               <div className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-amber-400 border-2 border-[#0B1120] shadow-sm">
                 <div className="absolute inset-0 rounded-full bg-amber-400 animate-ping opacity-75" />
               </div>
             </div>
-            
+
             <div className="leading-tight">
               <div className="flex items-center">
                 <span className="font-heading font-800 text-2xl tracking-tighter text-white group-hover:text-blue-400 transition-colors duration-300">Talent</span>
@@ -180,7 +180,7 @@ export default function Footer() {
       <div className="border-t border-white/5 py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-slate-500">
           <p>
-            © 2024 Job Portal Recruitment Solutions Pvt. Ltd. All rights
+            © 2026 Talent Connect India Recruitment Solutions All rights
             reserved.
           </p>
           <div className="flex items-center gap-4">
