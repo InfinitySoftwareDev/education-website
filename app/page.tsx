@@ -243,27 +243,28 @@ export default function HomePage() {
                   <th className="px-6 py-4 text-sm font-semibold opacity-80">WorkIndia</th>
                 </tr>
               </thead>
+              {/* remove stroke width and text size less for faint icons */}
               <tbody>
                 {comparisons.map((row, i) => {
                   const renderVal = (val: string, isMain = false) => {
                     if (val === "Yes" || val === "Included") {
                       return (
-                        <div className={`flex items-center justify-center gap-1.5 ${isMain ? 'text-blue-700 font-bold' : 'text-slate-600'}`}>
-                          <CheckCircle size={14} className="text-emerald-500" /> {val}
+                        <div className={`flex items-center justify-center gap-1.5 ${isMain ? 'text-blue-800 font-bold' : 'text-slate-700'}`}>
+                          <CheckCircle size={14} className="text-emerald-600" strokeWidth={3} /> {val}
                         </div>
                       );
                     }
                     if (val === "No") {
                       return (
-                        <div className="flex items-center justify-center gap-1.5 text-slate-400">
-                          <XCircle size={14} className="text-red-400" /> No
+                        <div className="flex items-center justify-center gap-1.5 text-slate-500">
+                          <XCircle size={14} className="text-red-600" strokeWidth={3} /> No
                         </div>
                       );
                     }
                     if (val === "Partial") {
                       return (
-                        <div className="flex items-center justify-center gap-1.5 text-slate-500">
-                          <Zap size={14} className="text-amber-500" /> Partial
+                        <div className="flex items-center justify-center gap-1.5 text-slate-600">
+                          <Zap size={14} className="text-amber-600" strokeWidth={3} /> Partial
                         </div>
                       );
                     }
