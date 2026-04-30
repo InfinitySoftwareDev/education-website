@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowRight, Briefcase, Users, MapPin, Trophy, Phone, Star,
-  CheckCircle, TrendingUp, Zap, Shield, Building2, ChevronRight,
+  CheckCircle, TrendingUp, Zap, Shield, Building2, ChevronRight, XCircle
 } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FAQSection from "@/components/FAQSection";
@@ -28,12 +28,12 @@ const stats = [
 
 const comparisons = [
   { feature: "Job Posting Cost", jobportal: "₹199 Only", naukri: "₹3,000+", apna: "₹1,500+", workindia: "₹1,000+" },
-  { feature: "AI Calling System", jobportal: "✅ Yes", naukri: "❌ No", apna: "❌ No", workindia: "❌ No" },
-  { feature: "Verified Leads", jobportal: "✅ Yes", naukri: "⚡ Partial", apna: "⚡ Partial", workindia: "✅ Yes" },
-  { feature: "Dedicated Recruiter", jobportal: "✅ Yes", naukri: "❌ No", apna: "❌ No", workindia: "❌ No" },
-  { feature: "Bulk Hiring Support", jobportal: "✅ Yes", naukri: "✅ Yes", apna: "⚡ Partial", workindia: "⚡ Partial" },
-  { feature: "Mobile Verified DB", jobportal: "✅ Yes", naukri: "⚡ Partial", apna: "✅ Yes", workindia: "✅ Yes" },
-  { feature: "Resume Database Access", jobportal: "✅ Included", naukri: "₹Paid Add-on", apna: "❌ No", workindia: "⚡ Partial" },
+  { feature: "AI Calling System", jobportal: "Yes", naukri: "No", apna: "No", workindia: "No" },
+  { feature: "Verified Leads", jobportal: "Yes", naukri: "Partial", apna: "Partial", workindia: "Yes" },
+  { feature: "Dedicated Recruiter", jobportal: "Yes", naukri: "No", apna: "No", workindia: "No" },
+  { feature: "Bulk Hiring Support", jobportal: "Yes", naukri: "Yes", apna: "Partial", workindia: "Partial" },
+  { feature: "Mobile Verified DB", jobportal: "Yes", naukri: "Partial", apna: "Yes", workindia: "Yes" },
+  { feature: "Resume Database Access", jobportal: "Included", naukri: "₹Paid Add-on", apna: "No", workindia: "Partial" },
 ];
 
 const aiFeatures = [
@@ -244,15 +244,42 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody>
-                {comparisons.map((row, i) => (
-                  <tr key={row.feature} className={i % 2 === 0 ? "bg-white" : "bg-slate-50/70"}>
-                    <td className="px-6 py-4 text-sm font-semibold text-slate-700">{row.feature}</td>
-                    <td className="px-6 py-4 text-sm font-bold text-blue-700 text-center bg-blue-50/40">{row.jobportal}</td>
-                    <td className="px-6 py-4 text-sm text-slate-500 text-center">{row.naukri}</td>
-                    <td className="px-6 py-4 text-sm text-slate-500 text-center">{row.apna}</td>
-                    <td className="px-6 py-4 text-sm text-slate-500 text-center">{row.workindia}</td>
-                  </tr>
-                ))}
+                {comparisons.map((row, i) => {
+                  const renderVal = (val: string, isMain = false) => {
+                    if (val === "Yes" || val === "Included") {
+                      return (
+                        <div className={`flex items-center justify-center gap-1.5 ${isMain ? 'text-blue-700 font-bold' : 'text-slate-600'}`}>
+                          <CheckCircle size={14} className="text-emerald-500" /> {val}
+                        </div>
+                      );
+                    }
+                    if (val === "No") {
+                      return (
+                        <div className="flex items-center justify-center gap-1.5 text-slate-400">
+                          <XCircle size={14} className="text-red-400" /> No
+                        </div>
+                      );
+                    }
+                    if (val === "Partial") {
+                      return (
+                        <div className="flex items-center justify-center gap-1.5 text-slate-500">
+                          <Zap size={14} className="text-amber-500" /> Partial
+                        </div>
+                      );
+                    }
+                    return val;
+                  };
+
+                  return (
+                    <tr key={row.feature} className={i % 2 === 0 ? "bg-white" : "bg-slate-50/70"}>
+                      <td className="px-6 py-4 text-sm font-semibold text-slate-700">{row.feature}</td>
+                      <td className="px-6 py-4 text-sm text-center bg-blue-50/40">{renderVal(row.jobportal, true)}</td>
+                      <td className="px-6 py-4 text-sm text-center">{renderVal(row.naukri)}</td>
+                      <td className="px-6 py-4 text-sm text-center">{renderVal(row.apna)}</td>
+                      <td className="px-6 py-4 text-sm text-center">{renderVal(row.workindia)}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </motion.div>
