@@ -60,16 +60,17 @@ export default function Footer() {
         {/* Brand */}
         <div className="lg:col-span-1">
           <Link href="/" className="flex items-center gap-3 mb-5">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-lg shadow-blue-600/30">
               <Briefcase className="w-5 h-5 text-white" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-amber-400 border-2 border-[#0B1120]" />
             </div>
-            <div>
-              <span className="font-heading text-xl font-bold text-white">
-                Job
-              </span>
-              <span className="font-heading text-xl font-bold text-amber-400">
-                Portal
-              </span>
+            <div className="leading-tight">
+              <div>
+                <span className="font-heading text-xl font-bold text-white">Talent</span>
+                <span className="font-heading text-xl font-bold text-blue-400">Connect</span>
+                <span className="font-heading text-xl font-bold text-amber-400">India</span>
+              </div>
+              <div className="text-[10px] font-semibold text-slate-500 tracking-wider -mt-0.5">RECRUITMENT SOLUTIONS</div>
             </div>
           </Link>
           <p className="text-slate-400 text-sm leading-relaxed mb-6">
