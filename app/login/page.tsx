@@ -222,18 +222,57 @@ export default function LoginPage() {
                                     <div className="space-y-6">
                                         <div className="space-y-2">
                                             <p className="text-sm text-slate-500 leading-relaxed">
-                                                Enter your registered email or mobile number to receive a password reset link.
+                                                {otpSent 
+                                                    ? "Enter the 6-digit OTP sent to your mobile/email and choose a new password." 
+                                                    : "Enter your registered email or mobile number to receive a verification OTP."}
                                             </p>
                                         </div>
-                                        <div>
-                                            <label className="form-label">Email / Mobile</label>
-                                            <input className="form-input" placeholder="Enter your email or mobile" />
-                                        </div>
-                                        <button className="btn-primary w-full py-3.5 text-sm">
-                                            Send Reset Link <ArrowRight size={15} />
-                                        </button>
+
+                                        {!otpSent ? (
+                                            <div className="space-y-4">
+                                                <div>
+                                                    <label className="form-label">Email / Mobile</label>
+                                                    <input className="form-input" placeholder="Enter your email or mobile" />
+                                                </div>
+                                                <button 
+                                                    onClick={handleSendOtp}
+                                                    disabled={loading}
+                                                    className="btn-primary w-full py-3.5 text-sm"
+                                                >
+                                                    {loading ? "Sending..." : "Send OTP"} <ArrowRight size={15} />
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <motion.div 
+                                                initial={{ opacity: 0, y: 10 }} 
+                                                animate={{ opacity: 1, y: 0 }}
+                                                className="space-y-4"
+                                            >
+                                                <div>
+                                                    <div className="flex justify-between items-center mb-1.5">
+                                                        <label className="form-label mb-0">Enter OTP</label>
+                                                        <button onClick={() => setOtpSent(false)} className="text-[10px] text-blue-600 font-bold hover:underline">Resend</button>
+                                                    </div>
+                                                    <input 
+                                                        className="form-input text-center text-xl tracking-[0.5em] font-bold" 
+                                                        maxLength={6} 
+                                                        placeholder="000000" 
+                                                        value={otp}
+                                                        onChange={(e) => setOtp(e.target.value)}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="form-label">New Password</label>
+                                                    <input type="password" className="form-input" placeholder="••••••••" />
+                                                </div>
+                                                <button className="btn-primary w-full py-3.5 text-sm">
+                                                    Reset Password <ArrowRight size={15} />
+                                                </button>
+                                            </motion.div>
+                                        )}
+
                                         <button 
-                                            onClick={() => setView("login")} 
+                                            onClick={() => { setView("login"); setOtpSent(false); }} 
                                             className="w-full text-xs text-slate-500 hover:text-blue-600 transition-colors flex items-center justify-center gap-2"
                                         >
                                             ← Back to Login
