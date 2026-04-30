@@ -22,7 +22,7 @@ const dashLinks: Record<string, string> = {
 
 export default function LoginPage() {
     const [active, setActive] = useState("employer");
-    const [isLogin, setIsLogin] = useState(true);
+    const [view, setView] = useState("login"); // 'login', 'register', 'forgot'
     const [loginMethod, setLoginMethod] = useState("password"); // 'password' or 'otp'
     const [otpSent, setOtpSent] = useState(false);
     const [otp, setOtp] = useState("");
@@ -56,6 +56,7 @@ export default function LoginPage() {
                             onClick={() => {
                                 setActive(p.id);
                                 setOtpSent(false);
+                                setView("login");
                             }}
                             className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all duration-200 ${active === p.id
                                 ? `${p.bg} ${p.border} ${p.color} shadow-lg`
@@ -70,7 +71,7 @@ export default function LoginPage() {
 
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={active}
+                        key={`${active}-${view}`}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
@@ -78,29 +79,35 @@ export default function LoginPage() {
                         className="max-w-md mx-auto"
                     >
                         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                            <div className="flex border-b border-slate-100">
-                                {["Login", "Register"].map((t) => (
-                                    <button
-                                        key={t}
-                                        onClick={() => setIsLogin(t === "Login")}
-                                        className={`flex-1 py-4 text-sm font-bold transition-colors ${((t === "Login") === isLogin)
-                                            ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50/50"
-                                            : "text-slate-500 hover:bg-slate-50"
-                                            }`}
-                                    >
-                                        {t}
-                                    </button>
-                                ))}
-                            </div>
+                            {/* Tab Switcher (only for login/register) */}
+                            {view !== "forgot" && (
+                                <div className="flex border-b border-slate-100">
+                                    {["Login", "Register"].map((t) => (
+                                        <button
+                                            key={t}
+                                            onClick={() => setView(t === "Login" ? "login" : "register")}
+                                            className={`flex-1 py-4 text-sm font-bold transition-colors ${((t === "Login") === (view === "login"))
+                                                ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50/50"
+                                                : "text-slate-500 hover:bg-slate-50"
+                                                }`}
+                                        >
+                                            {t}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
 
                             <div className="p-7">
                                 <div className={`flex items-center gap-3 ${current.bg} ${current.border} border rounded-xl p-3 mb-6`}>
                                     <current.icon size={18} className={current.color} />
-                                    <span className={`text-sm font-bold ${current.color}`}>{current.label} {isLogin ? "Login" : "Registration"}</span>
+                                    <span className={`text-sm font-bold ${current.color}`}>
+                                        {current.label} {view === "login" ? "Login" : view === "register" ? "Registration" : "Reset Password"}
+                                    </span>
                                 </div>
 
-                                {isLogin ? (
+                                {view === "login" && (
                                     <div className="space-y-4">
+                                        {/* Login Method Switcher */}
                                         <div className="flex p-1 bg-slate-50 rounded-lg mb-4">
                                             <button
                                                 onClick={() => { setLoginMethod("password"); setOtpSent(false); }}
@@ -181,11 +188,13 @@ export default function LoginPage() {
                                         )}
 
                                         <div className="flex justify-between text-xs text-slate-500 pt-2">
-                                            <Link href="#" className="hover:text-blue-600 transition-colors">Forgot password?</Link>
-                                            <button onClick={() => setIsLogin(false)} className="hover:text-blue-600 transition-colors">Create account →</button>
+                                            <button onClick={() => setView("forgot")} className="hover:text-blue-600 transition-colors">Forgot password?</button>
+                                            <button onClick={() => setView("register")} className="hover:text-blue-600 transition-colors">Create account →</button>
                                         </div>
                                     </div>
-                                ) : (
+                                )}
+
+                                {view === "register" && (
                                     <div className="space-y-4">
                                         <div className="grid grid-cols-2 gap-4">
                                             <div><label className="form-label">First Name</label><input className="form-input" placeholder="First" /></div>
@@ -203,8 +212,31 @@ export default function LoginPage() {
                                         <button className="btn-primary w-full py-3.5 text-sm">
                                             Register as {current.label} <ArrowRight size={15} />
                                         </button>
-                                        <button onClick={() => setIsLogin(true)} className="w-full text-xs text-slate-500 hover:text-blue-600 transition-colors">
+                                        <button onClick={() => setView("login")} className="w-full text-xs text-slate-500 hover:text-blue-600 transition-colors">
                                             Already have an account? Login →
+                                        </button>
+                                    </div>
+                                )}
+
+                                {view === "forgot" && (
+                                    <div className="space-y-6">
+                                        <div className="space-y-2">
+                                            <p className="text-sm text-slate-500 leading-relaxed">
+                                                Enter your registered email or mobile number to receive a password reset link.
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label className="form-label">Email / Mobile</label>
+                                            <input className="form-input" placeholder="Enter your email or mobile" />
+                                        </div>
+                                        <button className="btn-primary w-full py-3.5 text-sm">
+                                            Send Reset Link <ArrowRight size={15} />
+                                        </button>
+                                        <button 
+                                            onClick={() => setView("login")} 
+                                            className="w-full text-xs text-slate-500 hover:text-blue-600 transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            ← Back to Login
                                         </button>
                                     </div>
                                 )}
