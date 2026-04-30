@@ -34,7 +34,7 @@ const services = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0B1120] text-white">
+    <footer className="bg-[#0B1120] text-white print:hidden">
       {/* CTA Strip */}
       <div className="bg-linear-to-r from-blue-700 via-blue-600 to-blue-700 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
