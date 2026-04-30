@@ -557,7 +557,7 @@ export default function ResumeBuilder() {
                     </div>
 
                     {/* Resume Document Wrapper */}
-                    <div id="resume-document" className="bg-white rounded-2xl shadow-2xl overflow-hidden min-h-1100px border border-slate-200 origin-top transform transition-all duration-500 print:shadow-none print:border-none print:rounded-none print:w-full print:absolute print:top-0 print:left-0 print:m-0 print:h-auto">
+                    <div id="resume-document" className="bg-white rounded-2xl shadow-2xl overflow-hidden min-h-275 border border-slate-200 origin-top transform transition-all duration-500 print:shadow-none print:border-none print:rounded-none print:w-full print:absolute print:top-0 print:left-0 print:m-0 print:h-auto">
                       
                       {/* TEMPLATE RENDERING */}
                       {activeTemplate === "professional" && <ProfessionalTemplate formData={formData} />}

@@ -304,7 +304,7 @@ export function ATSFriendlyTemplate({ formData }: { formData: ResumeData }) {
 
 export function ExecutiveTemplate({ formData }: { formData: ResumeData }) {
   return (
-    <div className="flex h-full min-h-[1100px] bg-white">
+    <div className="flex h-full min-h-275 bg-white">
       <div className="w-1/3 bg-slate-900 text-white p-10 flex flex-col">
         <div className="mb-10">
           <h2 className="text-3xl font-black uppercase tracking-tighter mb-1">{formData.name}</h2>
@@ -356,7 +356,7 @@ export function ExecutiveTemplate({ formData }: { formData: ResumeData }) {
         <section>
           <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-300 mb-8">Professional Experience</h3>
           <div className="space-y-10 relative">
-            <div className="absolute left-[3px] top-2 bottom-2 w-px bg-slate-100" />
+            <div className="absolute left-0.75 top-2 bottom-2 w-px bg-slate-100" />
             {formData.experience.map(exp => (
               <div key={exp.id} className="relative pl-8">
                 <div className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50" />
@@ -486,7 +486,7 @@ export function ElegantTemplate({ formData }: { formData: ResumeData }) {
     <div className="p-16 bg-[#fafafa] min-h-full font-serif pb-24">
       <header className="text-center mb-16 border-b border-slate-200 pb-12">
         <h2 className="text-5xl text-slate-900 mb-4 tracking-tight">{formData.name}</h2>
-        <p className="text-lg text-slate-500 italic mb-8 font-sans tracking-wide uppercase text-sm font-bold tracking-[0.3em]">{formData.title}</p>
+        <p className="text-slate-500 italic mb-8 font-sans uppercase text-sm font-bold tracking-[0.3em]">{formData.title}</p>
         <div className="flex justify-center gap-8 text-xs font-sans text-slate-400 uppercase tracking-widest">
           <span>{formData.email}</span>
           <span>•</span>
@@ -502,7 +502,7 @@ export function ElegantTemplate({ formData }: { formData: ResumeData }) {
         <section>
           <div className="flex items-center gap-6 mb-10">
             <h3 className="text-xs font-sans font-bold uppercase tracking-[0.4em] text-slate-400 whitespace-nowrap">Career History</h3>
-            <div className="h-[1px] bg-slate-200 w-full" />
+            <div className="h-px bg-slate-200 w-full" />
           </div>
           <div className="space-y-12">
             {formData.experience.map(exp => (
@@ -520,7 +520,7 @@ export function ElegantTemplate({ formData }: { formData: ResumeData }) {
         <section>
           <div className="flex items-center gap-6 mb-10">
             <h3 className="text-xs font-sans font-bold uppercase tracking-[0.4em] text-slate-400 whitespace-nowrap">Projects</h3>
-            <div className="h-[1px] bg-slate-200 w-full" />
+            <div className="h-px bg-slate-200 w-full" />
           </div>
           <div className="space-y-10">
             {formData.projects.map(proj => (
@@ -539,7 +539,7 @@ export function ElegantTemplate({ formData }: { formData: ResumeData }) {
           <section>
             <div className="flex items-center gap-4 mb-8">
               <h3 className="text-xs font-sans font-bold uppercase tracking-[0.4em] text-slate-400 whitespace-nowrap">Core Skills</h3>
-              <div className="h-[1px] bg-slate-200 w-full" />
+              <div className="h-px bg-slate-200 w-full" />
             </div>
             <div className="grid grid-cols-2 gap-y-3 gap-x-4 font-sans">
               {formData.skills.map(skill => (
@@ -552,7 +552,7 @@ export function ElegantTemplate({ formData }: { formData: ResumeData }) {
           <section>
             <div className="flex items-center gap-4 mb-8">
               <h3 className="text-xs font-sans font-bold uppercase tracking-[0.4em] text-slate-400 whitespace-nowrap">Education</h3>
-              <div className="h-[1px] bg-slate-200 w-full" />
+              <div className="h-px bg-slate-200 w-full" />
             </div>
             <div className="space-y-6 font-sans">
               {formData.education.map(edu => (
