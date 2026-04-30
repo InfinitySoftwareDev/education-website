@@ -44,7 +44,7 @@ export default function LoginPage() {
                 <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
                     <span className="section-label">Secure Access</span>
                     <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-white mt-4 mb-3">
-                        Job Portal <span className="text-gradient-amber">Login Portal</span>
+                        Talent Connect India <span className="text-gradient-amber">Login Portal</span>
                     </h1>
                     <p className="text-slate-300">Select your role to access your dashboard.</p>
                 </motion.div>

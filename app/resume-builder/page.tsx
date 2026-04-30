@@ -46,7 +46,7 @@ export default function ResumeBuilder() {
       { id: 1, school: "University of Mumbai", degree: "B.E. in Computer Science", year: "2019" }
     ],
     projects: [
-      { id: 1, name: "AI Job Portal", link: "https://github.com/example/job-portal", techStack: "Next.js, Tailwind, OpenAI", desc: "Built a fully functional job portal with AI voice screening features." }
+      { id: 1, name: "AI Talent Connect India", link: "https://github.com/example/job-portal", techStack: "Next.js, Tailwind, OpenAI", desc: "Built a fully functional Talent Connect India with AI voice screening features." }
     ],
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js"]
   });

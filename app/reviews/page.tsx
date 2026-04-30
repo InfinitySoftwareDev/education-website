@@ -17,7 +17,7 @@ const testimonials = [
     role: "HR Manager, TechCorp",
     city: "Mumbai",
     stars: 5,
-    text: "Job Portal filled 30 positions in 2 weeks. The AI calling saved us 60% of our recruitment time. Absolutely love the service!",
+    text: "Talent Connect India filled 30 positions in 2 weeks. The AI calling saved us 60% of our recruitment time. Absolutely love the service!",
     category: "IT",
   },
   {
@@ -49,7 +49,7 @@ const testimonials = [
     role: "CEO, BuildRight Constructions",
     city: "Pune",
     stars: 5,
-    text: "We needed 200 site workers in 1 month. Job Portal delivered 220 screened candidates. Simply outstanding!",
+    text: "We needed 200 site workers in 1 month. Talent Connect India delivered 220 screened candidates. Simply outstanding!",
     category: "Construction",
   },
   {
@@ -57,7 +57,7 @@ const testimonials = [
     role: "Head HR, EduFirst Academy",
     city: "Chennai",
     stars: 5,
-    text: "Finding qualified teachers is hard. Job Portal made it easy. Their education sector database is excellent.",
+    text: "Finding qualified teachers is hard. Talent Connect India made it easy. Their education sector database is excellent.",
     category: "Education",
   },
   {

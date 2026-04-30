@@ -5,7 +5,7 @@ import { ChevronDown, HelpCircle } from "lucide-react";
 
 const faqs = [
   { 
-    q: "How does Job Portal's hiring process work?", 
+    q: "How does Talent Connect India's hiring process work?", 
     a: "Post a job → Our AI system calls verified candidates → Interested candidates are forwarded to your HR team → You conduct final interviews → Hire!" 
   },
   { 
@@ -22,7 +22,7 @@ const faqs = [
   },
   { 
     q: "Can I hire in multiple cities at once?", 
-    a: "Yes! Job Portal covers 135+ cities. When posting a job, simply select multiple city targets and our recruiter network will activate in all selected locations." 
+    a: "Yes! Talent Connect India covers 135+ cities. When posting a job, simply select multiple city targets and our recruiter network will activate in all selected locations." 
   },
 ];
 

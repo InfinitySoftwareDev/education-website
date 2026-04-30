@@ -14,7 +14,7 @@ const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
-  { href: "/jobs", label: "Job Portal" },
+  { href: "/jobs", label: "Talent Connect India" },
   { href: "/employer", label: "Employer Portal" },
   { href: "/reviews", label: "Reviews" },
   { href: "/faq", label: "FAQ" },
@@ -42,7 +42,8 @@ export default function Footer() {
               Ready to Hire? Start at just ₹199!
             </h3>
             <p className="text-blue-100 text-sm mt-1">
-              Join 5000+ companies trusting Job Portal for smart recruitment.
+              Join 5000+ companies trusting Talent Connect India for smart
+              recruitment.
             </p>
           </div>
           <Link
@@ -106,7 +107,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-3">
               <Mail size={15} className="text-blue-400 shrink-0" />
-              <span>info@talentconnectindia.in</span>
+              <span>info@talentconnectindia.com</span>
             </div>
             <div className="flex items-start gap-3">
               <MapPin size={15} className="text-blue-400 shrink-0 mt-0.5" />

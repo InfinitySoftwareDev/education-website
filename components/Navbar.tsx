@@ -13,7 +13,7 @@ const navLinks = [
   {
     label: "Portals",
     children: [
-      { href: "/jobs", label: "Job Portal" },
+      { href: "/jobs", label: "Talent Connect India" },
       { href: "/employer", label: "Employer Portal" },
     ],
   },

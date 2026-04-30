@@ -7,9 +7,9 @@ const categories = [
   {
     title: "Hiring Process",
     faqs: [
-      { q: "How does Job Portal's hiring process work?", a: "Post a job → Our AI system calls verified candidates → Interested candidates are forwarded to your HR team → You conduct final interviews → Hire!" },
+      { q: "How does Talent Connect India's hiring process work?", a: "Post a job → Our AI system calls verified candidates → Interested candidates are forwarded to your HR team → You conduct final interviews → Hire!" },
       { q: "How quickly will I receive candidates?", a: "Within 24–48 hours of posting a job, our AI system begins calling candidates. You will receive shortlisted leads within 2–3 business days." },
-      { q: "Can I hire in multiple cities at once?", a: "Yes! Job Portal covers 135+ cities. When posting a job, simply select multiple city targets and our recruiter network will activate in all selected locations." },
+      { q: "Can I hire in multiple cities at once?", a: "Yes! Talent Connect India covers 135+ cities. When posting a job, simply select multiple city targets and our recruiter network will activate in all selected locations." },
     ],
   },
   {
@@ -31,7 +31,7 @@ const categories = [
   {
     title: "Cities & Locations",
     faqs: [
-      { q: "Which cities does Job Portal operate in?", a: "We currently operate in 135+ cities across India, including all major metros and Tier 1, Tier 2, and Tier 3 cities, ensuring a pan-India reach for your recruitment needs." },
+      { q: "Which cities does Talent Connect India operate in?", a: "We currently operate in 135+ cities across India, including all major metros and Tier 1, Tier 2, and Tier 3 cities, ensuring a pan-India reach for your recruitment needs." },
       { q: "Can you hire for remote / work-from-home roles?", a: "Yes! For remote roles, our AI calling covers candidates from all major metropolitan areas and Tier-2 cities." },
       { q: "Are you expanding to more cities?", a: "Yes, we are actively expanding. 20 more cities are planned by end of 2025. Contact us if your city is not listed." },
     ],
@@ -95,7 +95,7 @@ export default function FAQPage() {
             <h1 className="font-heading text-5xl font-extrabold text-white mt-4 mb-5">
               Frequently Asked <span className="text-gradient-blue">Questions</span>
             </h1>
-            <p className="text-slate-300 text-xl">Everything you need to know about Job Portal recruitment services.</p>
+            <p className="text-slate-300 text-xl">Everything you need to know about Talent Connect India recruitment services.</p>
           </motion.div>
         </div>
         <div className="absolute bottom-0 left-0 right-0">
