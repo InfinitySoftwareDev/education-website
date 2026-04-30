@@ -264,6 +264,17 @@ export default function ResumeBuilder() {
                         </div>
                       </div>
                       <div>
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Location</label>
+                        <input 
+                          type="text" 
+                          name="location"
+                          value={formData.location}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Mumbai, India"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 transition-all outline-none text-sm font-medium"
+                        />
+                      </div>
+                      <div>
                         <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Professional Summary</label>
                         <textarea 
                           name="summary"
