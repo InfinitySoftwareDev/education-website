@@ -22,7 +22,7 @@ const quickLinks = [
 ];
 
 const services = [
-  "Job Posting @ ₹199",
+  "Job Posting",
   "Candidate Hiring",
   "Resume Database",
   "AI Calling System",
@@ -39,7 +39,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <h3 className="font-heading text-xl font-bold text-white">
-              Ready to Hire? Start at just ₹199!
+              Ready to Hire? Get Started Today
             </h3>
             <p className="text-blue-100 text-sm mt-1">
               Join 5000+ companies trusting Talent Connect India for smart
@@ -97,7 +97,7 @@ export default function Footer() {
           </Link>
           <p className="text-slate-400 text-sm leading-relaxed mb-6">
             10+ years of recruitment excellence. AI-powered hiring with verified
-            leads and affordable job posting starting at ₹199.
+            leads and affordable job posting solutions.
           </p>
           {/* Contact */}
           <div className="space-y-3 text-sm text-slate-400">

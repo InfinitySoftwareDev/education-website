@@ -69,10 +69,10 @@ const stats = [
 const comparisons = [
   {
     feature: "Job Posting Cost",
-    jobportal: "₹199 Only",
-    naukri: "₹1,000+",
-    apna: "₹1,000+",
-    workindia: "₹2,000+",
+    jobportal: "Affordable",
+    naukri: "High",
+    apna: "High",
+    workindia: "High",
   },
   {
     feature: "AI Calling System",
@@ -112,7 +112,7 @@ const comparisons = [
   {
     feature: "Resume Database Access",
     jobportal: "Included",
-    naukri: "₹Paid Add-on",
+    naukri: "Paid Add-on",
     apna: "No",
     workindia: "Partial",
   },
@@ -151,10 +151,8 @@ const industries = [
   { icon: "🏗️", label: "Construction & Real Estate" },
   { icon: "🚗", label: "Automobile & Auto Ancillary" },
   { icon: "🍽️", label: "Hospitality & Hotels" },
-  // { icon: "💻", label: "ITES (Information Technology Enabled Services)" },
   { icon: "💻", label: "ITES " },
   { icon: "📞", label: "BPO / KPO Centre" },
-  // { icon: "⚡", label: "Energy & Infrastructure" },
 ];
 
 const testimonials = [
@@ -168,7 +166,7 @@ const testimonials = [
     name: "Priya Patel",
     role: "Founder, RetailPro",
     stars: 5,
-    text: "At ₹199 per job post, this is unbeatable. We got 150+ verified applications in 3 days.",
+    text: "With this platform, we got 150+ verified applications in just 3 days. Highly recommended!",
   },
   {
     name: "Amit Singh",
@@ -266,9 +264,8 @@ export default function HomePage() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-6 leading-relaxed"
             >
-              Affordable Hiring Solutions Starting at{" "}
-              <span className="text-amber-400 font-bold text-2xl">₹199</span>.
-              AI-based calling, verified leads, and 350+ dedicated recruiters.
+              Affordable Hiring Solutions with AI-based calling, verified leads,
+              and 350+ dedicated recruiters across India.
             </motion.p>
 
             {/* Trust Chips */}
@@ -278,17 +275,19 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-wrap justify-center gap-3 mb-10"
             >
-              {["AI Calling", "Verified Leads", "135+ Cities", "₹199 Only"].map(
-                (chip) => (
-                  <span
-                    key={chip}
-                    className="flex items-center gap-1.5 bg-white/8 border border-white/15 text-slate-300 text-xs font-semibold px-4 py-1.5 rounded-full"
-                  >
-                    <CheckCircle size={11} className="text-emerald-400" />{" "}
-                    {chip}
-                  </span>
-                ),
-              )}
+              {[
+                "AI Calling",
+                "Verified Leads",
+                "135+ Cities",
+                "Affordable",
+              ].map((chip) => (
+                <span
+                  key={chip}
+                  className="flex items-center gap-1.5 bg-white/8 border border-white/15 text-slate-300 text-xs font-semibold px-4 py-1.5 rounded-full"
+                >
+                  <CheckCircle size={11} className="text-emerald-400" /> {chip}
+                </span>
+              ))}
             </motion.div>
 
             <motion.div
@@ -301,7 +300,7 @@ export default function HomePage() {
                 href="/employer"
                 className="btn-amber text-base py-4 px-8 hover-shine"
               >
-                Post a Job — ₹199 <ArrowRight size={18} />
+                Post a Job Now <ArrowRight size={18} />
               </Link>
               <Link href="/jobs" className="btn-outline text-base py-4 px-8">
                 Find Jobs
@@ -416,11 +415,14 @@ export default function HomePage() {
                   </th>
                 </tr>
               </thead>
-              {/* remove stroke width and text size less for faint icons */}
               <tbody>
                 {comparisons.map((row, i) => {
                   const renderVal = (val: string, isMain = false) => {
-                    if (val === "Yes" || val === "Included") {
+                    if (
+                      val === "Yes" ||
+                      val === "Included" ||
+                      val === "Affordable"
+                    ) {
                       return (
                         <div
                           className={`flex items-center justify-center gap-1.5 ${isMain ? "text-blue-800 font-bold" : "text-slate-700"}`}
@@ -455,6 +457,18 @@ export default function HomePage() {
                             strokeWidth={3}
                           />{" "}
                           Partial
+                        </div>
+                      );
+                    }
+                    if (val === "High") {
+                      return (
+                        <div className="flex items-center justify-center gap-1.5 text-slate-500">
+                          <XCircle
+                            size={14}
+                            className="text-red-400"
+                            strokeWidth={3}
+                          />{" "}
+                          High
                         </div>
                       );
                     }
@@ -703,51 +717,6 @@ export default function HomePage() {
 
       {/* ═══ 7. FAQ SECTION ═════════════════════════════ */}
       <FAQSection />
-
-      {/* ═══ 8. CTA BANNER ══════════════════════════════ */}
-      {/* <section className="py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden bg-linear-to-br from-amber-400 to-amber-500 p-12 md:p-16 text-center shadow-2xl shadow-amber-400/30"
-          >
-            <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl" />
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/20 rounded-full blur-2xl" />
-            <div className="relative z-10">
-              <span className="inline-block bg-slate-900/15 text-slate-900 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-6">
-                🔥 Limited Time Offer
-              </span>
-              <h2 className="font-heading text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
-                Post a Job for Just ₹199
-              </h2>
-              <p className="text-slate-800/80 text-lg mb-8 max-w-xl mx-auto">
-                Reach 50,000+ verified candidates. Get AI-powered calling,
-                verified leads & dedicated recruiter support.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/employer"
-                  className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl text-base"
-                >
-                  Post a Job Now <ArrowRight size={18} />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white/30 hover:bg-white/50 text-slate-900 font-bold px-10 py-4 rounded-xl transition-all border border-slate-900/20 text-base"
-                >
-                  Talk to a Recruiter
-                </Link>
-              </div>
-              <p className="text-slate-700/70 text-xs mt-6">
-                No hidden charges · Cancel anytime · 24/7 support
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section> */}
     </div>
   );
 }
