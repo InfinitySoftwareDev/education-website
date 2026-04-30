@@ -22,7 +22,7 @@ export default function PromoterDashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="bg-gradient-to-r from-amber-600 to-amber-500 text-white py-8 px-6">
+      <div className="bg-linear-to-r from-amber-600 to-amber-500 text-white py-8 px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
             <p className="text-amber-100 text-sm mb-1">Promoter Dashboard</p>
@@ -57,7 +57,7 @@ export default function PromoterDashboard() {
         </motion.div>
 
         {/* Referral Link */}
-        <div className="bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-2xl p-6 mb-8">
+        <div className="bg-linear-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-2xl p-6 mb-8">
           <h2 className="font-heading font-bold text-slate-900 mb-3 flex items-center gap-2">
             <Share2 size={16} className="text-amber-600" /> Your Referral Link
           </h2>

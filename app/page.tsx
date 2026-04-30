@@ -231,9 +231,9 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="overflow-x-auto rounded-2xl border border-slate-200 shadow-xl bg-white mb-20"
           >
-            <table className="w-full min-w-[640px]">
+            <table className="w-full min-w-160">
               <thead>
-                <tr className="bg-gradient-to-r from-blue-700 to-blue-600 text-white">
+                <tr className="bg-linear-to-r from-blue-700 to-blue-600 text-white">
                   <th className="text-left px-6 py-4 font-semibold text-sm w-48">Feature</th>
                   <th className="px-6 py-4 text-sm font-bold">
                     <span className="bg-amber-400 text-slate-900 px-3 py-1 rounded-full">Job Portal</span>
@@ -349,7 +349,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══ 5. TESTIMONIALS ════════════════════════════ */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative overflow-hidden">
+      <section className="py-24 bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
@@ -424,7 +424,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-amber-400 to-amber-500 p-12 md:p-16 text-center shadow-2xl shadow-amber-400/30"
+            className="relative rounded-3xl overflow-hidden bg-linear-to-br from-amber-400 to-amber-500 p-12 md:p-16 text-center shadow-2xl shadow-amber-400/30"
           >
             <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl" />

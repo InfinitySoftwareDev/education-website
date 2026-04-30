@@ -208,7 +208,7 @@ export default function ReviewsPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="card text-center bg-gradient-to-br from-blue-600 to-blue-800 text-white border-0"
+                className="card text-center bg-linear-to-br from-blue-600 to-blue-800 text-white border-0"
               >
                 <div className="font-heading text-4xl font-extrabold text-amber-300 mb-1">
                   {s.hired}+

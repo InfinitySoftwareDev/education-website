@@ -20,7 +20,7 @@ const candidates = [
 export default function EmployerDashboard() {
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="bg-gradient-to-r from-blue-700 to-blue-600 text-white py-8 px-6">
+      <div className="bg-linear-to-r from-blue-700 to-blue-600 text-white py-8 px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
             <p className="text-blue-200 text-sm mb-1">Employer Dashboard</p>

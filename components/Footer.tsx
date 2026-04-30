@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0B1120] text-white">
       {/* CTA Strip */}
-      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 py-8">
+      <div className="bg-linear-to-r from-blue-700 via-blue-600 to-blue-700 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <h3 className="font-heading text-xl font-bold text-white">
@@ -60,7 +60,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="lg:col-span-1">
           <Link href="/" className="flex items-center gap-3 mb-5">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-lg shadow-blue-600/30">
+            <div className="relative w-10 h-10 rounded-xl bg-linear-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-lg shadow-blue-600/30">
               <Briefcase className="w-5 h-5 text-white" />
               <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-amber-400 border-2 border-[#0B1120]" />
             </div>

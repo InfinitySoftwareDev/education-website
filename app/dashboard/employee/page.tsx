@@ -19,7 +19,7 @@ const recommended = [
 export default function EmployeeDashboard() {
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="bg-gradient-to-r from-emerald-700 to-emerald-600 text-white py-8 px-6">
+      <div className="bg-linear-to-r from-emerald-700 to-emerald-600 text-white py-8 px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
             <p className="text-emerald-200 text-sm mb-1">Job Seeker Dashboard</p>
@@ -49,7 +49,7 @@ export default function EmployeeDashboard() {
             </div>
           </div>
           <div className="mt-4 h-2.5 bg-slate-100 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all" style={{ width: "72%" }} />
+            <div className="h-full bg-linear-to-r from-emerald-500 to-emerald-400 rounded-full transition-all" style={{ width: "72%" }} />
           </div>
           <div className="flex flex-wrap gap-2 mt-4">
             {[

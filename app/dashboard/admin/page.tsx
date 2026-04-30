@@ -24,7 +24,7 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white py-8 px-6">
+      <div className="bg-linear-to-r from-slate-900 to-blue-900 text-white py-8 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
             <div>
@@ -132,7 +132,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Ratings */}
-            <div className="bg-gradient-to-br from-amber-400 to-amber-500 rounded-2xl p-6 text-slate-900">
+            <div className="bg-linear-to-br from-amber-400 to-amber-500 rounded-2xl p-6 text-slate-900">
               <Star className="w-8 h-8 mb-3 fill-slate-900/20" />
               <div className="font-heading text-4xl font-extrabold mb-1">4.9/5</div>
               <p className="font-semibold text-sm">Average Rating</p>

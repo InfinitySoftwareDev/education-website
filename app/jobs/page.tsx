@@ -55,8 +55,8 @@ export default function JobsPage() {
       {/* ── HERO ──────────────────────────────────────── */}
       <section className="relative hero-bg pt-20 pb-32">
         {/* Decorative blobs */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-700/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-amber-400/8 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-0 -right-20 w-125 h-125 bg-blue-600/20 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-100 h-100 bg-blue-400/20 rounded-full blur-3xl" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
@@ -228,7 +228,7 @@ export default function JobsPage() {
                 </div>
 
                 {/* Upload CTA card */}
-                <div className="relative bg-gradient-to-br from-blue-700 to-blue-900 rounded-2xl p-5 overflow-hidden">
+                <div className="relative bg-linear-to-br from-blue-700 to-blue-900 rounded-2xl p-5 overflow-hidden">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-2xl" />
                   <FileText className="w-8 h-8 text-blue-300 mb-3" />
                   <h4 className="font-bold text-white text-sm mb-1">Build a Free Resume</h4>
@@ -284,7 +284,7 @@ export default function JobsPage() {
                       {/* Left */}
                       <div className="flex gap-4 items-start">
                         <div className="relative">
-                          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center shrink-0 group-hover:from-blue-100 group-hover:to-blue-200 transition-all duration-300">
+                          <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-blue-50 to-blue-100 flex items-center justify-center shrink-0 group-hover:from-blue-100 group-hover:to-blue-200 transition-all duration-300">
                             <Briefcase className="w-6 h-6 text-blue-600" />
                           </div>
 

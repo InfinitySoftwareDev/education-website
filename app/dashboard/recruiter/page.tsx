@@ -14,7 +14,7 @@ const leads = [
 export default function RecruiterDashboard() {
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="bg-gradient-to-r from-purple-800 to-purple-700 text-white py-8 px-6">
+      <div className="bg-linear-to-r from-purple-800 to-purple-700 text-white py-8 px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
             <p className="text-purple-200 text-sm mb-1">Recruiter Dashboard</p>
@@ -57,8 +57,8 @@ export default function RecruiterDashboard() {
             </h2>
             <span className="badge-blue">AI Assisted</span>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px]">
+          <div className="overflow-x-auto custom-scrollbar">
+            <table className="w-full min-w-160">
               <thead className="bg-slate-50 text-xs font-bold text-slate-400 uppercase tracking-wider">
                 <tr>
                   <th className="text-left px-6 py-3">Candidate</th>
