@@ -44,18 +44,31 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-18">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-3">
-          <div className="relative w-10 h-10 rounded-xl bg-linear-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:shadow-blue-600/50 transition-all duration-300 hover-shine">
-            <Briefcase className="w-5 h-5 text-white" />
-            <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-amber-400 border-2 border-white" />
+          <div className="relative w-12 h-12 rounded-2xl bg-linear-to-br from-blue-500 via-blue-600 to-indigo-700 flex items-center justify-center shadow-xl shadow-blue-600/20 group-hover:shadow-blue-600/40 transition-all duration-500 hover:scale-105 group-hover:rotate-3 overflow-hidden">
+            {/* Animated Shine Effect */}
+            <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+            
+            {/* Glass Border */}
+            <div className="absolute inset-0 rounded-2xl border border-white/20" />
+            
+            <Briefcase className="w-6 h-6 text-white relative z-10 animate-float-slow" />
+            
+            {/* Notification Dot with Pulse */}
+            <div className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-amber-400 border-2 border-white shadow-sm">
+               <div className="absolute inset-0 rounded-full bg-amber-400 animate-ping opacity-75" />
+            </div>
           </div>
+          
           <div className="leading-tight">
-            {/* <span className="font-heading font-800 text-xl text-slate-900">Job</span>
-            <span className="font-heading font-800 text-xl text-blue-600">Portal</span> */}
-              <span className="font-heading font-800 text-xl text-slate-900">Talent</span>
-            <span className="font-heading font-800 text-xl text-blue-600">Connect</span>
-              <span className="font-heading font-800 text-xl text-blue-800">India</span>
-           
-            <div className="text-[10px] font-semibold text-slate-400 tracking-wider -mt-1">RECRUITMENT SOLUTIONS</div>
+            <div className="flex items-center">
+              <span className="font-heading font-800 text-2xl tracking-tighter text-slate-900 group-hover:text-blue-600 transition-colors duration-300">Talent</span>
+              <span className="font-heading font-800 text-2xl tracking-tighter text-blue-600">Connect</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-black text-blue-800 tracking-[0.2em] uppercase opacity-80">India</span>
+              <div className="h-px w-8 bg-slate-200" />
+              <div className="text-[9px] font-bold text-slate-400 tracking-wider">RECRUITMENT</div>
+            </div>
           </div>
         </Link>
 
