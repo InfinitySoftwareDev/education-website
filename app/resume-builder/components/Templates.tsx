@@ -10,6 +10,7 @@ export interface ResumeData {
   summary: string;
   experience: Array<{ id: number; company: string; role: string; duration: string; desc: string }>;
   education: Array<{ id: number; school: string; degree: string; year: string }>;
+  projects: Array<{ id: number; name: string; link: string; techStack: string; desc: string }>;
   skills: string[];
 }
 
@@ -49,6 +50,23 @@ export function ProfessionalTemplate({ formData }: { formData: ResumeData }) {
                   </div>
                   <p className="text-blue-600 text-xs font-bold mb-2">{exp.role}</p>
                   <p className="text-slate-500 text-xs leading-relaxed">{exp.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+          <section>
+            <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.15em] border-b-2 border-slate-100 pb-2 mb-4 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-600" /> Projects
+            </h3>
+            <div className="space-y-6">
+              {formData.projects.map(proj => (
+                <div key={proj.id}>
+                  <div className="flex justify-between items-start mb-1">
+                    <h4 className="font-bold text-slate-900 text-sm">{proj.name}</h4>
+                    {proj.link && <span className="text-[10px] font-bold text-blue-600 truncate max-w-40">{proj.link}</span>}
+                  </div>
+                  <p className="text-slate-400 text-[10px] font-bold uppercase mb-2">{proj.techStack}</p>
+                  <p className="text-slate-500 text-xs leading-relaxed">{proj.desc}</p>
                 </div>
               ))}
             </div>
@@ -115,6 +133,23 @@ export function ModernTemplate({ formData }: { formData: ResumeData }) {
         </section>
         <section className="grid grid-cols-12 gap-6">
           <div className="col-span-4 text-right">
+            <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-300">Projects</h3>
+          </div>
+          <div className="col-span-8 border-l-2 border-slate-100 pl-6 space-y-6">
+            {formData.projects.map(proj => (
+              <div key={proj.id}>
+                <h4 className="font-bold text-slate-900 text-base">{proj.name}</h4>
+                <div className="flex justify-between items-center mb-2">
+                  <p className="text-blue-600 text-[10px] font-bold uppercase">{proj.techStack}</p>
+                  {proj.link && <span className="text-[10px] text-slate-400 truncate max-w-32">{proj.link}</span>}
+                </div>
+                <p className="text-slate-500 text-xs leading-relaxed">{proj.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className="grid grid-cols-12 gap-6">
+          <div className="col-span-4 text-right">
             <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-300">Expertise</h3>
           </div>
           <div className="col-span-8 border-l-2 border-slate-100 pl-6">
@@ -154,6 +189,19 @@ export function ModernDoubleTemplate({ formData }: { formData: ResumeData }) {
                   <h4 className="font-bold text-slate-900 text-sm">{exp.company}</h4>
                   <p className="text-slate-400 text-[10px] font-bold uppercase mb-2">{exp.role} / {exp.duration}</p>
                   <p className="text-slate-600 text-[11px] leading-relaxed">{exp.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+          <section>
+            <h3 className="text-xs font-black text-teal-600 uppercase tracking-[0.2em] mb-4">Projects</h3>
+            <div className="space-y-6">
+              {formData.projects.map(proj => (
+                <div key={proj.id}>
+                  <h4 className="font-bold text-slate-900 text-sm">{proj.name}</h4>
+                  <p className="text-teal-600/60 text-[10px] font-bold uppercase mb-2">{proj.techStack}</p>
+                  <p className="text-slate-600 text-[11px] leading-relaxed">{proj.desc}</p>
+                  {proj.link && <p className="text-[9px] text-teal-600 underline mt-1">{proj.link}</p>}
                 </div>
               ))}
             </div>
@@ -218,6 +266,20 @@ export function ATSFriendlyTemplate({ formData }: { formData: ResumeData }) {
                 </div>
                 <div className="italic text-sm mb-1">{exp.role}</div>
                 <p className="text-sm text-slate-700">{exp.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section>
+          <h3 className="text-sm font-bold uppercase border-b border-slate-900 mb-3">Projects</h3>
+          <div className="space-y-4">
+            {formData.projects.map(proj => (
+              <div key={proj.id}>
+                <div className="flex justify-between font-bold text-sm">
+                  <span>{proj.name} {proj.link && <span className="font-normal text-xs ml-2 text-slate-500">({proj.link})</span>}</span>
+                  <span className="text-xs uppercase">{proj.techStack}</span>
+                </div>
+                <p className="text-sm text-slate-700">{proj.desc}</p>
               </div>
             ))}
           </div>
@@ -310,6 +372,24 @@ export function ExecutiveTemplate({ formData }: { formData: ResumeData }) {
             ))}
           </div>
         </section>
+        <section className="mt-12">
+          <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-300 mb-8">Featured Projects</h3>
+          <div className="space-y-8">
+            {formData.projects.map(proj => (
+              <div key={proj.id} className="relative pl-8">
+                <div className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-blue-400" />
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 className="font-black text-slate-900 text-sm uppercase">{proj.name}</h4>
+                    <p className="text-blue-500 text-[10px] font-bold uppercase mt-0.5">{proj.techStack}</p>
+                  </div>
+                  {proj.link && <span className="text-[10px] font-black text-slate-400 uppercase">{proj.link}</span>}
+                </div>
+                <p className="text-slate-500 text-[11px] leading-relaxed">{proj.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
@@ -351,6 +431,21 @@ export function CreativeTemplate({ formData }: { formData: ResumeData }) {
                     </div>
                     <p className="text-purple-600 font-bold text-sm mb-3">{exp.role}</p>
                     <p className="text-slate-500 text-sm leading-relaxed">{exp.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+            <section>
+              <h3 className="text-2xl font-black text-slate-900 mb-8 underline decoration-purple-600 decoration-4 underline-offset-8">Projects</h3>
+              <div className="space-y-8">
+                {formData.projects.map(proj => (
+                  <div key={proj.id} className="group">
+                    <div className="flex justify-between items-end mb-2">
+                      <h4 className="text-xl font-bold text-slate-900 group-hover:text-purple-600 transition-colors">{proj.name}</h4>
+                      {proj.link && <span className="text-xs font-medium text-purple-400 italic">View Project</span>}
+                    </div>
+                    <p className="text-purple-600 font-bold text-sm mb-3">{proj.techStack}</p>
+                    <p className="text-slate-500 text-sm leading-relaxed">{proj.desc}</p>
                   </div>
                 ))}
               </div>
@@ -422,6 +517,24 @@ export function ElegantTemplate({ formData }: { formData: ResumeData }) {
             ))}
           </div>
         </section>
+        <section>
+          <div className="flex items-center gap-6 mb-10">
+            <h3 className="text-xs font-sans font-bold uppercase tracking-[0.4em] text-slate-400 whitespace-nowrap">Projects</h3>
+            <div className="h-[1px] bg-slate-200 w-full" />
+          </div>
+          <div className="space-y-10">
+            {formData.projects.map(proj => (
+              <div key={proj.id}>
+                <div className="flex justify-between items-baseline mb-3">
+                  <h4 className="text-2xl text-slate-900">{proj.name}</h4>
+                  {proj.link && <span className="text-[10px] font-sans font-bold text-slate-300 uppercase tracking-widest">Link Provided</span>}
+                </div>
+                <p className="text-slate-400 font-sans text-[10px] font-bold mb-4 uppercase tracking-widest">{proj.techStack}</p>
+                <p className="text-slate-600 text-base leading-relaxed font-sans italic">{proj.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
         <div className="grid grid-cols-2 gap-16">
           <section>
             <div className="flex items-center gap-4 mb-8">
@@ -483,6 +596,21 @@ export function TraditionalTemplate({ formData }: { formData: ResumeData }) {
                   <span>{exp.role}</span>
                 </div>
                 <p className="text-[12px] leading-relaxed text-justify text-slate-800">{exp.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section>
+          <h3 className="text-sm font-bold uppercase border-b-2 border-slate-900 mb-3">Projects</h3>
+          <div className="space-y-5">
+            {formData.projects.map(proj => (
+              <div key={proj.id}>
+                <div className="flex justify-between items-baseline font-bold text-[13px]">
+                  <span>{proj.name}</span>
+                  <span className="italic font-normal">{proj.techStack}</span>
+                </div>
+                {proj.link && <p className="text-[11px] text-slate-500 mb-1">{proj.link}</p>}
+                <p className="text-[12px] leading-relaxed text-justify text-slate-800">{proj.desc}</p>
               </div>
             ))}
           </div>

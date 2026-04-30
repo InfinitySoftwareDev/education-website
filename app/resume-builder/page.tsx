@@ -45,6 +45,9 @@ export default function ResumeBuilder() {
     education: [
       { id: 1, school: "University of Mumbai", degree: "B.E. in Computer Science", year: "2019" }
     ],
+    projects: [
+      { id: 1, name: "AI Job Portal", link: "https://github.com/example/job-portal", techStack: "Next.js, Tailwind, OpenAI", desc: "Built a fully functional job portal with AI voice screening features." }
+    ],
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js"]
   });
 
@@ -458,6 +461,77 @@ export default function ResumeBuilder() {
                                   placeholder="2024"
                                 />
                               </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* PROJECTS EDIT */}
+                      <div className="pt-4 border-t border-slate-100">
+                        <div className="flex items-center justify-between mb-3">
+                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Projects</label>
+                          <button 
+                            onClick={() => setFormData(prev => ({ 
+                              ...prev, 
+                              projects: [...prev.projects, { id: Date.now(), name: "Project Name", link: "https://...", techStack: "React, etc.", desc: "Project description & Date" }] 
+                            }))}
+                            className="text-blue-600 text-[10px] font-bold uppercase hover:underline"
+                          >
+                            + Add Project
+                          </button>
+                        </div>
+                        <div className="space-y-4">
+                          {formData.projects.map((proj, index) => (
+                            <div key={proj.id} className="p-3 bg-slate-50 rounded-xl relative group">
+                              <button 
+                                onClick={() => setFormData(prev => ({ ...prev, projects: prev.projects.filter((_, i) => i !== index) }))}
+                                className="absolute -top-2 -right-2 w-6 h-6 bg-white shadow-md rounded-full flex items-center justify-center text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                              >
+                                <Trash2 size={12} />
+                              </button>
+                              <div className="grid grid-cols-2 gap-2 mb-2">
+                                <input 
+                                  value={proj.name}
+                                  onChange={(e) => {
+                                    const newProj = [...formData.projects];
+                                    newProj[index].name = e.target.value;
+                                    setFormData(prev => ({ ...prev, projects: newProj }));
+                                  }}
+                                  className="w-full bg-transparent font-bold text-slate-800 text-sm outline-none border-b border-transparent hover:border-slate-200 focus:border-blue-400"
+                                  placeholder="Project Name"
+                                />
+                                <input 
+                                  value={proj.link}
+                                  onChange={(e) => {
+                                    const newProj = [...formData.projects];
+                                    newProj[index].link = e.target.value;
+                                    setFormData(prev => ({ ...prev, projects: newProj }));
+                                  }}
+                                  className="w-full bg-transparent text-blue-500 text-[10px] font-medium outline-none border-b border-transparent hover:border-slate-200 focus:border-blue-400"
+                                  placeholder="Project Link (URL)"
+                                />
+                              </div>
+                              <input 
+                                value={proj.techStack}
+                                onChange={(e) => {
+                                  const newProj = [...formData.projects];
+                                  newProj[index].techStack = e.target.value;
+                                  setFormData(prev => ({ ...prev, projects: newProj }));
+                                }}
+                                className="w-full bg-transparent text-slate-500 text-[10px] font-bold uppercase mb-2 outline-none border-b border-transparent hover:border-slate-200 focus:border-blue-400"
+                                placeholder="Tech Stack (e.g. React, Node.js)"
+                              />
+                              <textarea 
+                                value={proj.desc}
+                                onChange={(e) => {
+                                  const newProj = [...formData.projects];
+                                  newProj[index].desc = e.target.value;
+                                  setFormData(prev => ({ ...prev, projects: newProj }));
+                                }}
+                                rows={2}
+                                className="w-full bg-transparent text-slate-500 text-xs mt-1 outline-none border-b border-transparent hover:border-slate-200 focus:border-blue-400 resize-none"
+                                placeholder="Description and Date..."
+                              />
                             </div>
                           ))}
                         </div>
