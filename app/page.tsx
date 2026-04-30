@@ -191,7 +191,9 @@ export default function HomePage() {
               <motion.div
                 key={stat.label}
                 variants={fadeUp}
-                className="group text-center p-8 rounded-2xl border border-slate-100 hover:border-blue-200 bg-white hover:shadow-xl hover:shadow-blue-50 transition-all duration-300 cursor-default"
+                whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.98 }}
+                className="group text-center p-8 rounded-2xl border border-slate-100 hover:border-blue-200 bg-white hover:shadow-2xl hover:shadow-blue-100/50 transition-all duration-300 cursor-default"
               >
                 <div className="w-14 h-14 rounded-2xl bg-slate-50 group-hover:scale-110 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
                   <stat.icon className={`w-7 h-7 ${stat.color}`} />
@@ -267,7 +269,12 @@ export default function HomePage() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {aiFeatures.map((f) => (
-                  <div key={f.title} className="flex gap-4 p-4 rounded-xl bg-white border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all group">
+                  <motion.div
+                    key={f.title}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex gap-4 p-4 rounded-xl bg-white border border-slate-100 hover:border-blue-200 hover:shadow-lg transition-all group cursor-pointer"
+                  >
                     <div className="w-10 h-10 rounded-lg bg-blue-50 group-hover:bg-blue-600 flex items-center justify-center shrink-0 transition-colors duration-300">
                       <f.icon size={18} className="text-blue-600 group-hover:text-white transition-colors duration-300" />
                     </div>
@@ -275,7 +282,7 @@ export default function HomePage() {
                       <h4 className="font-semibold text-slate-800 text-sm mb-1">{f.title}</h4>
                       <p className="text-slate-500 text-xs leading-relaxed">{f.desc}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <Link href="/services" className="inline-flex items-center gap-2 text-blue-600 font-semibold mt-8 hover:gap-3 transition-all group">
@@ -329,7 +336,9 @@ export default function HomePage() {
               <motion.div
                 key={ind.label}
                 variants={fadeUp}
-                className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-50 bg-white transition-all duration-300 cursor-default text-center"
+                whileHover={{ y: -5, scale: 1.05, backgroundColor: "rgba(59, 130, 246, 0.05)" }}
+                whileTap={{ scale: 0.95 }}
+                className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-50 bg-white transition-all duration-300 cursor-default text-center"
               >
                 <span className="text-3xl group-hover:scale-125 transition-transform duration-300">{ind.icon}</span>
                 <span className="text-xs font-semibold text-slate-600 group-hover:text-blue-600 transition-colors leading-tight">{ind.label}</span>
@@ -357,7 +366,12 @@ export default function HomePage() {
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {testimonials.map((t) => (
-              <motion.div key={t.name} variants={fadeUp} className="glass-card hover:bg-white/12 transition-colors duration-300">
+              <motion.div
+                key={t.name}
+                variants={fadeUp}
+                whileHover={{ y: -10, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
+                className="glass-card hover:bg-white/12 transition-colors duration-300 cursor-default"
+              >
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: t.stars }).map((_, i) => (
                     <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
@@ -387,12 +401,14 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-6 lg:gap-10">
             {trustedLogos.map((name) => (
-              <div
+              <motion.div
                 key={name}
-                className="h-12 px-6 bg-white rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm hover:border-blue-300 hover:text-blue-600 transition-all cursor-default shadow-sm"
+                whileHover={{ y: -5, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="h-12 px-6 bg-white rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm hover:border-blue-300 hover:text-blue-600 transition-all cursor-default shadow-sm hover:shadow-md"
               >
                 <Building2 size={16} className="mr-2" /> {name}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

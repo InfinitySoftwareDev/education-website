@@ -62,7 +62,13 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {teamStats.map((s) => (
-              <motion.div key={s.label} variants={fadeUp} className="text-center p-8 rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-lg bg-white transition-all group cursor-default">
+              <motion.div
+                key={s.label}
+                variants={fadeUp}
+                whileHover={{ y: -8, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-center p-8 rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-50 bg-white transition-all group cursor-default"
+              >
                 <s.icon className={`w-8 h-8 ${s.color} mx-auto mb-3 group-hover:scale-110 transition-transform`} />
                 <div className={`font-heading text-4xl font-extrabold ${s.color}`}>
                   <AnimatedCounter target={s.value} suffix={s.suffix} />
@@ -83,7 +89,13 @@ export default function AboutPage() {
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid md:grid-cols-3 gap-8">
             {values.map((v) => (
-              <motion.div key={v.title} variants={fadeUp} className="card text-center">
+              <motion.div
+                key={v.title}
+                variants={fadeUp}
+                whileHover={{ y: -10, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="card text-center hover:shadow-2xl hover:shadow-slate-200 transition-all duration-300 cursor-default"
+              >
                 <div className={`w-16 h-16 ${v.bg} rounded-2xl flex items-center justify-center mx-auto mb-5`}>
                   <v.icon className={`w-8 h-8 ${v.color}`} />
                 </div>
@@ -115,11 +127,14 @@ export default function AboutPage() {
                   className={`md:flex items-center gap-8 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
                 >
                   <div className={`md:w-1/2 ${i % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                    <div className="card inline-block text-left w-full">
+                    <motion.div
+                      whileHover={{ y: -5, scale: 1.02 }}
+                      className="card inline-block text-left w-full hover:shadow-xl hover:shadow-blue-50 transition-all duration-300"
+                    >
                       <span className="text-blue-600 font-bold text-sm font-heading">{item.year}</span>
                       <h4 className="font-heading font-bold text-slate-900 text-lg mt-1 mb-2">{item.title}</h4>
                       <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
-                    </div>
+                    </motion.div>
                   </div>
                   <div className="hidden md:flex w-6 h-6 rounded-full bg-blue-600 border-4 border-white shadow-lg shadow-blue-600/30 shrink-0 z-10" />
                   <div className="md:w-1/2" />

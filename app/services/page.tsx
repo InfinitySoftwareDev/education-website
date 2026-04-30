@@ -134,7 +134,13 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((svc) => (
-              <motion.div key={svc.title} variants={fadeUp} className="card group">
+              <motion.div
+                key={svc.title}
+                variants={fadeUp}
+                whileHover={{ y: -8, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="card group cursor-default hover:shadow-2xl hover:shadow-blue-100/50 transition-all duration-300"
+              >
                 <div className={`w-12 h-12 ${svc.bg} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
                   <svc.icon className={`w-6 h-6 ${svc.color}`} />
                 </div>
@@ -166,7 +172,13 @@ export default function ServicesPage() {
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid md:grid-cols-3 gap-8">
             {plans.map((plan) => (
-              <motion.div key={plan.name} variants={fadeUp} className={`card relative ${plan.highlight ? "border-2 border-blue-500 shadow-xl shadow-blue-100" : ""}`}>
+              <motion.div
+                key={plan.name}
+                variants={fadeUp}
+                whileHover={{ y: -10, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`card relative transition-all duration-300 ${plan.highlight ? "border-2 border-blue-500 shadow-xl shadow-blue-100" : "hover:shadow-xl hover:shadow-slate-200"}`}
+              >
                 {plan.highlight && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">Most Popular</div>
                 )}

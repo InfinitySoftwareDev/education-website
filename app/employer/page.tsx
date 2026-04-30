@@ -95,7 +95,13 @@ export default function EmployerPage() {
           {/* Stats */}
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {analyticsData.map((d) => (
-              <motion.div key={d.label} variants={fadeUp} className="card text-center group">
+              <motion.div
+                key={d.label}
+                variants={fadeUp}
+                whileHover={{ y: -8, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="card text-center group cursor-default hover:shadow-xl hover:shadow-blue-50 transition-all duration-300"
+              >
                 <p className={`font-heading text-3xl font-extrabold ${d.color} mb-1`}>{d.value}</p>
                 <p className="text-slate-500 text-xs font-semibold mb-2">{d.label}</p>
                 <span className={`text-xs font-bold ${d.color} ${d.bg} px-2 py-0.5 rounded-full`}>{d.change} this month</span>
@@ -113,7 +119,13 @@ export default function EmployerPage() {
               { icon: Briefcase, title: "Subscription Plans", desc: "Choose from Basic ₹199, Pro ₹999/mo, or Enterprise custom plans. Scale as you grow.", cta: "See Plans", color: "text-rose-600", bg: "bg-rose-50" },
               { icon: CheckCircle, title: "Verified Leads Only", desc: "Every candidate contact is OTP-verified. No fake CVs, no wrong numbers — guaranteed.", cta: "Get Verified Leads", color: "text-teal-600", bg: "bg-teal-50" },
             ].map((f) => (
-              <motion.div key={f.title} variants={fadeUp} className="card group">
+              <motion.div
+                key={f.title}
+                variants={fadeUp}
+                whileHover={{ y: -8, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="card group cursor-pointer hover:shadow-2xl hover:shadow-slate-200 transition-all duration-300"
+              >
                 <div className={`w-12 h-12 ${f.bg} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <f.icon className={`w-6 h-6 ${f.color}`} />
                 </div>
@@ -137,7 +149,13 @@ export default function EmployerPage() {
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid md:grid-cols-3 gap-8">
             {plans.map((plan) => (
-              <motion.div key={plan.name} variants={fadeUp} className={`card relative ${plan.highlight ? "border-2 border-blue-500 shadow-xl shadow-blue-100" : ""}`}>
+              <motion.div
+                key={plan.name}
+                variants={fadeUp}
+                whileHover={{ y: -10, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`card relative transition-all duration-300 ${plan.highlight ? "border-2 border-blue-500 shadow-xl shadow-blue-100" : "hover:shadow-xl hover:shadow-slate-200"}`}
+              >
                 {plan.highlight && <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">Most Popular</div>}
                 <h3 className="font-heading text-xl font-bold text-slate-900 mb-1">{plan.name}</h3>
                 <div className="font-heading text-4xl font-extrabold text-blue-600 mb-0.5">{plan.price}</div>
