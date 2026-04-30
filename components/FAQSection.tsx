@@ -4,53 +4,55 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle, Briefcase, UserCircle } from "lucide-react";
 
 const recruiterFaqs = [
-  { 
-    q: "How does Talent Connect India's hiring process work?", 
-    a: "Post a job → Our AI system calls verified candidates → Interested candidates are forwarded to your HR team → You conduct final interviews → Hire!" 
+  {
+    q: "How does Talent Connect India's hiring process work?",
+    a: "Post a job → Our AI system calls verified candidates → Interested candidates are forwarded to your HR team → You conduct final interviews → Hire!",
   },
-  { 
-    q: "Is the ₹199 price real? Are there hidden charges?", 
-    a: "Absolutely real. ₹199 gets you a verified job posting with AI calling support and 30-day listing. No hidden fees. We have no setup charges or service fees on top." 
+  {
+    q: "Is the ₹199 price real? Are there hidden charges?",
+    a: "Absolutely real. ₹199 gets you a verified job posting with AI calling support and 30-day listing. No hidden fees. We have no setup charges or service fees on top.",
   },
-  { 
-    q: "What is the AI Calling System?", 
-    a: "Our proprietary AI makes automated calls to verified candidates in our database, checks their availability and interest, and sends only interested candidates to you — saving 80% of your HR team's time." 
+  {
+    q: "What is the AI Calling System?",
+    a: "Our proprietary AI makes automated calls to verified candidates in our database, checks their availability and interest, and sends only interested candidates to you — saving 80% of your HR team's time.",
   },
-  { 
-    q: "How quickly will I receive candidates?", 
-    a: "Within 24–48 hours of posting a job, our AI system begins calling candidates. You will receive shortlisted leads within 2–3 business days." 
+  {
+    q: "How quickly will I receive candidates?",
+    a: "Within 24–48 hours of posting a job, our AI system begins calling candidates. You will receive shortlisted leads within 2–3 business days.",
   },
-  { 
-    q: "Can I hire in multiple cities at once?", 
-    a: "Yes! Talent Connect India covers 135+ cities. When posting a job, simply select multiple city targets and our recruiter network will activate in all selected locations." 
+  {
+    q: "Can I hire in multiple cities at once?",
+    a: "Yes! Talent Connect India covers 135+ cities. When posting a job, simply select multiple city targets and our recruiter network will activate in all selected locations.",
   },
 ];
 
 const jobseekerFaqs = [
-  { 
-    q: "Is Talent Connect India free for job seekers?", 
-    a: "Yes, our platform is completely free for candidates. You can build your resume, browse jobs, and apply without any charges." 
+  {
+    q: "Is Talent Connect India free for job seekers?",
+    a: "Yes, our platform is completely free for candidates. You can build your resume, browse jobs, and apply without any charges.",
   },
-  { 
-    q: "How do I apply for jobs?", 
-    a: "Simply create your profile, use our Resume Builder to showcase your skills and projects, and apply directly to verified job listings." 
+  {
+    q: "How do I apply for jobs?",
+    a: "Simply create your profile, use our Resume Builder to showcase your skills and projects, and apply directly to verified job listings.",
   },
-  { 
-    q: "Will my data be safe?", 
-    a: "Absolutely. We maintain strict data privacy standards and only share your profile with verified, actively hiring employers." 
+  {
+    q: "Will my data be safe?",
+    a: "Absolutely. We maintain strict data privacy standards and only share your profile with verified, actively hiring employers.",
   },
-  { 
-    q: "Do I get updates on my application?", 
-    a: "Yes, you will receive real-time notifications via WhatsApp and Email regarding your application status and interview schedules." 
+  {
+    q: "Do I get updates on my application?",
+    a: "Yes, you will receive real-time notifications via WhatsApp and Email regarding your application status and interview schedules.",
   },
   {
     q: "What kind of companies hire through this platform?",
-    a: "We work with top companies across various sectors including IT, Healthcare, Retail, Manufacturing, and Logistics, ranging from startups to large enterprises."
-  }
+    a: "We work with top companies across various sectors including IT, Healthcare, Retail, Manufacturing, and Logistics, ranging from startups to large enterprises.",
+  },
 ];
 
 export default function FAQSection() {
-  const [activeTab, setActiveTab] = useState<"recruiter" | "jobseeker">("recruiter");
+  const [activeTab, setActiveTab] = useState<"recruiter" | "jobseeker">(
+    "recruiter",
+  );
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   const currentFaqs = activeTab === "recruiter" ? recruiterFaqs : jobseekerFaqs;
@@ -59,7 +61,7 @@ export default function FAQSection() {
     <section className="py-24 bg-slate-50/50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -67,16 +69,17 @@ export default function FAQSection() {
           >
             Got Questions?
           </motion.span>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="font-heading text-4xl md:text-5xl font-bold text-slate-900 mt-4"
           >
-            Frequently Asked <span className="text-gradient-blue">Questions</span>
+            Frequently Asked{" "}
+            <span className="text-gradient-blue">Questions</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -96,7 +99,9 @@ export default function FAQSection() {
                 setActiveIndex(0);
               }}
               className={`relative z-10 flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
-                activeTab === "recruiter" ? "text-blue-700" : "text-slate-500 hover:text-slate-700"
+                activeTab === "recruiter"
+                  ? "text-blue-700"
+                  : "text-slate-500 hover:text-slate-700"
               }`}
             >
               <Briefcase size={18} />
@@ -116,7 +121,9 @@ export default function FAQSection() {
                 setActiveIndex(0);
               }}
               className={`relative z-10 flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
-                activeTab === "jobseeker" ? "text-emerald-700" : "text-slate-500 hover:text-slate-700"
+                activeTab === "jobseeker"
+                  ? "text-emerald-700"
+                  : "text-slate-500 hover:text-slate-700"
               }`}
             >
               <UserCircle size={18} />
@@ -133,7 +140,7 @@ export default function FAQSection() {
           </div>
         </div>
 
-        <div className="space-y-4 min-h-[400px]">
+        <div className="space-y-4 min-h-100">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -150,7 +157,7 @@ export default function FAQSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                   className={`group rounded-2xl border transition-all duration-300 overflow-hidden ${
-                    activeIndex === index 
+                    activeIndex === index
                       ? activeTab === "recruiter"
                         ? "border-blue-200 bg-white shadow-xl shadow-blue-500/5 ring-1 ring-blue-500/10"
                         : "border-emerald-200 bg-white shadow-xl shadow-emerald-500/5 ring-1 ring-emerald-500/10"
@@ -158,24 +165,30 @@ export default function FAQSection() {
                   }`}
                 >
                   <button
-                    onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                    onClick={() =>
+                      setActiveIndex(activeIndex === index ? null : index)
+                    }
                     className="w-full flex items-center justify-between p-6 text-left transition-colors"
                   >
                     <div className="flex items-center gap-4">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                        activeIndex === index 
-                          ? activeTab === "recruiter" 
-                            ? "bg-blue-600 text-white" 
-                            : "bg-emerald-600 text-white"
-                          : "bg-slate-100 text-slate-500 group-hover:bg-slate-200 group-hover:text-slate-700"
-                      }`}>
+                      <div
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                          activeIndex === index
+                            ? activeTab === "recruiter"
+                              ? "bg-blue-600 text-white"
+                              : "bg-emerald-600 text-white"
+                            : "bg-slate-100 text-slate-500 group-hover:bg-slate-200 group-hover:text-slate-700"
+                        }`}
+                      >
                         <HelpCircle size={20} />
                       </div>
-                      <span className={`font-bold text-base md:text-lg transition-colors ${
-                        activeIndex === index 
-                          ? "text-slate-900" 
-                          : "text-slate-700 group-hover:text-slate-900"
-                      }`}>
+                      <span
+                        className={`font-bold text-base md:text-lg transition-colors ${
+                          activeIndex === index
+                            ? "text-slate-900"
+                            : "text-slate-700 group-hover:text-slate-900"
+                        }`}
+                      >
                         {faq.q}
                       </span>
                     </div>
