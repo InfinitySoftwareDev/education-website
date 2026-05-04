@@ -67,7 +67,8 @@ export default function Footer() {
                 alt="Talent Connect India Logo"
                 fill
                 sizes="288px"
-                className="object-contain scale-[1.8] md:scale-[2.0] transition-transform duration-300 group-hover:scale-[2.1]"
+                priority
+                className="object-contain scale-[1.8] md:scale-[2.0] mix-blend-multiply transition-transform duration-300 group-hover:scale-[2.1]"
               />
             </div>
           </Link>
