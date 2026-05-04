@@ -17,6 +17,19 @@ import {
   ChevronRight,
   XCircle,
 } from "lucide-react";
+import {
+  FaLaptopCode,
+  FaNotesMedical,
+  FaIndustry,
+  FaBuildingColumns,
+  FaCartShopping,
+  FaGraduationCap,
+  FaHelmetSafety,
+  FaCar,
+  FaUtensils,
+  FaHeadset,
+  FaPhoneVolume,
+} from "react-icons/fa6";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FAQSection from "@/components/FAQSection";
 
@@ -142,17 +155,17 @@ const aiFeatures = [
 ];
 
 const industries = [
-  { icon: "💻", label: "Information Technology" },
-  { icon: "🏥", label: "Healthcare & Pharma" },
-  { icon: "🏭", label: "Manufacturing" },
-  { icon: "🏦", label: "Banking & Finance" },
-  { icon: "🛒", label: "Retail & E-Commerce" },
-  { icon: "🎓", label: "Education & Training" },
-  { icon: "🏗️", label: "Construction & Real Estate" },
-  { icon: "🚗", label: "Automobile & Auto Ancillary" },
-  { icon: "🍽️", label: "Hospitality & Hotels" },
-  { icon: "💻", label: "ITES " },
-  { icon: "📞", label: "BPO / KPO Centre" },
+  { icon: <FaLaptopCode className="text-blue-500" />, label: "Information Technology" },
+  { icon: <FaNotesMedical className="text-rose-500" />, label: "Healthcare & Pharma" },
+  { icon: <FaIndustry className="text-amber-500" />, label: "Manufacturing" },
+  { icon: <FaBuildingColumns className="text-emerald-500" />, label: "Banking & Finance" },
+  { icon: <FaCartShopping className="text-orange-500" />, label: "Retail & E-Commerce" },
+  { icon: <FaGraduationCap className="text-indigo-500" />, label: "Education & Training" },
+  { icon: <FaHelmetSafety className="text-yellow-600" />, label: "Construction & Real Estate" },
+  { icon: <FaCar className="text-red-500" />, label: "Automobile & Auto Ancillary" },
+  { icon: <FaUtensils className="text-teal-500" />, label: "Hospitality & Hotels" },
+  { icon: <FaHeadset className="text-cyan-500" />, label: "ITES " },
+  { icon: <FaPhoneVolume className="text-violet-500" />, label: "BPO / KPO Centre" },
 ];
 
 const testimonials = [
