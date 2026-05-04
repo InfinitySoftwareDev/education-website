@@ -708,9 +708,9 @@ export default function HomePage() {
       </section>
 
       {/* ═══ 6. TRUSTED LOGOS ═══════════════════════════ */}
-      <section className="py-16 bg-slate-50 border-y border-slate-100">
+      <section className="py-16 bg-slate-100/80 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <p className="text-center text-xs font-bold uppercase tracking-widest text-slate-400 mb-10">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-slate-500 mb-10">
             Trusted by Leading Companies Across India
           </p>
           <div className="flex flex-wrap justify-center items-center gap-6 lg:gap-10">
@@ -719,7 +719,7 @@ export default function HomePage() {
                 key={name}
                 whileHover={{ y: -5, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="h-12 px-6 bg-white rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm hover:border-blue-300 hover:text-blue-600 transition-all cursor-default shadow-sm hover:shadow-md"
+                className="h-12 px-6 bg-white rounded-xl border border-slate-300/60 flex items-center justify-center text-slate-600 font-bold text-sm hover:border-blue-300 hover:text-blue-600 transition-all cursor-default shadow-sm hover:shadow-md"
               >
                 <Building2 size={16} className="mr-2" /> {name}
               </motion.div>
