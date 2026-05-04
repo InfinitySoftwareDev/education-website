@@ -206,7 +206,7 @@ export default function AICallingPage() {
 
           {/* Activity Log */}
           <div className="lg:col-span-5">
-            <div className="bg-slate-900/50 backdrop-blur-xl border border-white/5 rounded-3xl p-6 h-[600px] flex flex-col">
+            <div className="bg-slate-900/50 backdrop-blur-xl border border-white/5 rounded-3xl p-6 h-150 flex flex-col">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-sm font-bold flex items-center gap-2">
                   <MessageSquare size={16} className="text-blue-400" /> AI Activity Log
