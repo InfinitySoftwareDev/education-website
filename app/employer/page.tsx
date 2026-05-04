@@ -21,7 +21,18 @@ const analyticsData = [
 ];
 
 export default function EmployerPage() {
-  const [activeTab, setActiveTab] = useState<"signup" | "login">("signup");
+  const [activeTab, setActiveTab] = useState<"signup" | "login" | "forgot">("signup");
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSendOtp = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setOtpSent(true);
+    }, 1500);
+  };
 
   return (
     <div>
@@ -40,7 +51,18 @@ export default function EmployerPage() {
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }} className="max-w-md mx-auto bg-white rounded-2xl shadow-2xl shadow-blue-900/30 overflow-hidden">
             <div className="flex">
               {(["signup", "login"] as const).map((tab) => (
-                <button key={tab} onClick={() => setActiveTab(tab)} className={`flex-1 py-4 text-sm font-bold transition-colors ${activeTab === tab ? "bg-blue-600 text-white" : "bg-slate-50 text-slate-600 hover:bg-slate-100"}`}>
+                <button 
+                  key={tab} 
+                  onClick={() => {
+                    setActiveTab(tab);
+                    setOtpSent(false);
+                  }} 
+                  className={`flex-1 py-4 text-sm font-bold transition-colors ${
+                    (activeTab === tab || (activeTab === "forgot" && tab === "login")) 
+                    ? "bg-blue-600 text-white" 
+                    : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                  }`}
+                >
                   {tab === "signup" ? "Register as Employer" : "Employer Login"}
                 </button>
               ))}
@@ -60,17 +82,81 @@ export default function EmployerPage() {
                       {["Mumbai","Delhi","Bangalore","Hyderabad","Pune","Chennai","Kolkata","Ahmedabad","Other"].map((c) => <option key={c}>{c}</option>)}
                     </select>
                   </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div><label className="form-label">Password *</label><input type="password" className="form-input" placeholder="••••••••" /></div>
+                    <div><label className="form-label">Confirm Password *</label><input type="password" className="form-input" placeholder="••••••••" /></div>
+                  </div>
                   <button className="btn-amber w-full text-sm py-3.5 mt-2">Create Employer Account <ArrowRight size={16} /></button>
                   <p className="text-center text-xs text-slate-400">By registering, you agree to our Terms & Privacy Policy.</p>
                 </div>
-              ) : (
+              ) : activeTab === "login" ? (
                 <div className="space-y-4">
                   <div><label className="form-label">Email / Mobile</label><input className="form-input" placeholder="Email or mobile number" /></div>
                   <div><label className="form-label">Password</label><input type="password" className="form-input" placeholder="••••••••" /></div>
                   <button className="btn-primary w-full py-3.5">Login to Dashboard <ArrowRight size={16} /></button>
                   <div className="flex justify-between text-xs text-slate-500 mt-2">
-                    <Link href="#" className="hover:text-blue-600 transition-colors">Forgot password?</Link>
+                    <button onClick={() => setActiveTab("forgot")} className="hover:text-blue-600 transition-colors">Forgot password?</button>
                     <button onClick={() => setActiveTab("signup")} className="hover:text-blue-600 transition-colors">Create account →</button>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="text-center mb-4">
+                    <h3 className="font-bold text-slate-900">Reset Password</h3>
+                    <p className="text-xs text-slate-500 mt-1">
+                      {otpSent 
+                        ? "Enter the 6-digit OTP sent to your email/mobile and choose a new password." 
+                        : "Enter your registered email or mobile number to receive an OTP."}
+                    </p>
+                  </div>
+
+                  {!otpSent ? (
+                    <div className="space-y-4">
+                      <div><label className="form-label">Email / Mobile</label><input type="text" className="form-input" placeholder="Enter email or mobile number" /></div>
+                      <button 
+                        onClick={handleSendOtp}
+                        disabled={loading}
+                        className="btn-primary w-full py-3.5"
+                      >
+                        {loading ? "Sending..." : "Send OTP"} <ArrowRight size={16} />
+                      </button>
+                    </div>
+                  ) : (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }}
+                      className="space-y-4"
+                    >
+                      <div>
+                        <div className="flex justify-between items-center mb-1.5">
+                          <label className="form-label mb-0">Enter OTP</label>
+                          <button onClick={() => setOtpSent(false)} className="text-[10px] text-blue-600 font-bold hover:underline">Resend OTP</button>
+                        </div>
+                        <input 
+                          className="form-input text-center text-xl tracking-[0.5em] font-bold" 
+                          maxLength={6} 
+                          placeholder="000000" 
+                          value={otp}
+                          onChange={(e) => setOtp(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <label className="form-label">New Password</label>
+                        <input type="password" className="form-input" placeholder="••••••••" />
+                      </div>
+                      <button className="btn-primary w-full py-3.5">
+                        Reset Password <ArrowRight size={16} />
+                      </button>
+                    </motion.div>
+                  )}
+
+                  <div className="text-center mt-4">
+                    <button 
+                      onClick={() => { setActiveTab("login"); setOtpSent(false); }} 
+                      className="text-xs text-blue-600 font-bold hover:underline"
+                    >
+                      Back to Login
+                    </button>
                   </div>
                 </div>
               )}
