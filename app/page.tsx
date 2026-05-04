@@ -587,16 +587,16 @@ export default function HomePage() {
               <motion.div
                 animate={{ x: [0, 6, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute top-8 right-8 glass-card-light px-4 py-2 text-xs font-bold text-emerald-700"
+                className="absolute top-8 right-8 glass-card-light px-4 py-2 text-xs font-bold text-emerald-700 flex items-center gap-1.5"
               >
-                ✅ Call Connected
+                <CheckCircle size={14} className="text-emerald-500" /> Call Connected
               </motion.div>
               <motion.div
                 animate={{ x: [0, -6, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-                className="absolute bottom-10 left-6 glass-card-light px-4 py-2 text-xs font-bold text-blue-700"
+                className="absolute bottom-10 left-6 glass-card-light px-4 py-2 text-xs font-bold text-blue-700 flex items-center gap-1.5"
               >
-                📞 250 Calls / Day
+                <Phone size={14} className="text-blue-500" /> 250 Calls / Day
               </motion.div>
             </motion.div>
           </div>

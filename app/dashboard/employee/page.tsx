@@ -122,7 +122,7 @@ export default function EmployeeDashboard() {
                   { icon: User, label: "Edit Profile" },
                   { icon: BookOpen, label: "Update Resume" },
                   { icon: Briefcase, label: "Saved Jobs" },
-                  { icon: CheckCircle, label: "Verified Status: ✅" },
+                  { icon: CheckCircle, label: "Verified Status" },
                 ].map(({ icon: Icon, label }) => (
                   <button key={label} className="w-full flex items-center gap-3 text-sm text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-colors text-left">
                     <Icon size={14} className="text-emerald-500" /> {label}

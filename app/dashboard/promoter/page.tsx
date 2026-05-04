@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Users, DollarSign, Share2, TrendingUp, Copy } from "lucide-react";
+import { Users, DollarSign, Share2, TrendingUp, Copy, Lightbulb } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
 
 const referrals = [
@@ -69,8 +69,9 @@ export default function PromoterDashboard() {
               <Copy size={14} /> Copy
             </button>
           </div>
-          <p className="text-slate-600 text-xs mt-3">
-            💡 Earn <strong>₹150</strong> for each Employer and <strong>₹50</strong> for each Job Seeker who registers using your link.
+          <p className="text-slate-600 text-xs mt-3 flex items-start gap-1">
+            <Lightbulb size={16} className="text-amber-500 shrink-0" /> 
+            <span>Earn <strong>₹150</strong> for each Employer and <strong>₹50</strong> for each Job Seeker who registers using your link.</span>
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, MapPin } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -179,7 +179,7 @@ export default function ReviewsPage() {
                     {t.name}
                   </p>
                   <p className="text-slate-400 text-xs mt-0.5">{t.role}</p>
-                  <p className="text-blue-500 text-xs mt-0.5">📍 {t.city}</p>
+                  <p className="text-blue-500 text-xs mt-0.5 flex items-center gap-1"><MapPin size={12} /> {t.city}</p>
                 </div>
               </motion.div>
             ))}
