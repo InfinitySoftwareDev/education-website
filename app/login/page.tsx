@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Shield, Briefcase, Users, UserCheck, Megaphone } from "lucide-react";
+import { ArrowRight, Shield, Briefcase, Users, UserCheck, Megaphone, Eye, EyeOff } from "lucide-react";
 
 const panels = [
     // { id: "admin", label: "Admin", icon: Shield, color: "text-red-600", bg: "bg-red-50", border: "border-red-200" },
@@ -27,6 +27,7 @@ export default function LoginPage() {
     const [otpSent, setOtpSent] = useState(false);
     const [otp, setOtp] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const current = panels.find((p) => p.id === active)!;
 
@@ -128,7 +129,15 @@ export default function LoginPage() {
                                         {loginMethod === "password" ? (
                                             <>
                                                 <div><label className="form-label">Email / Mobile</label><input className="form-input" placeholder="Enter your email or mobile" /></div>
-                                                <div><label className="form-label">Password</label><input type="password" className="form-input" placeholder="••••••••" /></div>
+                                                <div>
+                                                    <label className="form-label">Password</label>
+                                                    <div className="relative">
+                                                        <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="••••••••" />
+                                                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                                                            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                                        </button>
+                                                    </div>
+                                                </div>
                                                 {active === "admin" && (
                                                     <div><label className="form-label">Admin Code</label><input className="form-input" placeholder="Enter admin access code" /></div>
                                                 )}
@@ -210,7 +219,26 @@ export default function LoginPage() {
                                         {active === "promoter" && (
                                             <div><label className="form-label">Referral Code (optional)</label><input className="form-input" placeholder="Enter referral code" /></div>
                                         )}
-                                        <div><label className="form-label">Password *</label><input type="password" className="form-input" placeholder="Create password" /></div>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="form-label">Password *</label>
+                                                <div className="relative">
+                                                    <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="Create password" />
+                                                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                                                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="form-label">Confirm Password *</label>
+                                                <div className="relative">
+                                                    <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="Confirm password" />
+                                                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                                                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <button className="btn-primary w-full py-3.5 text-sm">
                                             Register as {current.label} <ArrowRight size={15} />
                                         </button>
@@ -265,7 +293,12 @@ export default function LoginPage() {
                                                 </div>
                                                 <div>
                                                     <label className="form-label">New Password</label>
-                                                    <input type="password" className="form-input" placeholder="••••••••" />
+                                                    <div className="relative">
+                                                        <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="••••••••" />
+                                                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                                                            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <button className="btn-primary w-full py-3.5 text-sm">
                                                     Reset Password <ArrowRight size={15} />

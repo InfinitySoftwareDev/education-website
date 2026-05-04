@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Users, BarChart2, Phone, Briefcase, Plus } from "lucide-react";
+import { ArrowRight, CheckCircle, Users, BarChart2, Phone, Briefcase, Plus, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
@@ -25,6 +25,7 @@ export default function EmployerPage() {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSendOtp = () => {
     setLoading(true);
@@ -83,8 +84,24 @@ export default function EmployerPage() {
                     </select>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
-                    <div><label className="form-label">Password *</label><input type="password" className="form-input" placeholder="••••••••" /></div>
-                    <div><label className="form-label">Confirm Password *</label><input type="password" className="form-input" placeholder="••••••••" /></div>
+                    <div>
+                      <label className="form-label">Password *</label>
+                      <div className="relative">
+                        <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="••••••••" />
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                        </button>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="form-label">Confirm Password *</label>
+                      <div className="relative">
+                        <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="••••••••" />
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                        </button>
+                      </div>
+                    </div>
                   </div>
                   <button className="btn-amber w-full text-sm py-3.5 mt-2">Create Employer Account <ArrowRight size={16} /></button>
                   <p className="text-center text-xs text-slate-400">By registering, you agree to our Terms & Privacy Policy.</p>
@@ -92,7 +109,15 @@ export default function EmployerPage() {
               ) : activeTab === "login" ? (
                 <div className="space-y-4">
                   <div><label className="form-label">Email / Mobile</label><input className="form-input" placeholder="Email or mobile number" /></div>
-                  <div><label className="form-label">Password</label><input type="password" className="form-input" placeholder="••••••••" /></div>
+                  <div>
+                    <label className="form-label">Password</label>
+                    <div className="relative">
+                      <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="••••••••" />
+                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                      </button>
+                    </div>
+                  </div>
                   <button className="btn-primary w-full py-3.5">Login to Dashboard <ArrowRight size={16} /></button>
                   <div className="flex justify-between text-xs text-slate-500 mt-2">
                     <button onClick={() => setActiveTab("forgot")} className="hover:text-blue-600 transition-colors">Forgot password?</button>
@@ -142,7 +167,12 @@ export default function EmployerPage() {
                       </div>
                       <div>
                         <label className="form-label">New Password</label>
-                        <input type="password" className="form-input" placeholder="••••••••" />
+                        <div className="relative">
+                          <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="••••••••" />
+                          <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                          </button>
+                        </div>
                       </div>
                       <button className="btn-primary w-full py-3.5">
                         Reset Password <ArrowRight size={16} />
