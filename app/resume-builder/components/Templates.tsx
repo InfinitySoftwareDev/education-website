@@ -483,9 +483,9 @@ export function CreativeTemplate({ formData }: { formData: ResumeData }) {
 
 export function TraditionalTemplate({ formData }: { formData: ResumeData }) {
   return (
-    <div className="p-12 bg-white text-slate-900 font-serif leading-relaxed min-h-full pb-24">
+    <div className="p-12 bg-white text-slate-900 font-sans leading-relaxed min-h-full pb-24">
       <header className="text-center mb-10 border-b-2 border-slate-900 pb-8">
-        <h2 className="text-4xl font-bold text-slate-900 mb-2 font-serif">{formData.name}</h2>
+        <h2 className="text-4xl font-bold text-slate-900 mb-2">{formData.name}</h2>
         {formData.title && (
           <p className="text-blue-600 font-bold tracking-[0.2em] text-[10px] uppercase mb-5">
             {formData.title}
