@@ -91,7 +91,6 @@ export default function SeekerProfilePage() {
                   <div className="flex-1 pb-6 border-b border-slate-50 group-last:border-none group-last:pb-0">
                     <div className="flex justify-between items-start mb-1">
                       <h4 className="font-bold text-slate-900 text-sm">{exp.role}</h4>
-                      <button className="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"><Trash2 size={14} /></button>
                     </div>
                     <p className="text-emerald-600 text-xs font-bold">{exp.company} · {exp.period}</p>
                     <p className="text-slate-500 text-xs mt-2 leading-relaxed">{exp.desc}</p>

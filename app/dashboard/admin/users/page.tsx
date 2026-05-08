@@ -1,7 +1,7 @@
 "use client";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Search, Filter, Shield, User, Briefcase, Megaphone, Users, MoreVertical, Ban, CheckCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 
 const users = [
   { id: 1, name: "Rahul Sharma", role: "Employer", email: "rahul@techcorp.in", status: "Active", joined: "Today" },
@@ -21,6 +21,16 @@ const roleIcons: any = {
 };
 
 export default function UserManagementPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRole, setSelectedRole] = useState("All Roles");
+
+  const filteredUsers = users.filter(u => {
+    const matchesSearch = u.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                         u.email.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesRole = selectedRole === "All Roles" || u.role === selectedRole;
+    return matchesSearch && matchesRole;
+  });
+
   return (
     <DashboardLayout role="admin">
       <div className="mb-8">
@@ -50,11 +60,17 @@ export default function UserManagementPage() {
           <input 
             type="text" 
             placeholder="Search by name, email, or role..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-white border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500/10 transition-all outline-none"
           />
         </div>
         <div className="flex gap-2">
-          <select className="bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 outline-none">
+          <select 
+            value={selectedRole}
+            onChange={(e) => setSelectedRole(e.target.value)}
+            className="bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 outline-none cursor-pointer"
+          >
             <option>All Roles</option>
             <option>Employer</option>
             <option>Job Seeker</option>
@@ -77,62 +93,62 @@ export default function UserManagementPage() {
                 <th className="text-left px-6 py-4">Role</th>
                 <th className="text-left px-6 py-4">Joined</th>
                 <th className="text-left px-6 py-4">Status</th>
-                <th className="px-6 py-4"></th>
+                <th className="px-6 py-4 text-center">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {users.map((u) => {
-                const Icon = roleIcons[u.role];
-                return (
-                  <motion.tr 
-                    key={u.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="hover:bg-slate-50 transition-colors group"
-                  >
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-600">
-                          {u.name[0]}
+              {filteredUsers.length > 0 ? (
+                filteredUsers.map((u) => {
+                  const Icon = roleIcons[u.role];
+                  return (
+                    <tr 
+                      key={u.id}
+                      className="hover:bg-slate-50 transition-colors group"
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-600">
+                            {u.name[0]}
+                          </div>
+                          <div>
+                            <p className="font-bold text-slate-900 text-sm">{u.name}</p>
+                            <p className="text-slate-400 text-xs">{u.email}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="font-bold text-slate-900 text-sm">{u.name}</p>
-                          <p className="text-slate-400 text-xs">{u.email}</p>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2 text-slate-600">
+                          <Icon size={14} className="text-blue-500" />
+                          <span className="text-xs font-semibold">{u.role}</span>
                         </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2 text-slate-600">
-                        <Icon size={14} className="text-blue-500" />
-                        <span className="text-xs font-semibold">{u.role}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-xs text-slate-500">{u.joined}</td>
-                    <td className="px-6 py-4">
-                      <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
-                        u.status === "Active" ? "bg-emerald-50 text-emerald-700" :
-                        u.status === "Pending" ? "bg-amber-50 text-amber-700" :
-                        "bg-red-50 text-red-700"
-                      }`}>
-                        {u.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button title="Approve" className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all">
-                          <CheckCircle size={16} />
-                        </button>
-                        <button title="Ban" className="p-2 text-red-400 hover:bg-red-50 rounded-lg transition-all">
-                          <Ban size={16} />
-                        </button>
-                        <button className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">
-                          <MoreVertical size={16} />
-                        </button>
-                      </div>
-                    </td>
-                  </motion.tr>
-                );
-              })}
+                      </td>
+                      <td className="px-6 py-4 text-xs text-slate-500">{u.joined}</td>
+                      <td className="px-6 py-4">
+                        <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
+                          u.status === "Active" ? "bg-emerald-50 text-emerald-700" :
+                          u.status === "Pending" ? "bg-amber-50 text-amber-700" :
+                          "bg-red-50 text-red-700"
+                        }`}>
+                          {u.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center justify-center gap-2 transition-opacity">
+                          <button title="Approve" className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all border border-emerald-100/50">
+                            <CheckCircle size={16} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan={5} className="px-6 py-12 text-center">
+                    <p className="text-slate-400 font-bold">No users found matching "{searchQuery}"</p>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
