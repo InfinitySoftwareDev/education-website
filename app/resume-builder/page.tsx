@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   User, Briefcase, 
@@ -18,6 +18,31 @@ export default function ResumeBuilder() {
   const [activeTemplate, setActiveTemplate] = useState("professional");
   const [step, setStep] = useState("select"); // 'select' or 'edit'
   const [skillInput, setSkillInput] = useState("");
+
+  // Handle browser back button
+  useEffect(() => {
+    const handlePopState = () => {
+      if (window.location.hash !== "#editor") {
+        setStep("select");
+      } else {
+        setStep("edit");
+      }
+    };
+    window.addEventListener("popstate", handlePopState);
+    
+    // Initial check in case user lands directly on #editor
+    handlePopState();
+    
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const handleBackToSelect = () => {
+    if (window.location.hash === "#editor") {
+      window.history.back(); // This will trigger popstate and setStep("select")
+    } else {
+      setStep("select");
+    }
+  };
   
   // Resume Data State
   const [formData, setFormData] = useState({
@@ -51,6 +76,9 @@ export default function ResumeBuilder() {
 
   const selectTemplate = (id: string) => {
     setActiveTemplate(id);
+    if (window.location.hash !== "#editor") {
+      window.location.hash = "editor";
+    }
     setStep("edit");
   };
 
@@ -119,7 +147,7 @@ export default function ResumeBuilder() {
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <button 
-                      onClick={() => setStep("select")}
+                      onClick={handleBackToSelect}
                       className="text-blue-600 hover:text-blue-700 font-bold text-xs flex items-center gap-1 uppercase tracking-wider transition-colors"
                     >
                       <X size={14} className="rotate-45" /> Change Template
@@ -159,7 +187,7 @@ export default function ResumeBuilder() {
                         <h3 className="font-bold text-slate-900 text-sm uppercase tracking-wider">Quick Switch</h3>
                       </div>
                       <button 
-                        onClick={() => setStep("select")}
+                        onClick={handleBackToSelect}
                         className="text-xs font-bold text-blue-600 hover:underline"
                       >
                         All Templates
