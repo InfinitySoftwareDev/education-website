@@ -107,12 +107,12 @@ export default function DashboardSidebar({
           {isOpen ? (
             <>
               <Link href="/" className="flex-1 flex items-center justify-center overflow-hidden">
-                <div className="relative w-full h-28 shrink-0 transition-transform duration-300 scale-125">
+                <div className="relative w-full h-20 shrink-0">
                   <Image 
                     src="/cilogo.png" 
                     alt="TCI Logo" 
                     fill 
-                    className="object-contain"
+                    className="object-contain mix-blend-multiply"
                     priority
                     sizes="280px"
                   />
