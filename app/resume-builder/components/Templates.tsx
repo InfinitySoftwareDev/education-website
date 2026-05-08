@@ -76,8 +76,8 @@ export function ProfessionalTemplate({ formData }: { formData: ResumeData }) {
           <section>
             <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.15em] border-b-2 border-slate-100 pb-2 mb-4">Skills</h3>
             <div className="flex flex-wrap gap-2">
-              {formData.skills.map(skill => (
-                <span key={skill} className="px-3 py-1 bg-slate-50 text-slate-700 text-[10px] font-bold rounded-md border border-slate-100 uppercase">
+              {formData.skills.map((skill, index) => (
+                <span key={`${skill}-${index}`} className="px-3 py-1 bg-slate-50 text-slate-700 text-[10px] font-bold rounded-md border border-slate-100 uppercase">
                   {skill}
                 </span>
               ))}
@@ -154,8 +154,8 @@ export function ModernTemplate({ formData }: { formData: ResumeData }) {
           </div>
           <div className="col-span-8 border-l-2 border-slate-100 pl-6">
             <div className="flex flex-wrap gap-4">
-              {formData.skills.map(skill => (
-                <span key={skill} className="text-xs font-bold text-slate-800 uppercase">{skill}</span>
+              {formData.skills.map((skill, index) => (
+                <span key={`${skill}-${index}`} className="text-xs font-bold text-slate-800 uppercase">{skill}</span>
               ))}
             </div>
           </div>
@@ -215,8 +215,8 @@ export function ModernDoubleTemplate({ formData }: { formData: ResumeData }) {
           <section>
             <h3 className="text-xs font-black text-teal-600 uppercase tracking-[0.2em] mb-4">Skills</h3>
             <div className="flex flex-wrap gap-2">
-              {formData.skills.map(skill => (
-                <span key={skill} className="px-3 py-1 bg-teal-50 text-teal-700 text-[10px] font-black rounded uppercase">
+              {formData.skills.map((skill, index) => (
+                <span key={`${skill}-${index}`} className="px-3 py-1 bg-teal-50 text-teal-700 text-[10px] font-black rounded uppercase">
                   {skill}
                 </span>
               ))}
@@ -323,7 +323,7 @@ export function ExecutiveTemplate({ formData }: { formData: ResumeData }) {
             <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">Expertise</h3>
             <div className="space-y-4">
               {formData.skills.map((skill, i) => (
-                <div key={skill}>
+                <div key={`${skill}-${i}`}>
                   <div className="flex justify-between text-[10px] font-bold mb-1 uppercase">
                     <span>{skill}</span>
                   </div>
@@ -455,8 +455,8 @@ export function CreativeTemplate({ formData }: { formData: ResumeData }) {
             <section className="bg-slate-50 p-8 rounded-3xl">
               <h3 className="text-lg font-black text-slate-900 mb-6">Expertise</h3>
               <div className="flex flex-wrap gap-3">
-                {formData.skills.map(skill => (
-                  <span key={skill} className="px-4 py-2 bg-white text-slate-800 text-xs font-bold rounded-xl shadow-sm border border-slate-100 uppercase">
+                {formData.skills.map((skill, index) => (
+                  <span key={`${skill}-${index}`} className="px-4 py-2 bg-white text-slate-800 text-xs font-bold rounded-xl shadow-sm border border-slate-100 uppercase">
                     {skill}
                   </span>
                 ))}

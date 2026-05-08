@@ -17,6 +17,7 @@ import {
 export default function ResumeBuilder() {
   const [activeTemplate, setActiveTemplate] = useState("professional");
   const [step, setStep] = useState("select"); // 'select' or 'edit'
+  const [skillInput, setSkillInput] = useState("");
   
   // Resume Data State
   const [formData, setFormData] = useState({
@@ -286,13 +287,14 @@ export default function ResumeBuilder() {
                           <input 
                             type="text" 
                             placeholder="Add skill (e.g. Java)" 
-                            id="skillInput"
+                            value={skillInput}
+                            onChange={(e) => setSkillInput(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === 'Enter') {
-                                const val = (e.target as HTMLInputElement).value;
+                                const val = skillInput.trim();
                                 if (val) {
                                   setFormData(prev => ({ ...prev, skills: [...prev.skills, val] }));
-                                  (e.target as HTMLInputElement).value = '';
+                                  setSkillInput("");
                                 }
                               }
                             }}
@@ -300,10 +302,10 @@ export default function ResumeBuilder() {
                           />
                           <button 
                             onClick={() => {
-                              const input = document.getElementById('skillInput') as HTMLInputElement;
-                              if (input.value) {
-                                setFormData(prev => ({ ...prev, skills: [...prev.skills, input.value] }));
-                                input.value = '';
+                              const val = skillInput.trim();
+                              if (val) {
+                                setFormData(prev => ({ ...prev, skills: [...prev.skills, val] }));
+                                setSkillInput("");
                               }
                             }}
                             className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
