@@ -160,27 +160,6 @@ const templates = [
     ),
   },
   {
-    id: "elegant",
-    name: "Elegant Serif",
-    description:
-      "Sophisticated, typography-focused design for academics and law professionals.",
-    color: "amber",
-    borderColor: "group-hover:border-slate-800",
-    preview: (
-      <div className="bg-[#fafafa] h-full w-full rounded shadow-2xl origin-top transform scale-[0.8] p-10 flex flex-col items-center space-y-6">
-        <div className="text-center space-y-2">
-          <div className="h-6 w-48 bg-slate-900/10 rounded mx-auto"></div>
-          <div className="h-2 w-32 bg-slate-400/20 rounded mx-auto uppercase tracking-widest"></div>
-        </div>
-        <div className="w-full h-px bg-slate-200"></div>
-        <div className="space-y-4 w-full italic text-center">
-          <div className="h-2 w-full bg-slate-100 rounded"></div>
-          <div className="h-2 w-2/3 bg-slate-100 rounded mx-auto"></div>
-        </div>
-      </div>
-    ),
-  },
-  {
     id: "traditional",
     name: "Traditional Ivy",
     description:

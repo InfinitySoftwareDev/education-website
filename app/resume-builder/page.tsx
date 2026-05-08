@@ -1,35 +1,22 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  User, Mail, Phone, MapPin, Briefcase, GraduationCap, 
-  Settings, Download, Upload, Eye, FileText, CheckCircle,
+  User, Briefcase, 
+  Settings, Download, Eye, FileText,
   Plus, Trash2, Layout, Sparkles, X
 } from "lucide-react";
-import Link from "next/link";
 import { TemplateSelection } from "./components/TemplateSelection";
 import { 
   ProfessionalTemplate, ModernTemplate, ModernDoubleTemplate, 
   ATSFriendlyTemplate, ExecutiveTemplate, CreativeTemplate,
-  ElegantTemplate, TraditionalTemplate 
+  TraditionalTemplate 
 } from "./components/Templates";
 
-/* ── Variants ─────────────────────────────────── */
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
-
-const stagger = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-};
 
 export default function ResumeBuilder() {
   const [activeTemplate, setActiveTemplate] = useState("professional");
   const [step, setStep] = useState("select"); // 'select' or 'edit'
-  const [uploading, setUploading] = useState(false);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
   
   // Resume Data State
   const [formData, setFormData] = useState({
@@ -51,19 +38,11 @@ export default function ResumeBuilder() {
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js"]
   });
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleUpload = () => {
-    setUploading(true);
-    setTimeout(() => {
-      setUploading(false);
-      setUploadSuccess(true);
-      setTimeout(() => setUploadSuccess(false), 3000);
-    }, 2000);
-  };
 
   const downloadResume = () => {
     window.print();
@@ -193,7 +172,6 @@ export default function ResumeBuilder() {
                         { id: "executive", name: "Executive", icon: User, color: "bg-slate-900" },
                         { id: "creative", name: "Creative", icon: Sparkles, color: "bg-purple-600" },
                         { id: "ats-friendly", name: "ATS Optimized", icon: FileText, color: "bg-slate-500" },
-                        { id: "elegant", name: "Elegant", icon: GraduationCap, color: "bg-amber-600" },
                         { id: "traditional", name: "Traditional", icon: FileText, color: "bg-slate-800" }
                       ].map((t) => (
                         <button
@@ -566,7 +544,6 @@ export default function ResumeBuilder() {
                       {activeTemplate === "ats-friendly" && <ATSFriendlyTemplate formData={formData} />}
                       {activeTemplate === "executive" && <ExecutiveTemplate formData={formData} />}
                       {activeTemplate === "creative" && <CreativeTemplate formData={formData} />}
-                      {activeTemplate === "elegant" && <ElegantTemplate formData={formData} />}
                       {activeTemplate === "traditional" && <TraditionalTemplate formData={formData} />}
 
                     </div>
