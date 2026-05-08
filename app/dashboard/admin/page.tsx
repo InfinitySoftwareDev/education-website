@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Users, Briefcase, MapPin, TrendingUp, DollarSign, Star, Settings, Eye } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import DashboardLayout from "@/components/DashboardLayout";
 
 const stats = [
   { icon: Users, label: "Total Users", value: 12840, suffix: "", color: "text-blue-600", bg: "bg-blue-50" },
@@ -22,27 +23,22 @@ const recentUsers = [
 
 export default function AdminDashboard() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <div className="bg-linear-to-r from-slate-900 to-blue-900 text-white py-8 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-blue-300 text-sm font-semibold mb-1">Welcome back,</p>
-              <h1 className="font-heading text-3xl font-bold">Admin Dashboard</h1>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-lg">A</div>
-              <div className="hidden sm:block">
-                <p className="font-semibold text-sm">Super Admin</p>
-                <p className="text-slate-400 text-xs">admin@jobportal.in</p>
-              </div>
-            </div>
+    <DashboardLayout role="admin">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="font-heading text-3xl font-extrabold text-slate-900">Platform Overview</h1>
+          <p className="text-slate-500 text-sm mt-1">Global statistics and platform health.</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-lg text-white shadow-lg shadow-blue-600/20">A</div>
+          <div>
+            <p className="font-bold text-sm text-slate-900 leading-none">Super Admin</p>
+            <p className="text-slate-400 text-[10px] mt-1 font-semibold uppercase tracking-wider">Master Access</p>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="py-2">
         {/* Stats */}
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {stats.map((s) => (
@@ -141,6 +137,6 @@ export default function AdminDashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

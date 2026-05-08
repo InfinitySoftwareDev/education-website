@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Briefcase, CheckCircle, Clock, BookOpen, User, Star } from "lucide-react";
 import Link from "next/link";
+import DashboardLayout from "@/components/DashboardLayout";
 
 const appliedJobs = [
   { title: "React Developer", company: "TechCorp", city: "Bangalore", date: "2 days ago", status: "Shortlisted" },
@@ -18,21 +19,18 @@ const recommended = [
 
 export default function EmployeeDashboard() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="bg-linear-to-r from-emerald-700 to-emerald-600 text-white py-8 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div>
-            <p className="text-emerald-200 text-sm mb-1">Job Seeker Dashboard</p>
-            <h1 className="font-heading text-3xl font-bold">Ankit Verma</h1>
-            <p className="text-emerald-200 text-sm mt-1">ankit@email.com · Bangalore</p>
-          </div>
-          <Link href="/jobs" className="bg-white text-emerald-700 font-bold px-5 py-2.5 rounded-xl text-sm transition-colors hover:bg-emerald-50">
-            Browse Jobs →
-          </Link>
+    <DashboardLayout role="employee">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="font-heading text-3xl font-extrabold text-slate-900">Ankit Verma</h1>
+          <p className="text-slate-500 text-sm mt-1">ankit@email.com · Bangalore</p>
         </div>
+        <Link href="/jobs" className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-colors">
+          Browse Jobs →
+        </Link>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="py-2">
         {/* Profile completion */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -133,6 +131,6 @@ export default function EmployeeDashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

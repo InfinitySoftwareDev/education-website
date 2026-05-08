@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Phone, CheckCircle, Users, TrendingUp, Clock } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import DashboardLayout from "@/components/DashboardLayout";
 
 const leads = [
   { name: "Rahul Sharma",  phone: "+91 98765-XXXXX", job: "React Developer",   city: "Bangalore", status: "Interested",   callTime: "10:24 AM" },
@@ -13,22 +14,19 @@ const leads = [
 
 export default function RecruiterDashboard() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="bg-linear-to-r from-purple-800 to-purple-700 text-white py-8 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div>
-            <p className="text-purple-200 text-sm mb-1">Recruiter Dashboard</p>
-            <h1 className="font-heading text-3xl font-bold">Amit Recruiter</h1>
-            <p className="text-purple-200 text-sm mt-1">Senior Recruiter · Delhi Region</p>
-          </div>
-          <div className="text-right">
-            <div className="text-purple-200 text-xs mb-1">Today&apos;s Target</div>
-            <div className="font-heading text-2xl font-bold">48 / 60 Calls</div>
-          </div>
+    <DashboardLayout role="recruiter">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="font-heading text-3xl font-extrabold text-slate-900">Amit Recruiter</h1>
+          <p className="text-slate-500 text-sm mt-1">Senior Recruiter · Delhi Region</p>
+        </div>
+        <div className="text-right">
+          <div className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Today's Target</div>
+          <div className="font-heading text-2xl font-bold text-purple-600">48 / 60 Calls</div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="py-2">
         {/* Stats */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {[
@@ -101,6 +99,6 @@ export default function RecruiterDashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Plus, Users, Eye, CheckCircle, Clock, Briefcase, BarChart2 } from "lucide-react";
 import Link from "next/link";
+import DashboardLayout from "@/components/DashboardLayout";
 
 const jobs = [
   { title: "React Developer", applications: 48, shortlisted: 12, status: "Active",   city: "Bangalore", posted: "3 days ago" },
@@ -19,20 +20,18 @@ const candidates = [
 
 export default function EmployerDashboard() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="bg-linear-to-r from-blue-700 to-blue-600 text-white py-8 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div>
-            <p className="text-blue-200 text-sm mb-1">Employer Dashboard</p>
-            <h1 className="font-heading text-3xl font-bold">TechCorp Pvt Ltd</h1>
-          </div>
-          <Link href="/employer" className="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-sm flex items-center gap-2 transition-colors">
-            <Plus size={16} /> Post New Job
-          </Link>
+    <DashboardLayout role="employer">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="font-heading text-3xl font-extrabold text-slate-900">TechCorp Pvt Ltd</h1>
+          <p className="text-slate-500 text-sm mt-1">Manage your active listings and candidates.</p>
         </div>
+        <Link href="/employer" className="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-sm flex items-center gap-2 transition-colors">
+          <Plus size={16} /> Post New Job
+        </Link>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="py-2">
         {/* Stats */}
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {[
@@ -123,6 +122,6 @@ export default function EmployerDashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
