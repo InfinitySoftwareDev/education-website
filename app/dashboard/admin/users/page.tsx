@@ -32,13 +32,9 @@ export default function UserManagementPage() {
   });
 
   return (
-    <DashboardLayout role="admin">
-      <div className="mb-8">
-        <h1 className="font-heading text-3xl font-extrabold text-slate-900">User Management</h1>
-        <p className="text-slate-500 text-sm mt-1">Monitor, verify, and manage all users registered on the Talent Connect platform.</p>
-      </div>
-
-      {/* Stats Summary */}
+    <DashboardLayout role="admin" title="User Management">
+      <div className="py-2">
+        {/* Stats Summary */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {[
           { label: "Total Users", value: "12,840", color: "text-blue-600", bg: "bg-blue-50" },
@@ -151,6 +147,7 @@ export default function UserManagementPage() {
               )}
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </DashboardLayout>

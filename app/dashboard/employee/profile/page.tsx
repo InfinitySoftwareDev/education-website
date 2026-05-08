@@ -5,12 +5,8 @@ import { motion } from "framer-motion";
 
 export default function SeekerProfilePage() {
   return (
-    <DashboardLayout role="employee">
-      <div className="mb-8 flex items-center justify-between">
-        <div>
-          <h1 className="font-heading text-3xl font-extrabold text-slate-900">My Profile</h1>
-          <p className="text-slate-500 text-sm mt-1">Keep your profile updated to attract the best employers.</p>
-        </div>
+    <DashboardLayout role="employee" title="My Profile">
+      <div className="mb-8 flex items-center justify-end">
         <button className="btn-primary flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold shadow-lg shadow-blue-600/20">
           <Save size={16} /> Save Changes
         </button>

@@ -20,15 +20,11 @@ const candidates = [
 
 export default function EmployerDashboard() {
   return (
-    <DashboardLayout role="employer">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="font-heading text-3xl font-extrabold text-slate-900">TechCorp Pvt Ltd</h1>
-          <p className="text-slate-500 text-sm mt-1">Manage your active listings and candidates.</p>
-        </div>
-        <Link href="/employer" className="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-sm flex items-center gap-2 transition-colors">
-          <Plus size={16} /> Post New Job
-        </Link>
+    <DashboardLayout role="employer" title="Employer Overview">
+      <div className="flex items-center justify-end mb-8">
+        <button className="bg-amber-500 text-white px-5 py-2.5 rounded-xl flex items-center gap-2 hover:bg-amber-600 transition-all font-bold shadow-lg shadow-amber-500/20">
+          <Plus size={18} /> Post New Job
+        </button>
       </div>
 
       <div className="py-2">

@@ -7,9 +7,10 @@ import { motion } from "framer-motion";
 interface DashboardLayoutProps {
   children: React.ReactNode;
   role: "admin" | "employer" | "employee" | "recruiter" | "promoter";
+  title?: string;
 }
 
-export default function DashboardLayout({ children, role }: DashboardLayoutProps) {
+export default function DashboardLayout({ children, role, title = "Dashboard" }: DashboardLayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
@@ -23,14 +24,9 @@ export default function DashboardLayout({ children, role }: DashboardLayoutProps
         {/* Top Header */}
         <header className="h-16 bg-white border-b border-slate-100 flex items-center justify-between px-4 md:px-6 sticky top-0 z-30">
           <div className="flex items-center gap-4 flex-1">
-            <div className="relative max-w-md w-full hidden md:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-              <input 
-                type="text" 
-                placeholder="Search candidates, jobs, or leads..." 
-                className="w-full bg-slate-50 border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500/10 transition-all outline-none"
-              />
-            </div>
+            <h2 className="font-heading font-bold text-slate-800 text-lg md:text-xl truncate">
+              {title}
+            </h2>
           </div>
 
           <div className="flex items-center gap-4">

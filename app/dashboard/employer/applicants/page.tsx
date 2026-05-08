@@ -20,13 +20,9 @@ export default function ApplicantsPage() {
   );
 
   return (
-    <DashboardLayout role="employer">
-      <div className="mb-8">
-        <h1 className="font-heading text-3xl font-extrabold text-slate-900">Manage Applicants</h1>
-        <p className="text-slate-500 text-sm mt-1">Review and shortlist candidates for your active job posts.</p>
-      </div>
-
-      {/* Filters & Search */}
+    <DashboardLayout role="employer" title="Manage Applicants">
+      <div className="py-2">
+        {/* Filters & Search */}
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
@@ -121,6 +117,7 @@ export default function ApplicantsPage() {
               )}
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </DashboardLayout>

@@ -14,12 +14,8 @@ const leads = [
 
 export default function RecruiterDashboard() {
   return (
-    <DashboardLayout role="recruiter">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="font-heading text-3xl font-extrabold text-slate-900">Amit Recruiter</h1>
-          <p className="text-slate-500 text-sm mt-1">Senior Recruiter · Delhi Region</p>
-        </div>
+    <DashboardLayout role="recruiter" title="Recruiter Hub">
+      <div className="flex items-center justify-end mb-8">
         <div className="text-right">
           <div className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Today's Target</div>
           <div className="font-heading text-2xl font-bold text-purple-600">48 / 60 Calls</div>
@@ -64,7 +60,7 @@ export default function RecruiterDashboard() {
                   <th className="text-left px-6 py-3">City</th>
                   <th className="text-left px-6 py-3">Call Time</th>
                   <th className="text-left px-6 py-3">Status</th>
-                  <th className="px-6 py-3">Action</th>
+                  <th className="px-6 py-3">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">

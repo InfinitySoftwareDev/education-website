@@ -20,13 +20,9 @@ export default function RecruiterLeadsPage() {
   );
 
   return (
-    <DashboardLayout role="recruiter">
-      <div className="mb-8">
-        <h1 className="font-heading text-3xl font-extrabold text-slate-900">Lead CRM</h1>
-        <p className="text-slate-500 text-sm mt-1">Track and manage your candidate pipeline with AI-assisted logs.</p>
-      </div>
-
-      {/* Recruiter Stats */}
+    <DashboardLayout role="recruiter" title="Lead CRM">
+      <div className="py-2">
+        {/* Recruiter Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {[
           { label: "Calls Today", value: "48", icon: Phone, color: "text-purple-600", bg: "bg-purple-50" },
@@ -138,6 +134,7 @@ export default function RecruiterLeadsPage() {
               )}
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </DashboardLayout>
