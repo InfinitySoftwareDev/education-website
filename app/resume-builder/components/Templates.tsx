@@ -484,10 +484,24 @@ export function CreativeTemplate({ formData }: { formData: ResumeData }) {
 export function TraditionalTemplate({ formData }: { formData: ResumeData }) {
   return (
     <div className="p-12 bg-white text-slate-900 font-serif leading-relaxed min-h-full pb-24">
-      <header className="text-center mb-8">
-        <h2 className="text-3xl font-bold mb-2">{formData.name}</h2>
-        <p className="text-sm mb-1">{formData.location} • {formData.phone} • {formData.email}</p>
-        {formData.title && <p className="text-sm italic font-bold">{formData.title}</p>}
+      <header className="text-center mb-10 border-b-2 border-slate-900 pb-8">
+        <h2 className="text-4xl font-bold text-slate-900 mb-2 font-serif">{formData.name}</h2>
+        {formData.title && (
+          <p className="text-blue-600 font-bold tracking-[0.2em] text-[10px] uppercase mb-5">
+            {formData.title}
+          </p>
+        )}
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[11px] font-bold text-slate-600 uppercase tracking-wider font-sans">
+          <span className="flex items-center gap-2">
+            <MapPin size={12} className="text-blue-600" /> {formData.location}
+          </span>
+          <span className="flex items-center gap-2">
+            <Phone size={12} className="text-blue-600" /> {formData.phone}
+          </span>
+          <span className="flex items-center gap-2">
+            <Mail size={12} className="text-blue-600" /> {formData.email}
+          </span>
+        </div>
       </header>
       <div className="space-y-6">
         <section>
