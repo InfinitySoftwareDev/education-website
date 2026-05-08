@@ -1,6 +1,6 @@
 "use client";
 import DashboardLayout from "@/components/DashboardLayout";
-import { Users, DollarSign, Share2, TrendingUp, Copy, ExternalLink, ArrowUpRight, Search, Filter } from "lucide-react";
+import { Users, IndianRupee, Share2, TrendingUp, Copy, ExternalLink, ArrowUpRight, Search, Filter } from "lucide-react";
 import { motion } from "framer-motion";
 
 const referrals = [
@@ -31,7 +31,7 @@ export default function PromoterReferralsPage() {
         {[
           { label: "Total Referrals", value: "48", icon: Users, color: "text-amber-600", bg: "bg-amber-50" },
           { label: "Active Today", value: "3", icon: ArrowUpRight, color: "text-blue-600", bg: "bg-blue-50" },
-          { label: "Total Earnings", value: "₹7,300", icon: DollarSign, color: "text-emerald-600", bg: "bg-emerald-50" },
+          { label: "Total Earnings", value: "₹7,300", icon: IndianRupee, color: "text-emerald-600", bg: "bg-emerald-50" },
           { label: "Unpaid Balance", value: "₹1,850", icon: TrendingUp, color: "text-purple-600", bg: "bg-purple-50" },
         ].map((s) => (
           <div key={s.label} className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
