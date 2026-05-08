@@ -103,24 +103,35 @@ export default function DashboardSidebar({
       >
         {/* Brand */}
         <div className={`pt-8 pb-4 mb-2 flex items-center ${isOpen ? 'justify-between px-4' : 'justify-center'} border-b border-sky-100/50`}>
-          <Link href="/" className="flex-1 flex items-center justify-center overflow-hidden">
-            <div className={`relative ${isOpen ? 'w-full h-28' : 'w-14 h-14'} shrink-0 transition-transform duration-300 ${isOpen ? 'scale-125' : ''}`}>
-              <Image 
-                src="/cilogo.png" 
-                alt="TCI Logo" 
-                fill 
-                className="object-contain"
-                sizes="(max-width: 768px) 120px, 280px"
-                priority
-              />
-            </div>
-          </Link>
-          <button 
-            onClick={() => setIsOpen(!isOpen)} 
-            className="text-sky-400 hover:text-blue-600 p-2 hover:bg-white rounded-lg transition-all shrink-0 ml-1"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {isOpen ? (
+            <>
+              <Link href="/" className="flex-1 flex items-center justify-center overflow-hidden">
+                <div className="relative w-full h-28 shrink-0 transition-transform duration-300 scale-125">
+                  <Image 
+                    src="/cilogo.png" 
+                    alt="TCI Logo" 
+                    fill 
+                    className="object-contain"
+                    priority
+                    sizes="280px"
+                  />
+                </div>
+              </Link>
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="text-sky-400 hover:text-blue-600 p-2 hover:bg-white rounded-lg transition-all shrink-0 -ml-2"
+              >
+                <X size={24} />
+              </button>
+            </>
+          ) : (
+            <button 
+              onClick={() => setIsOpen(true)} 
+              className="text-sky-400 hover:text-blue-600 p-3 hover:bg-white rounded-xl transition-all shadow-sm border border-sky-100 bg-white"
+            >
+              <Menu size={24} />
+            </button>
+          )}
         </div>
 
         {/* Menu Items */}
