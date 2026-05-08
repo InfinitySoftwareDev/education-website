@@ -24,6 +24,14 @@ export default function DashboardLayout({ children, role, title = "Dashboard" }:
         {/* Top Header */}
         <header className="h-16 bg-white border-b border-slate-100 flex items-center justify-between px-4 md:px-6 sticky top-0 z-30">
           <div className="flex items-center gap-4 flex-1">
+            {/* Mobile Menu Toggle */}
+            <button 
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="lg:hidden p-2 text-slate-400 hover:text-blue-600 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
             <h2 className="font-heading font-bold text-slate-800 text-lg md:text-xl truncate">
               {title}
             </h2>

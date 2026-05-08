@@ -73,6 +73,7 @@ export default function DashboardSidebar({
             exit={{ opacity: 0, scale: 0.5, y: 20 }}
             onClick={() => setIsOpen(true)}
             className="lg:hidden fixed bottom-6 right-6 z-50 w-14 h-14 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
+            aria-label="Open menu"
           >
             <Menu size={24} />
           </motion.button>
@@ -99,8 +100,8 @@ export default function DashboardSidebar({
           width: isOpen ? 280 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : 80),
           x: isOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -280 : 0) 
         }}
-        transition={{ type: "spring", damping: 20, stiffness: 100 }}
-        className={`fixed left-0 top-0 h-full bg-sky-50 text-slate-600 z-40 flex flex-col border-r border-sky-100 shadow-xl lg:shadow-none lg:translate-x-0 ${!isOpen && 'lg:w-20'}`}
+        transition={{ type: "spring", damping: 25, stiffness: 100 }}
+        className={`fixed left-0 top-0 h-full bg-sky-50 text-slate-600 z-40 flex flex-col border-r border-sky-100 shadow-xl lg:shadow-none lg:translate-x-0 ${!isOpen && 'lg:w-20'} touch-pan-y`}
       >
         {/* Brand */}
         <div className={`pt-8 pb-4 mb-2 flex items-center ${isOpen ? 'justify-between px-4' : 'justify-center'} border-b border-sky-100/50`}>
