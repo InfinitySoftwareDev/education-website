@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Shield, Briefcase, Users, UserCheck, Megaphone, Eye, EyeOff } from "lucide-react";
 
 const panels = [
-    { id: "admin", label: "Admin", icon: Shield, color: "text-red-600", bg: "bg-red-50", border: "border-red-200" },
+    // { id: "admin", label: "Admin", icon: Shield, color: "text-red-600", bg: "bg-red-50", border: "border-red-200" },
     { id: "employer", label: "Employer", icon: Briefcase, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-200" },
     { id: "employee", label: "Job Seeker", icon: UserCheck, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200" },
     { id: "recruiter", label: "Recruiter", icon: Users, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-200" },
