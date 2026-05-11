@@ -22,7 +22,6 @@ const menuItems: Record<string, SidebarItem[]> = {
     { id: "users", label: "Manage Users", icon: Users, path: "/dashboard/admin/users" },
     { id: "jobs", label: "All Job Posts", icon: Briefcase, path: "/dashboard/admin/jobs" },
     { id: "enquiries", label: "Enquiries", icon: Mail, path: "/dashboard/admin/enquiries" },
-    { id: "settings", label: "Settings", icon: Settings, path: "/dashboard/admin/settings" },
   ],
   employer: [
     { id: "overview", label: "Dashboard", icon: LayoutDashboard, path: "/dashboard/employer" },
