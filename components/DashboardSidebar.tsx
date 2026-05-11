@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Briefcase, Users,
   UserCheck, Megaphone, Settings,
   LogOut, Home, Bell, Search, Menu, X, Mail,
-  AlertCircle, IndianRupee, Video, Star, CheckCircle,
+  AlertCircle, IndianRupee, Video, Bookmark, CheckCircle,
   BarChart2, Phone
 } from "lucide-react";
 import { useState } from "react";
@@ -36,8 +36,9 @@ const menuItems: Record<string, SidebarItem[]> = {
   ],
   employee: [
     { id: "overview", label: "My Dashboard", icon: LayoutDashboard, path: "/dashboard/employee" },
+    { id: "browse-jobs", label: "Browse Jobs", icon: Search, path: "/dashboard/employee/jobs" },
     { id: "applications", label: "My Applications", icon: CheckCircle, path: "/dashboard/employee/applications" },
-    { id: "saved", label: "Saved Jobs", icon: Star, path: "/dashboard/employee/saved-jobs" },
+    { id: "saved", label: "Saved Jobs", icon: Bookmark, path: "/dashboard/employee/saved-jobs" },
     { id: "interviews", label: "Interview Hub", icon: Video, path: "/dashboard/employee/interviews" },
     { id: "resume", label: "Resume Builder", icon: UserCheck, path: "/dashboard/employee/resume" },
     { id: "profile", label: "My Profile", icon: Settings, path: "/dashboard/employee/profile" },

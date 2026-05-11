@@ -25,7 +25,7 @@ export default function EmployeeDashboard() {
           <h1 className="font-heading text-3xl font-extrabold text-slate-900">Ankit Verma</h1>
           <p className="text-slate-500 text-sm mt-1">ankit@email.com · Bangalore</p>
         </div>
-        <Link href="/jobs" className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-colors">
+        <Link href="/dashboard/employee/jobs" className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-colors">
           Browse Jobs →
         </Link>
       </div>
@@ -109,7 +109,7 @@ export default function EmployeeDashboard() {
                   </div>
                 ))}
               </div>
-              <Link href="/jobs" className="btn-outline-blue w-full text-center text-xs py-2.5 mt-4">View All Jobs</Link>
+              <Link href="/dashboard/employee/jobs" className="btn-outline-blue w-full text-center text-xs py-2.5 mt-4">View All Jobs</Link>
             </div>
 
             {/* Quick Links */}
