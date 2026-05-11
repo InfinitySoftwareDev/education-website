@@ -18,7 +18,7 @@ const quickLinks = [
   { href: "/jobs", label: "Talent Connect India" },
   { href: "/employer", label: "Employer Portal" },
   { href: "/reviews", label: "Reviews" },
-  { href: "/faq", label: "FAQ" },
+  { href: "/#faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 

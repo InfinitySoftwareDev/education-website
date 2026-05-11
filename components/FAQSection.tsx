@@ -58,7 +58,7 @@ export default function FAQSection() {
   const currentFaqs = activeTab === "recruiter" ? recruiterFaqs : jobseekerFaqs;
 
   return (
-    <section className="py-24 bg-slate-50/50">
+    <section id="faq" className="py-24 bg-slate-50/50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <motion.span
