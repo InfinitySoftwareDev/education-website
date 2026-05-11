@@ -85,7 +85,11 @@ export default function EmployerDashboard() {
           <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
               <h2 className="font-heading font-bold text-slate-900">Top Candidates</h2>
+<<<<<<< HEAD
               <span className="badge-blue">Recommended</span>
+=======
+              <span className="badge-blue">AI Matched</span>
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
             </div>
             <div className="divide-y divide-slate-50">
               {candidates.map((c) => (
@@ -102,7 +106,11 @@ export default function EmployerDashboard() {
                   <div className="flex items-center gap-3">
                     <div className="text-right">
                       <p className="font-bold text-blue-600 text-sm">{c.score}%</p>
+<<<<<<< HEAD
                       <p className="text-slate-400 text-[10px]">Score</p>
+=======
+                      <p className="text-slate-400 text-[10px]">Match</p>
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
                     </div>
                     <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${c.status === "Shortlisted" ? "bg-blue-50 text-blue-700" : c.status === "Interview" ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"}`}>
                       {c.status}
@@ -111,6 +119,15 @@ export default function EmployerDashboard() {
                 </div>
               ))}
             </div>
+<<<<<<< HEAD
+=======
+            <div className="p-4 border-t border-slate-100">
+              <div className="flex items-center gap-2 text-xs text-slate-500 bg-blue-50 p-3 rounded-xl">
+                <Clock size={13} className="text-blue-500 shrink-0" />
+                AI Calling is active. 48 candidates called today, 12 interested.
+              </div>
+            </div>
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
           </div>
         </div>
       </div>

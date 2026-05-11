@@ -1,6 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
+<<<<<<< HEAD
 import { Users, IndianRupee, Share2, TrendingUp, Copy, Lightbulb, Plus } from "lucide-react";
+=======
+import { Users, DollarSign, Share2, TrendingUp, Copy, Lightbulb, Plus } from "lucide-react";
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
 import AnimatedCounter from "@/components/AnimatedCounter";
 import DashboardLayout from "@/components/DashboardLayout";
 
@@ -35,7 +39,11 @@ export default function PromoterDashboard() {
           {[
             { icon: Users,      label: "Total Referrals",   value: 48,   color: "text-amber-600",  bg: "bg-amber-50" },
             { icon: TrendingUp, label: "This Month",        value: 12,   color: "text-blue-600",   bg: "bg-blue-50" },
+<<<<<<< HEAD
             { icon: IndianRupee, label: "Pending Payout (₹)",value: 1850, color: "text-emerald-600",bg: "bg-emerald-50" },
+=======
+            { icon: DollarSign, label: "Pending Payout (₹)",value: 1850, color: "text-emerald-600",bg: "bg-emerald-50" },
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
             { icon: Share2,     label: "Active Links",      value: 3,    color: "text-purple-600", bg: "bg-purple-50" },
           ].map((s) => (
             <div key={s.label} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">

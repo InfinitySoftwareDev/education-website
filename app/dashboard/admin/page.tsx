@@ -1,13 +1,21 @@
 "use client";
 import { motion } from "framer-motion";
+<<<<<<< HEAD
 import { Users, Briefcase, MapPin, TrendingUp, IndianRupee, Star, Settings, Eye } from "lucide-react";
+=======
+import { Users, Briefcase, MapPin, TrendingUp, DollarSign, Star, Settings, Eye } from "lucide-react";
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
 import AnimatedCounter from "@/components/AnimatedCounter";
 import DashboardLayout from "@/components/DashboardLayout";
 
 const stats = [
   { icon: Users, label: "Total Users", value: 12840, suffix: "", color: "text-blue-600", bg: "bg-blue-50" },
   { icon: Briefcase, label: "Active Job Posts", value: 437, suffix: "", color: "text-emerald-600", bg: "bg-emerald-50" },
+<<<<<<< HEAD
   { icon: IndianRupee, label: "Revenue (₹)", value: 284000, suffix: "", color: "text-amber-600", bg: "bg-amber-50" },
+=======
+  { icon: DollarSign, label: "Revenue (₹)", value: 284000, suffix: "", color: "text-amber-600", bg: "bg-amber-50" },
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
   { icon: TrendingUp, label: "Placements This Month", value: 142, suffix: "", color: "text-purple-600", bg: "bg-purple-50" },
 ];
 

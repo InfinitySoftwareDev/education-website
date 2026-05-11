@@ -24,6 +24,7 @@ export default function DashboardLayout({ children, role, title = "Dashboard" }:
         {/* Top Header */}
         <header className="h-16 bg-white border-b border-slate-100 flex items-center justify-between px-4 md:px-6 sticky top-0 z-30">
           <div className="flex items-center gap-4 flex-1">
+<<<<<<< HEAD
             {/* Mobile Menu Toggle */}
             <button 
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -32,6 +33,8 @@ export default function DashboardLayout({ children, role, title = "Dashboard" }:
             >
               {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
+=======
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
             <h2 className="font-heading font-bold text-slate-800 text-lg md:text-xl truncate">
               {title}
             </h2>
@@ -42,7 +45,11 @@ export default function DashboardLayout({ children, role, title = "Dashboard" }:
               <Bell size={20} />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
             </button>
+<<<<<<< HEAD
             <div className="h-8 w-px bg-slate-100 mx-2" />
+=======
+            <div className="h-8 w-[1px] bg-slate-100 mx-2" />
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
                 <p className="text-xs font-bold text-slate-900 leading-none">John Doe</p>

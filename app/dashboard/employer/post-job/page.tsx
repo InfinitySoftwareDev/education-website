@@ -87,7 +87,11 @@ export default function PostJobPage() {
                 <label className="form-label">Location (City) *</label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+<<<<<<< HEAD
                   <input type="text" className="form-input" style={{ paddingLeft: "40px" }} placeholder="e.g. Bangalore, Remote" />
+=======
+                  <input type="text" className="form-input pl-10" placeholder="e.g. Bangalore, Remote" />
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
                 </div>
               </div>
 
@@ -95,7 +99,11 @@ export default function PostJobPage() {
                 <label className="form-label">Salary Range (Monthly)</label>
                 <div className="relative">
                   <IndianRupee className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+<<<<<<< HEAD
                   <input type="text" className="form-input" style={{ paddingLeft: "40px" }} placeholder="e.g. 40,000 - 60,000" />
+=======
+                  <input type="text" className="form-input pl-10" placeholder="e.g. 40,000 - 60,000" />
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
                 </div>
               </div>
 
@@ -103,7 +111,11 @@ export default function PostJobPage() {
                 <label className="form-label">Deadline to Apply</label>
                 <div className="relative">
                   <Clock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+<<<<<<< HEAD
                   <input type="date" className="form-input" style={{ paddingLeft: "40px" }} />
+=======
+                  <input type="date" className="form-input pl-10" />
+>>>>>>> 1268344df168c46e6895d0a4fbe21a9185824135
                 </div>
               </div>
             </div>
