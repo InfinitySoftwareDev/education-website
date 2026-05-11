@@ -7,7 +7,7 @@ import {
   UserCheck, Megaphone, Settings,
   LogOut, Home, Bell, Search, Menu, X, Mail,
   AlertCircle, IndianRupee, Video, Bookmark, CheckCircle,
-  BarChart2, Phone
+  BarChart2, Phone, Star, HelpCircle,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,6 +26,9 @@ const menuItems: Record<string, SidebarItem[]> = {
     { id: "pending", label: "Job Approvals", icon: AlertCircle, path: "/dashboard/admin/jobs/approvals" },
     { id: "enquiries", label: "User Enquiries", icon: Mail, path: "/dashboard/admin/enquiries" },
     { id: "finance", label: "Revenue & Finance", icon: IndianRupee, path: "/dashboard/admin/finance" },
+
+    { id: "reviews", label: "Review Management", icon: Star, path: "/dashboard/admin/reviews" },
+    { id: "faq-admin", label: "FAQ Management", icon: HelpCircle, path: "/dashboard/admin/faq" },
   ],
   employer: [
     { id: "overview", label: "Dashboard", icon: LayoutDashboard, path: "/dashboard/employer" },
@@ -152,8 +155,8 @@ export default function DashboardSidebar({
                 href={item.path}
                 onClick={() => { if (window.innerWidth < 1024) setIsOpen(false); }}
                 className={`flex items-center ${isOpen ? 'gap-3 p-3' : 'justify-center p-3'} rounded-xl transition-all group ${isActive
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
-                    : "text-slate-500 hover:bg-white hover:text-blue-600 shadow-sm hover:shadow-blue-500/5"
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
+                  : "text-slate-500 hover:bg-white hover:text-blue-600 shadow-sm hover:shadow-blue-500/5"
                   }`}
                 title={!isOpen ? item.label : ""}
               >

@@ -1,7 +1,9 @@
 "use client";
+import type { LucideIcon } from "lucide-react";
+import { Suspense, useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Search, Filter, Shield, User, Briefcase, Megaphone, Users, MoreVertical, Ban, CheckCircle } from "lucide-react";
-import { useState } from "react";
 
 const users = [
   { id: 1, name: "Rahul Sharma", role: "Employer", email: "rahul@techcorp.in", status: "Active", joined: "Today" },
@@ -12,17 +14,48 @@ const users = [
   { id: 6, name: "Vikram Malhotra", role: "Job Seeker", email: "vikram@email.com", status: "Banned", joined: "1 week ago" },
 ];
 
-const roleIcons: any = {
-  "Employer": Briefcase,
+const roleIcons: Record<string, LucideIcon> = {
+  Employer: Briefcase,
   "Job Seeker": User,
-  "Recruiter": Users,
-  "Promoter": Megaphone,
-  "Admin": Shield
+  Recruiter: Users,
+  Promoter: Megaphone,
+  Admin: Shield,
+};
+
+const URL_ROLE_TO_FILTER: Record<string, string> = {
+  recruiter: "Recruiter",
+  employer: "Employer",
+  employee: "Job Seeker",
+  jobseeker: "Job Seeker",
+  promoter: "Promoter",
+  admin: "Admin",
 };
 
 export default function UserManagementPage() {
+  return (
+    <Suspense
+      fallback={
+        <DashboardLayout role="admin" title="User Management">
+          <div className="py-12 text-center text-slate-400 text-sm">Loading…</div>
+        </DashboardLayout>
+      }
+    >
+      <UserManagementInner />
+    </Suspense>
+  );
+}
+
+function UserManagementInner() {
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRole, setSelectedRole] = useState("All Roles");
+
+  useEffect(() => {
+    const raw = searchParams.get("role");
+    if (!raw) return;
+    const mapped = URL_ROLE_TO_FILTER[raw.toLowerCase()];
+    if (mapped) setSelectedRole(mapped);
+  }, [searchParams]);
 
   const filteredUsers = users.filter(u => {
     const matchesSearch = u.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -95,7 +128,7 @@ export default function UserManagementPage() {
             <tbody className="divide-y divide-slate-50">
               {filteredUsers.length > 0 ? (
                 filteredUsers.map((u) => {
-                  const Icon = roleIcons[u.role];
+                  const Icon = roleIcons[u.role] ?? User;
                   return (
                     <tr 
                       key={u.id}

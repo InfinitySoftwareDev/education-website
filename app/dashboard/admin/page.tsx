@@ -1,8 +1,18 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Users, Briefcase, MapPin, TrendingUp, IndianRupee, Star, Settings, Eye } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import DashboardLayout from "@/components/DashboardLayout";
+
+const quickActions: { label: string; href: string }[] = [
+  { label: "Manage Recruiters", href: "/dashboard/admin/users?role=recruiter" },
+  { label: "View All Job Posts", href: "/dashboard/admin/jobs" },
+  { label: "Revenue Reports", href: "/dashboard/admin/finance" },
+
+  { label: "Review Management", href: "/dashboard/admin/reviews" },
+  { label: "FAQ Management", href: "/dashboard/admin/faq" },
+];
 
 const stats = [
   { icon: Users, label: "Total Users", value: 12840, suffix: "", color: "text-blue-600", bg: "bg-blue-50" },
@@ -60,7 +70,9 @@ export default function AdminDashboard() {
             <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
               <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
                 <h2 className="font-heading font-bold text-slate-900">Recent Registrations</h2>
-                <span className="badge-blue">Manage Users</span>
+                <Link href="/dashboard/admin/users" className="badge-blue hover:bg-blue-100 transition-colors">
+                  Manage Users
+                </Link>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -119,10 +131,14 @@ export default function AdminDashboard() {
                 <Settings size={15} className="text-blue-600" /> Quick Actions
               </h3>
               <div className="space-y-2">
-                {["Manage Recruiters", "View All Job Posts", "Revenue Reports", "Lead Tracking", "Review Management", "FAQ Management"].map((action) => (
-                  <button key={action} className="w-full text-left text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2.5 rounded-lg transition-colors font-medium">
-                    {action} →
-                  </button>
+                {quickActions.map((action) => (
+                  <Link
+                    key={action.href}
+                    href={action.href}
+                    className="block w-full text-left text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2.5 rounded-lg transition-colors font-medium"
+                  >
+                    {action.label} →
+                  </Link>
                 ))}
               </div>
             </div>
