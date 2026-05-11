@@ -88,8 +88,8 @@ export default function AdminFaqPage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
             <p className="text-slate-500 text-sm max-w-2xl">
-              Manage the questions and answers displayed on the public home page. 
-              Changes saved here will be reflected immediately in your browser.
+              Manage the questions and answers displayed on the public home page.
+
             </p>
           </div>
           <button
@@ -105,9 +105,8 @@ export default function AdminFaqPage() {
           <div className="inline-flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 relative overflow-hidden">
             <button
               onClick={() => setActiveTab("recruiter")}
-              className={`relative z-10 flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${
-                activeTab === "recruiter" ? "text-blue-700" : "text-slate-500 hover:text-slate-700"
-              }`}
+              className={`relative z-10 flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${activeTab === "recruiter" ? "text-blue-700" : "text-slate-500 hover:text-slate-700"
+                }`}
             >
               <Briefcase size={16} /> For Employers
               {activeTab === "recruiter" && (
@@ -121,9 +120,8 @@ export default function AdminFaqPage() {
             </button>
             <button
               onClick={() => setActiveTab("jobseeker")}
-              className={`relative z-10 flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${
-                activeTab === "jobseeker" ? "text-emerald-700" : "text-slate-500 hover:text-slate-700"
-              }`}
+              className={`relative z-10 flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${activeTab === "jobseeker" ? "text-emerald-700" : "text-slate-500 hover:text-slate-700"
+                }`}
             >
               <UserCircle size={16} /> For Job Seekers
               {activeTab === "jobseeker" && (
@@ -201,9 +199,8 @@ export default function AdminFaqPage() {
                 layout
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className={`bg-white rounded-2xl border-2 transition-all p-5 ${
-                  isEditing === index ? "border-blue-400 shadow-lg ring-4 ring-blue-500/5" : "border-slate-100 hover:border-slate-200"
-                }`}
+                className={`bg-white rounded-2xl border-2 transition-all p-5 ${isEditing === index ? "border-blue-400 shadow-lg ring-4 ring-blue-500/5" : "border-slate-100 hover:border-slate-200"
+                  }`}
               >
                 {isEditing === index ? (
                   <div className="space-y-4">
@@ -247,9 +244,8 @@ export default function AdminFaqPage() {
                 ) : (
                   <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                     <div className="flex gap-4">
-                      <div className={`mt-1 w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                        activeTab === "recruiter" ? "bg-blue-50 text-blue-600" : "bg-emerald-50 text-emerald-600"
-                      }`}>
+                      <div className={`mt-1 w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${activeTab === "recruiter" ? "bg-blue-50 text-blue-600" : "bg-emerald-50 text-emerald-600"
+                        }`}>
                         <HelpCircle size={20} />
                       </div>
                       <div>
