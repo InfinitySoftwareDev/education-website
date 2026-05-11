@@ -43,7 +43,7 @@ export default function PostJobPage() {
               <Briefcase size={18} className="text-blue-600" /> Basic Information
             </h3>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
               <div className="md:col-span-2">
                 <label className="form-label">Job Title *</label>
                 <input type="text" className="form-input" placeholder="e.g. Senior React Developer" />
@@ -85,26 +85,17 @@ export default function PostJobPage() {
 
               <div>
                 <label className="form-label">Location (City) *</label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-                  <input type="text" className="form-input pl-10" placeholder="e.g. Bangalore, Remote" />
-                </div>
+                <input type="text" className="form-input" placeholder="e.g. Bangalore, Remote" />
               </div>
 
               <div>
                 <label className="form-label">Salary Range (Monthly)</label>
-                <div className="relative">
-                  <IndianRupee className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-                  <input type="text" className="form-input pl-10" placeholder="e.g. 40,000 - 60,000" />
-                </div>
+                <input type="text" className="form-input" placeholder="e.g. 40,000 - 60,000" />
               </div>
 
               <div>
                 <label className="form-label">Deadline to Apply</label>
-                <div className="relative">
-                  <Clock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-                  <input type="date" className="form-input pl-10" />
-                </div>
+                <input type="date" className="form-input" />
               </div>
             </div>
           </div>
