@@ -81,6 +81,19 @@ const jobs = [
     posted: "1 day ago",
     verified: true,
     hot: true,
+    description: "We are looking for a skilled React Developer to join our front-end team. You will be responsible for building high-quality UI components and ensuring a seamless user experience.",
+    requirements: [
+      "2+ years of experience with React.js",
+      "Proficiency in TypeScript and Tailwind CSS",
+      "Knowledge of Next.js App Router",
+      "Experience with Framer Motion is a plus",
+    ],
+    responsibilities: [
+      "Develop new user-facing features using React",
+      "Build reusable components and front-end libraries",
+      "Optimize components for maximum performance",
+      "Collaborate with back-end developers and designers",
+    ],
   },
   {
     id: 2,
@@ -93,6 +106,19 @@ const jobs = [
     posted: "2 days ago",
     verified: true,
     hot: false,
+    description: "RetailPro is hiring ambitious Sales Executives to drive our market growth in Mumbai. You will be the face of our brand, helping customers find the best solutions.",
+    requirements: [
+      "Bachelor's degree in any field",
+      "Excellent communication and negotiation skills",
+      "Fluent in English and Hindi",
+      "1-2 years of sales experience preferred",
+    ],
+    responsibilities: [
+      "Identify and approach potential customers",
+      "Conduct product demonstrations",
+      "Meet monthly sales targets",
+      "Maintain customer relationships",
+    ],
   },
   {
     id: 3,
@@ -105,6 +131,19 @@ const jobs = [
     posted: "3 days ago",
     verified: true,
     hot: false,
+    description: "Supervise daily warehouse operations and ensure efficiency in shipping and receiving. We need a detail-oriented leader who can manage a diverse team.",
+    requirements: [
+      "Prior experience in warehouse management",
+      "Strong leadership and organizational skills",
+      "Knowledge of inventory software",
+      "Ability to work in shifts",
+    ],
+    responsibilities: [
+      "Coordinate freight handling and logistics",
+      "Manage warehouse staff and schedules",
+      "Ensure safety regulations are met",
+      "Maintain accurate inventory records",
+    ],
   },
   {
     id: 4,
@@ -117,6 +156,19 @@ const jobs = [
     posted: "1 day ago",
     verified: true,
     hot: true,
+    description: "Provide compassionate care to our patients at PharmaCare. We are looking for dedicated nursing professionals to join our critical care unit.",
+    requirements: [
+      "B.Sc Nursing or GNM qualification",
+      "Valid state nursing council registration",
+      "0-3 years of experience",
+      "Willingness to work in rotating shifts",
+    ],
+    responsibilities: [
+      "Administer medications and treatments",
+      "Monitor patient vital signs",
+      "Assist doctors during procedures",
+      "Maintain patient records and reports",
+    ],
   },
   {
     id: 5,
@@ -129,6 +181,19 @@ const jobs = [
     posted: "Today",
     verified: true,
     hot: false,
+    description: "Join our international voice process at CallFirst. We provide excellent growth opportunities and performance-based incentives.",
+    requirements: [
+      "Minimum 12th pass",
+      "Good communication skills in English",
+      "Basic computer knowledge",
+      "Flexible with US/UK shifts",
+    ],
+    responsibilities: [
+      "Handle inbound customer queries",
+      "Provide accurate information to customers",
+      "Document customer interactions",
+      "Follow call scripts and quality standards",
+    ],
   },
   {
     id: 6,
@@ -141,6 +206,19 @@ const jobs = [
     posted: "2 days ago",
     verified: false,
     hot: false,
+    description: "Manage construction site operations and ensure projects are completed on time and within budget.",
+    requirements: [
+      "B.Tech in Civil Engineering",
+      "Knowledge of AutoCAD and project management",
+      "2+ years of on-site experience",
+      "Willingness to travel to project sites",
+    ],
+    responsibilities: [
+      "Supervise construction activities",
+      "Ensure quality control and safety",
+      "Liaise with architects and contractors",
+      "Prepare progress reports and budgets",
+    ],
   },
   {
     id: 7,
@@ -153,6 +231,19 @@ const jobs = [
     posted: "Today",
     verified: true,
     hot: false,
+    description: "Inspire the next generation of students at EduFirst Academy. We are looking for an enthusiastic Mathematics teacher for higher secondary classes.",
+    requirements: [
+      "M.Sc in Mathematics with B.Ed",
+      "Passion for teaching and student development",
+      "Excellent classroom management skills",
+      "Familiarity with digital teaching tools",
+    ],
+    responsibilities: [
+      "Deliver engaging math lessons",
+      "Prepare students for board exams",
+      "Conduct assessments and provide feedback",
+      "Organize math-related workshops",
+    ],
   },
   {
     id: 8,
@@ -165,6 +256,19 @@ const jobs = [
     posted: "3 days ago",
     verified: true,
     hot: false,
+    description: "Be the first point of contact for our guests at HospitalPro Kochi. We seek professional individuals with a customer-first mindset.",
+    requirements: [
+      "Graduate in Hotel Management or related field",
+      "Pleasing personality and communication skills",
+      "Knowledge of PMS software",
+      "Multi-lingual (English, Hindi, Malayalam)",
+    ],
+    responsibilities: [
+      "Manage guest check-ins and check-outs",
+      "Handle room reservations and inquiries",
+      "Provide information about hotel services",
+      "Address guest grievances promptly",
+    ],
   },
 ];
 
@@ -222,6 +326,7 @@ export function JobsBrowseMain({
   const [search, setSearch] = useState("");
   const [showRegister, setShowRegister] = useState(false);
   const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
+  const [selectedJob, setSelectedJob] = useState<(typeof jobs)[0] | null>(null);
 
   const refreshSavedIds = useCallback(() => {
     setSavedIds(new Set(readSavedJobs().map((j) => j.id)));
@@ -544,6 +649,7 @@ export function JobsBrowseMain({
                       boxShadow: "0 12px 30px rgba(37,99,235,0.10)",
                     }}
                     className="group relative bg-white rounded-2xl border border-slate-100 hover:border-blue-200 p-5 cursor-pointer transition-all duration-300"
+                    onClick={() => setSelectedJob(job)}
                   >
                     <button
                       type="button"
@@ -689,6 +795,185 @@ export function JobsBrowseMain({
       </section>
 
       <AnimatePresence>
+        {selectedJob && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedJob(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 30 }}
+              className="bg-white rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col relative shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setSelectedJob(null)}
+                className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-colors z-20"
+              >
+                <X size={20} />
+              </button>
+
+              <div className="overflow-y-auto custom-scrollbar">
+                <div className="p-8 pb-0">
+                  <div className="flex items-start gap-6 mb-8">
+                    <div className="w-20 h-20 rounded-2xl bg-linear-to-br from-blue-50 to-blue-100 flex items-center justify-center shrink-0 border border-blue-100">
+                      <Briefcase className="w-10 h-10 text-blue-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 flex-wrap mb-2">
+                        <h2 className="font-heading text-3xl font-extrabold text-slate-900 leading-tight">
+                          {selectedJob.title}
+                        </h2>
+                        {selectedJob.verified && (
+                          <span className="badge-verified py-1 px-3">
+                            <BadgeCheck size={14} /> Verified
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xl text-slate-500 font-semibold mb-4">
+                        {selectedJob.company}
+                      </p>
+                      <div className="flex flex-wrap gap-4">
+                        <div className="flex items-center gap-2 text-slate-500 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-100">
+                          <MapPin size={16} className="text-blue-500" />
+                          <span className="text-sm font-bold">
+                            {selectedJob.city}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-slate-500 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-100">
+                          <Clock size={16} className="text-amber-500" />
+                          <span className="text-sm font-bold">
+                            {selectedJob.posted}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-slate-500 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-100">
+                          <TrendingUp size={16} className="text-emerald-500" />
+                          <span className="text-sm font-bold">
+                            {selectedJob.type}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 bg-linear-to-r from-blue-600 to-blue-800 p-6 rounded-2xl shadow-lg">
+                    <div className="text-white">
+                      <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">
+                        Salary Range
+                      </p>
+                      <p className="text-2xl font-black">{selectedJob.salary}</p>
+                      <p className="text-blue-100 text-[10px]">Per Annum</p>
+                    </div>
+                    <div className="text-white border-l border-white/10 pl-6">
+                      <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">
+                        Experience
+                      </p>
+                      <p className="text-2xl font-black">1-3 Years</p>
+                      <p className="text-blue-100 text-[10px]">Preferred</p>
+                    </div>
+                    <div className="text-white border-l border-white/10 pl-6">
+                      <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">
+                        Openings
+                      </p>
+                      <p className="text-2xl font-black">04</p>
+                      <p className="text-blue-100 text-[10px]">Hiring Fast</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-8 pt-0 space-y-8">
+                  <div>
+                    <h3 className="font-heading text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                      <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                      Job Description
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {selectedJob.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-heading text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                      <div className="w-1.5 h-6 bg-amber-500 rounded-full" />
+                      Key Responsibilities
+                    </h3>
+                    <ul className="grid grid-cols-1 gap-3">
+                      {selectedJob.responsibilities.map((res, i) => (
+                        <li key={i} className="flex items-start gap-3 text-slate-600">
+                          <div className="w-5 h-5 rounded-full bg-amber-50 flex items-center justify-center shrink-0 mt-0.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                          </div>
+                          <span className="text-sm">{res}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="font-heading text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                      <div className="w-1.5 h-6 bg-emerald-500 rounded-full" />
+                      Requirements
+                    </h3>
+                    <ul className="grid grid-cols-1 gap-3">
+                      {selectedJob.requirements.map((req, i) => (
+                        <li key={i} className="flex items-start gap-3 text-slate-600">
+                          <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 mt-0.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                          </div>
+                          <span className="text-sm">{req}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 border-t border-slate-100 bg-slate-50/50 flex gap-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedJob(null);
+                    setShowRegister(true);
+                  }}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-xl shadow-blue-600/20 transition-all flex items-center justify-center gap-2"
+                >
+                  Apply for this position <ArrowRight size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleSaveJob({
+                      id: selectedJob.id,
+                      title: selectedJob.title,
+                      company: selectedJob.company,
+                      city: selectedJob.city,
+                      salary: selectedJob.salary,
+                      type: selectedJob.type,
+                    });
+                    refreshSavedIds();
+                  }}
+                  className={`w-14 h-14 rounded-2xl border flex items-center justify-center transition-all ${
+                    savedIds.has(selectedJob.id)
+                      ? "bg-blue-50 border-blue-200 text-blue-600"
+                      : "bg-white border-slate-200 text-slate-400 hover:bg-slate-50"
+                  }`}
+                >
+                  <Bookmark
+                    size={24}
+                    className={savedIds.has(selectedJob.id) ? "fill-blue-600" : ""}
+                  />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
         {showRegister && (
           <motion.div
             initial={{ opacity: 0 }}
