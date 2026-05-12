@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 interface TemplateSelectionProps {
   onSelect: (id: string) => void;
+  onAiBuild: () => void;
 }
 
 const templates = [
@@ -185,7 +187,7 @@ const templates = [
   },
 ];
 
-export function TemplateSelection({ onSelect }: TemplateSelectionProps) {
+export function TemplateSelection({ onSelect, onAiBuild }: TemplateSelectionProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -204,10 +206,34 @@ export function TemplateSelection({ onSelect }: TemplateSelectionProps) {
         <h1 className="font-heading text-5xl font-extrabold text-slate-900 mb-6">
           Choose Your <span className="text-gradient-blue">Canvas</span>
         </h1>
-        <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+        <p className="text-slate-500 text-lg max-w-2xl mx-auto mb-10">
           Select a professionally crafted template to get started. You can
           always switch templates later while keeping your data.
         </p>
+
+        {/* AI Build Banner */}
+        <motion.div 
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="max-w-3xl mx-auto bg-linear-to-r from-blue-600 to-blue-800 rounded-3xl p-8 text-left relative overflow-hidden shadow-2xl shadow-blue-600/30 group"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl group-hover:bg-white/10 transition-colors" />
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">New Feature</span>
+              </div>
+              <h2 className="text-2xl font-heading font-black text-white mb-2">Build with AI Assistant</h2>
+              <p className="text-blue-100 text-sm">Answer 4 simple questions and let our AI generate a professional resume for you in seconds.</p>
+            </div>
+            <button 
+              onClick={onAiBuild}
+              className="bg-amber-400 hover:bg-amber-500 text-slate-900 font-black px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/20 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95"
+            >
+              Start AI Build <Sparkles size={18} />
+            </button>
+          </div>
+        </motion.div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">

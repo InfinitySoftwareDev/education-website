@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   User, Briefcase, 
   Settings, Download, Eye, FileText,
-  Plus, Trash2, Layout, Sparkles, X
+  Plus, Trash2, Layout, Sparkles, X,
+  ArrowRight
 } from "lucide-react";
 import { TemplateSelection } from "./TemplateSelection";
 import { 
@@ -15,7 +16,8 @@ import {
 
 export function ResumeBuilderMain() {
   const [activeTemplate, setActiveTemplate] = useState("professional");
-  const [step, setStep] = useState("select"); // 'select' or 'edit'
+  const [step, setStep] = useState("select"); // 'select', 'edit', or 'ai-build'
+  const [aiStep, setAiStep] = useState(0);
   const [skillInput, setSkillInput] = useState("");
 
   // Handle browser back button
@@ -81,6 +83,28 @@ export function ResumeBuilderMain() {
     setStep("edit");
   };
 
+  const startAiBuild = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      location: "",
+      title: "",
+      summary: "",
+      experience: [],
+      education: [],
+      projects: [],
+      skills: []
+    });
+    setStep("ai-build");
+    setAiStep(1);
+  };
+
+  const handleAiFinish = () => {
+    setStep("edit");
+    window.location.hash = "editor";
+  };
+
   return (
     <div className="bg-transparent">
       <style dangerouslySetInnerHTML={{ __html: `
@@ -133,7 +157,270 @@ export function ResumeBuilderMain() {
         
         <AnimatePresence mode="wait">
           {step === "select" ? (
-            <TemplateSelection key="selection" onSelect={selectTemplate} />
+            <TemplateSelection key="selection" onSelect={selectTemplate} onAiBuild={startAiBuild} />
+          ) : step === "ai-build" ? (
+            <div key="ai-build" className="max-w-2xl mx-auto py-20">
+              <AnimatePresence mode="wait">
+                {aiStep === 1 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
+                    className="card p-10 text-center"
+                  >
+                    <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-600/20">
+                      <Sparkles className="text-white" />
+                    </div>
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 1: Contact Info</h2>
+                    <p className="text-slate-500 mb-8">Let's start with your basics. Who are you and how can employers reach you?</p>
+                    <div className="space-y-4 max-w-sm mx-auto">
+                      <input 
+                        type="text" placeholder="Full Name" 
+                        value={formData.name || ""} onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        className="form-input text-center"
+                      />
+                      <input 
+                        type="text" placeholder="Job Title (e.g. Senior Manager)" 
+                        value={formData.title || ""} onChange={(e) => setFormData({...formData, title: e.target.value})}
+                        className="form-input text-center"
+                      />
+                      <div className="grid grid-cols-2 gap-4">
+                        <input 
+                          type="email" placeholder="Email Address" 
+                          value={formData.email || ""} onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          className="form-input text-center text-xs"
+                        />
+                        <input 
+                          type="tel" placeholder="Mobile Number" 
+                          value={formData.phone || ""} onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          className="form-input text-center text-xs"
+                        />
+                      </div>
+                      <input 
+                        type="text" placeholder="Current City (e.g. Mumbai, India)" 
+                        value={formData.location || ""} onChange={(e) => setFormData({...formData, location: e.target.value})}
+                        className="form-input text-center"
+                      />
+                      <button 
+                        disabled={!formData.name || !formData.title || !formData.email || !formData.phone || !formData.location}
+                        onClick={() => setAiStep(2)}
+                        className="btn-primary w-full py-4 disabled:opacity-50"
+                      >
+                        Next Step <ArrowRight size={16} className="ml-2" />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {aiStep === 2 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
+                    className="card p-10 text-center"
+                  >
+                    <div className="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-amber-500/20">
+                      <Briefcase className="text-white" />
+                    </div>
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 2: Experience</h2>
+                    <p className="text-slate-500 mb-8">Tell us about your most recent role. Which company was it and what did you achieve?</p>
+                    <div className="space-y-4 max-w-sm mx-auto">
+                      <input 
+                        type="text" placeholder="Company Name" 
+                        value={formData.experience[0]?.company || ""}
+                        onChange={(e) => {
+                          const exp = [...formData.experience];
+                          if (exp[0]) exp[0].company = e.target.value;
+                          else exp.push({ id: 1, company: e.target.value, role: formData.title, duration: "Present", desc: "" });
+                          setFormData({...formData, experience: exp});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <textarea 
+                        placeholder="I was a [Role] where I [Achievement]..." 
+                        rows={3}
+                        value={formData.summary || ""}
+                        onChange={(e) => {
+                          const exp = [...formData.experience];
+                          if (exp[0]) exp[0].desc = e.target.value;
+                          setFormData({...formData, summary: e.target.value, experience: exp});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <button 
+                        disabled={!formData.experience[0]?.company || !formData.summary}
+                        onClick={() => setAiStep(3)}
+                        className="btn-primary w-full py-4"
+                      >
+                        Almost There <ArrowRight size={16} className="ml-2" />
+                      </button>
+                      <button onClick={() => setAiStep(1)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {aiStep === 3 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
+                    className="card p-10 text-center"
+                  >
+                    <div className="w-16 h-16 bg-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/20">
+                      <Settings className="text-white" />
+                    </div>
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 3: Skills</h2>
+                    <p className="text-slate-500 mb-8">List your top 5 technical or professional skills (separated by commas).</p>
+                    <div className="space-y-4 max-w-sm mx-auto">
+                      <input 
+                        type="text" placeholder="React, Project Management, Sales..." 
+                        value={formData.skills.join(', ')}
+                        onChange={(e) => {
+                          const skills = e.target.value.split(',').map(s => s.trim()).filter(s => s);
+                          setFormData({...formData, skills});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <button 
+                        disabled={formData.skills.length === 0}
+                        onClick={() => setAiStep(4)}
+                        className="btn-primary w-full py-4"
+                      >
+                        Next Step <ArrowRight size={16} className="ml-2" />
+                      </button>
+                      <button onClick={() => setAiStep(2)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {aiStep === 4 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
+                    className="card p-10 text-center"
+                  >
+                    <div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-600/20">
+                      <Eye className="text-white" />
+                    </div>
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 4: Education</h2>
+                    <p className="text-slate-500 mb-8">Tell us about your educational background.</p>
+                    <div className="space-y-4 max-w-sm mx-auto">
+                      <input 
+                        type="text" placeholder="University / School Name" 
+                        value={formData.education[0]?.school || ""}
+                        onChange={(e) => {
+                          const edu = [...formData.education];
+                          if (edu[0]) edu[0].school = e.target.value;
+                          else edu.push({ id: 1, school: e.target.value, degree: "", year: "2024" });
+                          setFormData({...formData, education: edu});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <input 
+                        type="text" placeholder="Degree (e.g. Bachelor of Technology)" 
+                        value={formData.education[0]?.degree || ""}
+                        onChange={(e) => {
+                          const edu = [...formData.education];
+                          if (edu[0]) edu[0].degree = e.target.value;
+                          else edu.push({ id: 1, school: "", degree: e.target.value, year: "2024" });
+                          setFormData({...formData, education: edu});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <button 
+                        disabled={!formData.education[0]?.school || !formData.education[0]?.degree}
+                        onClick={() => setAiStep(5)}
+                        className="btn-primary w-full py-4"
+                      >
+                        Final Step <ArrowRight size={16} className="ml-2" />
+                      </button>
+                      <button onClick={() => setAiStep(3)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {aiStep === 5 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
+                    className="card p-10 text-center"
+                  >
+                    <div className="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-600/20">
+                      <Layout className="text-white" />
+                    </div>
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 5: Top Project</h2>
+                    <p className="text-slate-500 mb-8">Almost done! Tell us about a project you are proud of.</p>
+                    <div className="space-y-4 max-w-sm mx-auto">
+                      <input 
+                        type="text" placeholder="Project Name" 
+                        value={formData.projects[0]?.name || ""}
+                        onChange={(e) => {
+                          const proj = [...formData.projects];
+                          if (proj[0]) proj[0].name = e.target.value;
+                          else proj.push({ id: 1, name: e.target.value, link: "", techStack: "", desc: "" });
+                          setFormData({...formData, projects: proj});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <textarea 
+                        placeholder="What did you build and what technology did you use?" 
+                        rows={3}
+                        value={formData.projects[0]?.desc || ""}
+                        onChange={(e) => {
+                          const proj = [...formData.projects];
+                          if (proj[0]) proj[0].desc = e.target.value;
+                          setFormData({...formData, projects: proj});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <button 
+                        onClick={handleAiFinish}
+                        className="btn-amber w-full py-4 shadow-xl shadow-amber-500/20"
+                      >
+                        Generate My Resume <Sparkles size={16} className="ml-2" />
+                      </button>
+                      <button onClick={() => setAiStep(4)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {aiStep === 5 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
+                    className="card p-10 text-center"
+                  >
+                    <div className="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-600/20">
+                      <Layout className="text-white" />
+                    </div>
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 5: Top Project</h2>
+                    <p className="text-slate-500 mb-8">Almost done! Tell us about a project you are proud of.</p>
+                    <div className="space-y-4 max-w-sm mx-auto">
+                      <input 
+                        type="text" placeholder="Project Name" 
+                        value={formData.projects[0]?.name || ""}
+                        onChange={(e) => {
+                          const proj = [...formData.projects];
+                          if (proj[0]) proj[0].name = e.target.value;
+                          else proj.push({ id: 1, name: e.target.value, link: "", techStack: "", desc: "" });
+                          setFormData({...formData, projects: proj});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <textarea 
+                        placeholder="What did you build and what technology did you use?" 
+                        rows={3}
+                        value={formData.projects[0]?.desc || ""}
+                        onChange={(e) => {
+                          const proj = [...formData.projects];
+                          if (proj[0]) proj[0].desc = e.target.value;
+                          setFormData({...formData, projects: proj});
+                        }}
+                        className="form-input text-center"
+                      />
+                      <button 
+                        onClick={handleAiFinish}
+                        className="btn-amber w-full py-4 shadow-xl shadow-amber-500/20"
+                      >
+                        Generate My Resume <Sparkles size={16} className="ml-2" />
+                      </button>
+                      <button onClick={() => setAiStep(4)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           ) : (
             <motion.div 
               key="editor"
