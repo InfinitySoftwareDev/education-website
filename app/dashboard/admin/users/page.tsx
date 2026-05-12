@@ -10,15 +10,13 @@ const users = [
   { id: 2, name: "Priya Patel", role: "Job Seeker", email: "priya@email.com", status: "Active", joined: "Yesterday" },
   { id: 3, name: "Amit Singh", role: "Recruiter", email: "amit@recruiter.com", status: "Pending", joined: "2 days ago" },
   { id: 4, name: "Neha Gupta", role: "Employer", email: "neha@startup.co", status: "Active", joined: "3 days ago" },
-  { id: 5, name: "Suresh Kumar", role: "Promoter", email: "suresh@promo.in", status: "Active", joined: "3 days ago" },
-  { id: 6, name: "Vikram Malhotra", role: "Job Seeker", email: "vikram@email.com", status: "Banned", joined: "1 week ago" },
+  { id: 5, name: "Vikram Malhotra", role: "Job Seeker", email: "vikram@email.com", status: "Banned", joined: "1 week ago" },
 ];
 
 const roleIcons: Record<string, LucideIcon> = {
   Employer: Briefcase,
   "Job Seeker": User,
   Recruiter: Users,
-  Promoter: Megaphone,
   Admin: Shield,
 };
 
@@ -27,7 +25,6 @@ const URL_ROLE_TO_FILTER: Record<string, string> = {
   employer: "Employer",
   employee: "Job Seeker",
   jobseeker: "Job Seeker",
-  promoter: "Promoter",
   admin: "Admin",
 };
 
@@ -104,7 +101,6 @@ function UserManagementInner() {
             <option>Employer</option>
             <option>Job Seeker</option>
             <option>Recruiter</option>
-            <option>Promoter</option>
           </select>
           <button className="bg-blue-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-blue-700 transition-all">
             + Add User

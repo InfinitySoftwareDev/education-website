@@ -168,7 +168,6 @@ export default function ContactPage() {
                   <option>I want to hire (Employer)</option>
                   <option>I am looking for a job (Job Seeker)</option>
                   <option>Recruiter Partnership</option>
-                  <option>Promoter Inquiry</option>
                   <option>General Inquiry</option>
                 </select>
               </div>

@@ -50,12 +50,7 @@ const menuItems: Record<string, SidebarItem[]> = {
     { id: "overview", label: "Recruiter Hub", icon: LayoutDashboard, path: "/dashboard/recruiter" },
     { id: "leads", label: "Call Logs", icon: Users, path: "/dashboard/recruiter/leads" },
   ],
-  promoter: [
-    { id: "overview", label: "Promoter Dashboard", icon: LayoutDashboard, path: "/dashboard/promoter" },
-    { id: "referrals", label: "My Referrals", icon: Megaphone, path: "/dashboard/promoter/referrals" },
-    { id: "earnings", label: "Earnings & Payouts", icon: Settings, path: "/dashboard/promoter/earnings" },
-  ],
-};
+  };
 
 import Image from "next/image";
 

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
-  role: "admin" | "employer" | "employee" | "recruiter" | "promoter";
+  role: "admin" | "employer" | "employee" | "recruiter";
   title?: string;
 }
 

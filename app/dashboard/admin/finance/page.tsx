@@ -11,8 +11,7 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 const transactions = [
   { id: "TXN001", company: "TechCorp Solutions", plan: "Job Post (₹199)", date: "Today, 10:24 AM", amount: 199, status: "Success", method: "UPI" },
   { id: "TXN002", company: "RetailPro India", plan: "Featured Post (₹499)", date: "Today, 08:15 AM", amount: 499, status: "Success", method: "Card" },
-  { id: "TXN003", company: "Suresh Kumar", plan: "Payout (Promoter)", date: "Yesterday", amount: -1500, status: "Pending", method: "IMPS" },
-  { id: "TXN004", company: "LogiCo Logistics", plan: "AI Calling Bundle", date: "Yesterday", amount: 2499, status: "Success", method: "UPI" },
+  { id: "TXN003", company: "LogiCo Logistics", plan: "AI Calling Bundle", date: "Yesterday", amount: 2499, status: "Success", method: "UPI" },
   { id: "TXN005", company: "EduFirst Academy", plan: "Bulk Hiring (Premium)", date: "2 days ago", amount: 5000, status: "Success", method: "NetBanking" },
 ];
 
@@ -41,26 +40,7 @@ export default function FinancePage() {
           </div>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
-        >
-          <div className="flex justify-between items-start mb-4">
-            <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
-              <CreditCard size={20} />
-            </div>
-            <span className="flex items-center gap-1 text-[10px] font-bold bg-amber-50 text-amber-600 px-2 py-1 rounded-full">
-              <Clock size={10} /> 12 Pending
-            </span>
-          </div>
-          <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Promoter Payouts</p>
-          <div className="font-heading text-3xl font-extrabold text-slate-900 flex items-center gap-2">
-            ₹<AnimatedCounter target={45200} />
-          </div>
-        </motion.div>
-
+        
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

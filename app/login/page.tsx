@@ -9,7 +9,6 @@ const panels = [
     { id: "employer", label: "Employer", icon: Briefcase, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-200" },
     { id: "employee", label: "Job Seeker", icon: UserCheck, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200" },
     { id: "recruiter", label: "Recruiter", icon: Users, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-200" },
-    { id: "promoter", label: "Promoter", icon: Megaphone, color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" },
 ];
 
 const dashLinks: Record<string, string> = {
@@ -17,7 +16,6 @@ const dashLinks: Record<string, string> = {
     employer: "/dashboard/employer",
     employee: "/dashboard/employee",
     recruiter: "/dashboard/recruiter",
-    promoter: "/dashboard/promoter",
 };
 
 export default function LoginPage() {
@@ -215,9 +213,6 @@ export default function LoginPage() {
                                         <div><label className="form-label">Mobile *</label><input type="tel" className="form-input" placeholder="+91 XXXXX XXXXX" /></div>
                                         {(active === "employer" || active === "recruiter") && (
                                             <div><label className="form-label">Company / Agency Name</label><input className="form-input" placeholder="Organisation name" /></div>
-                                        )}
-                                        {active === "promoter" && (
-                                            <div><label className="form-label">Referral Code (optional)</label><input className="form-input" placeholder="Enter referral code" /></div>
                                         )}
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>

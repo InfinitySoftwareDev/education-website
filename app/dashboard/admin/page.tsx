@@ -28,7 +28,6 @@ const recentUsers = [
   { name: "Priya Patel", role: "Job Seeker", city: "Ahmedabad", joined: "Yesterday", status: "Active" },
   { name: "Amit Singh", role: "Recruiter", city: "Delhi", joined: "2 days ago", status: "Pending" },
   { name: "Neha Gupta", role: "Employer", city: "Hyderabad", joined: "3 days ago", status: "Active" },
-  { name: "Suresh Kumar", role: "Promoter", city: "Pune", joined: "3 days ago", status: "Active" },
 ];
 
 export default function AdminDashboard() {
