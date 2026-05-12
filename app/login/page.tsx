@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { ArrowRight, Shield, Briefcase, Users, UserCheck, Megaphone, Eye, EyeOff } from "lucide-react";
 
 const panels = [
@@ -17,9 +18,20 @@ const dashLinks: Record<string, string> = {
     recruiter: "/dashboard/recruiter",
 };
 
-export default function LoginPage() {
-    const [active, setActive] = useState("employee");
+function LoginContent() {
+    const searchParams = useSearchParams();
+    const defaultRole = searchParams.get("role") || "employee";
+    const [active, setActive] = useState(defaultRole);
     const [view, setView] = useState("login"); // 'login', 'register', 'forgot'
+
+    // Sync active tab when search params change
+    useEffect(() => {
+        const role = searchParams.get("role");
+        if (role) {
+            setActive(role);
+        }
+    }, [searchParams]);
+
     const [loginMethod, setLoginMethod] = useState("password"); // 'password' or 'otp'
     const [otpSent, setOtpSent] = useState(false);
     const [otp, setOtp] = useState("");
@@ -314,5 +326,13 @@ export default function LoginPage() {
                 </AnimatePresence>
             </div>
         </div>
+    );
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-slate-900 flex items-center justify-center text-white">Loading...</div>}>
+            <LoginContent />
+        </Suspense>
     );
 }
