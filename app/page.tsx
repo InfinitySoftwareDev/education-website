@@ -46,6 +46,19 @@ const stagger = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
 };
+const zoomIn = {
+  hidden: { opacity: 0, scale: 0.5, y: 20 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: i * 0.05,
+      ease: [0.21, 1.11, 0.81, 0.99] as const,
+    },
+  }),
+};
 
 /* ── Data ─────────────────────────────────────── */
 const stats = [
@@ -379,10 +392,11 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-80px" }}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10"
           >
-            {stats.map((stat) => (
+            {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                variants={fadeUp}
+                custom={i}
+                variants={zoomIn}
                 whileHover={{
                   y: -8,
                   scale: 1.02,
@@ -639,12 +653,19 @@ export default function HomePage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
             className="text-center mb-14"
           >
-            <span className="section-label">Industries We Serve</span>
+            <motion.span 
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="section-label"
+            >
+              Industries We Serve
+            </motion.span>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-slate-900 mt-3">
               Hiring Across Every Sector
             </h2>
@@ -656,24 +677,32 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
           >
-            {industries.map((ind) => (
+            {industries.map((ind, i) => (
               <motion.div
                 key={ind.label}
-                variants={fadeUp}
+                custom={i}
+                variants={zoomIn}
                 whileHover={{
-                  y: -5,
-                  scale: 1.05,
-                  backgroundColor: "rgba(59, 130, 246, 0.05)",
+                  y: -8,
+                  scale: 1.08,
+                  backgroundColor: "rgba(59, 130, 246, 0.08)",
+                  boxShadow: "0 20px 40px -12px rgba(37, 99, 235, 0.25)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-50 bg-white transition-all duration-300 cursor-default text-center"
+                className="group flex flex-col items-center gap-4 p-6 rounded-2xl border border-slate-100 hover:border-blue-400/50 bg-white transition-all duration-300 cursor-default text-center relative overflow-hidden"
               >
-                <span className="text-3xl group-hover:scale-125 transition-transform duration-300">
+                {/* Subtle background glow on hover */}
+                <div className="absolute inset-0 bg-linear-to-br from-blue-500/0 via-blue-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:to-transparent transition-all duration-500" />
+                
+                <span className="text-4xl group-hover:scale-110 transition-transform duration-500 relative z-10">
                   {ind.icon}
                 </span>
-                <span className="text-xs font-semibold text-slate-600 group-hover:text-blue-600 transition-colors leading-tight">
+                <span className="text-xs font-bold text-slate-600 group-hover:text-blue-700 transition-colors leading-tight relative z-10">
                   {ind.label}
                 </span>
+                
+                {/* Decorative dot */}
+                <div className="absolute bottom-2 right-2 w-1 h-1 rounded-full bg-blue-200 opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.div>
             ))}
           </motion.div>
@@ -702,10 +731,11 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {testimonials.map((t) => (
+            {testimonials.map((t, i) => (
               <motion.div
                 key={t.name}
-                variants={fadeUp}
+                custom={i}
+                variants={zoomIn}
                 whileHover={{
                   y: -10,
                   backgroundColor: "rgba(255, 255, 255, 0.15)",
