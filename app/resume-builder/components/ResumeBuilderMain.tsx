@@ -170,7 +170,7 @@ export function ResumeBuilderMain() {
                       <Sparkles className="text-white" />
                     </div>
                     <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 1: Contact Info</h2>
-                    <p className="text-slate-500 mb-8">Let's start with your basics. Who are you and how can employers reach you?</p>
+                    <p className="text-slate-500 mb-8">Who are you and how can employers reach you?</p>
                     <div className="space-y-4 max-w-sm mx-auto">
                       <input 
                         type="text" placeholder="Full Name" 
@@ -215,42 +215,27 @@ export function ResumeBuilderMain() {
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
                     className="card p-10 text-center"
                   >
-                    <div className="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-amber-500/20">
-                      <Briefcase className="text-white" />
+                    <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-slate-900/20">
+                      <FileText className="text-white" />
                     </div>
-                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 2: Experience</h2>
-                    <p className="text-slate-500 mb-8">Tell us about your most recent role. Which company was it and what did you achieve?</p>
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 2: Summary</h2>
+                    <p className="text-slate-500 mb-8">Write a short, powerful summary about yourself.</p>
                     <div className="space-y-4 max-w-sm mx-auto">
-                      <input 
-                        type="text" placeholder="Company Name" 
-                        value={formData.experience[0]?.company || ""}
-                        onChange={(e) => {
-                          const exp = [...formData.experience];
-                          if (exp[0]) exp[0].company = e.target.value;
-                          else exp.push({ id: 1, company: e.target.value, role: formData.title, duration: "Present", desc: "" });
-                          setFormData({...formData, experience: exp});
-                        }}
-                        className="form-input text-center"
-                      />
                       <textarea 
-                        placeholder="I was a [Role] where I [Achievement]..." 
-                        rows={3}
+                        placeholder="e.g. Dedicated software engineer with 5+ years of experience..." 
+                        rows={4}
                         value={formData.summary || ""}
-                        onChange={(e) => {
-                          const exp = [...formData.experience];
-                          if (exp[0]) exp[0].desc = e.target.value;
-                          setFormData({...formData, summary: e.target.value, experience: exp});
-                        }}
+                        onChange={(e) => setFormData({...formData, summary: e.target.value})}
                         className="form-input text-center"
                       />
                       <button 
-                        disabled={!formData.experience[0]?.company || !formData.summary}
+                        disabled={!formData.summary}
                         onClick={() => setAiStep(3)}
                         className="btn-primary w-full py-4"
                       >
-                        Almost There <ArrowRight size={16} className="ml-2" />
+                        Add Experience <ArrowRight size={16} className="ml-2" />
                       </button>
-                      <button onClick={() => setAiStep(1)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                      <button onClick={() => setAiStep(1)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto mt-4">Go Back</button>
                     </div>
                   </motion.div>
                 )}
@@ -260,29 +245,88 @@ export function ResumeBuilderMain() {
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
                     className="card p-10 text-center"
                   >
-                    <div className="w-16 h-16 bg-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/20">
-                      <Settings className="text-white" />
+                    <div className="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-amber-500/20">
+                      <Briefcase className="text-white" />
                     </div>
-                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 3: Skills</h2>
-                    <p className="text-slate-500 mb-8">List your top 5 technical or professional skills (separated by commas).</p>
-                    <div className="space-y-4 max-w-sm mx-auto">
-                      <input 
-                        type="text" placeholder="React, Project Management, Sales..." 
-                        value={formData.skills.join(', ')}
-                        onChange={(e) => {
-                          const skills = e.target.value.split(',').map(s => s.trim()).filter(s => s);
-                          setFormData({...formData, skills});
-                        }}
-                        className="form-input text-center"
-                      />
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 3: Experience</h2>
+                    <p className="text-slate-500 mb-8">Add your work history. You can add multiple roles!</p>
+                    
+                    <div className="space-y-4 max-w-sm mx-auto text-left">
+                      {formData.experience.map((exp, index) => (
+                        <div key={exp.id} className="p-4 bg-slate-50 rounded-xl border border-slate-100 relative group">
+                          <button 
+                            onClick={() => {
+                              const newExp = formData.experience.filter((_, i) => i !== index);
+                              setFormData({...formData, experience: newExp});
+                            }}
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                          >
+                            ×
+                          </button>
+                          <div className="grid grid-cols-2 gap-2 mb-2">
+                            <input 
+                              type="text" placeholder="Company" 
+                              value={exp.company}
+                              onChange={(e) => {
+                                const newExp = [...formData.experience];
+                                newExp[index].company = e.target.value;
+                                setFormData({...formData, experience: newExp});
+                              }}
+                              className="form-input text-xs"
+                            />
+                            <input 
+                              type="text" placeholder="Role" 
+                              value={exp.role}
+                              onChange={(e) => {
+                                const newExp = [...formData.experience];
+                                newExp[index].role = e.target.value;
+                                setFormData({...formData, experience: newExp});
+                              }}
+                              className="form-input text-xs"
+                            />
+                          </div>
+                          <input 
+                            type="text" placeholder="Duration (e.g. 2021 - Present)" 
+                            value={exp.duration}
+                            onChange={(e) => {
+                              const newExp = [...formData.experience];
+                              newExp[index].duration = e.target.value;
+                              setFormData({...formData, experience: newExp});
+                            }}
+                            className="form-input text-xs mb-2"
+                          />
+                          <textarea 
+                            placeholder="Key Achievement..." 
+                            rows={2}
+                            value={exp.desc}
+                            onChange={(e) => {
+                              const newExp = [...formData.experience];
+                              newExp[index].desc = e.target.value;
+                              setFormData({...formData, experience: newExp});
+                            }}
+                            className="form-input text-xs"
+                          />
+                        </div>
+                      ))}
+
                       <button 
-                        disabled={formData.skills.length === 0}
+                        onClick={() => {
+                          const newExp = [...formData.experience];
+                          newExp.push({ id: Date.now(), company: "", role: "", duration: "Present", desc: "" });
+                          setFormData({...formData, experience: newExp});
+                        }}
+                        className="w-full py-3 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 font-bold text-sm hover:border-amber-500 hover:text-amber-500 transition-all flex items-center justify-center gap-2"
+                      >
+                        + Add Experience
+                      </button>
+
+                      <button 
                         onClick={() => setAiStep(4)}
-                        className="btn-primary w-full py-4"
+                        className="btn-primary w-full py-4 mt-4"
                       >
                         Next Step <ArrowRight size={16} className="ml-2" />
                       </button>
-                      <button onClick={() => setAiStep(2)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                      <button onClick={() => setAiStep(2)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto mt-4 text-center w-full">Go Back</button>
                     </div>
                   </motion.div>
                 )}
@@ -296,38 +340,73 @@ export function ResumeBuilderMain() {
                       <Eye className="text-white" />
                     </div>
                     <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 4: Education</h2>
-                    <p className="text-slate-500 mb-8">Tell us about your educational background.</p>
-                    <div className="space-y-4 max-w-sm mx-auto">
-                      <input 
-                        type="text" placeholder="University / School Name" 
-                        value={formData.education[0]?.school || ""}
-                        onChange={(e) => {
-                          const edu = [...formData.education];
-                          if (edu[0]) edu[0].school = e.target.value;
-                          else edu.push({ id: 1, school: e.target.value, degree: "", year: "2024" });
-                          setFormData({...formData, education: edu});
-                        }}
-                        className="form-input text-center"
-                      />
-                      <input 
-                        type="text" placeholder="Degree (e.g. Bachelor of Technology)" 
-                        value={formData.education[0]?.degree || ""}
-                        onChange={(e) => {
-                          const edu = [...formData.education];
-                          if (edu[0]) edu[0].degree = e.target.value;
-                          else edu.push({ id: 1, school: "", degree: e.target.value, year: "2024" });
-                          setFormData({...formData, education: edu});
-                        }}
-                        className="form-input text-center"
-                      />
+                    <p className="text-slate-500 mb-8">Add your academic background.</p>
+                    
+                    <div className="space-y-4 max-w-sm mx-auto text-left">
+                      {formData.education.map((edu, index) => (
+                        <div key={edu.id} className="p-4 bg-slate-50 rounded-xl border border-slate-100 relative group">
+                          <button 
+                            onClick={() => {
+                              const newEdu = formData.education.filter((_, i) => i !== index);
+                              setFormData({...formData, education: newEdu});
+                            }}
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                          >
+                            ×
+                          </button>
+                          <input 
+                            type="text" placeholder="University / School" 
+                            value={edu.school}
+                            onChange={(e) => {
+                              const newEdu = [...formData.education];
+                              newEdu[index].school = e.target.value;
+                              setFormData({...formData, education: newEdu});
+                            }}
+                            className="form-input text-sm mb-2"
+                          />
+                          <div className="grid grid-cols-2 gap-2">
+                            <input 
+                              type="text" placeholder="Degree" 
+                              value={edu.degree}
+                              onChange={(e) => {
+                                const newEdu = [...formData.education];
+                                newEdu[index].degree = e.target.value;
+                                setFormData({...formData, education: newEdu});
+                              }}
+                              className="form-input text-xs"
+                            />
+                            <input 
+                              type="text" placeholder="Year" 
+                              value={edu.year}
+                              onChange={(e) => {
+                                const newEdu = [...formData.education];
+                                newEdu[index].year = e.target.value;
+                                setFormData({...formData, education: newEdu});
+                              }}
+                              className="form-input text-xs"
+                            />
+                          </div>
+                        </div>
+                      ))}
+
                       <button 
-                        disabled={!formData.education[0]?.school || !formData.education[0]?.degree}
+                        onClick={() => {
+                          const newEdu = [...formData.education];
+                          newEdu.push({ id: Date.now(), school: "", degree: "", year: "2024" });
+                          setFormData({...formData, education: newEdu});
+                        }}
+                        className="w-full py-3 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 font-bold text-sm hover:border-purple-500 hover:text-purple-500 transition-all flex items-center justify-center gap-2"
+                      >
+                        + Add Education
+                      </button>
+
+                      <button 
                         onClick={() => setAiStep(5)}
-                        className="btn-primary w-full py-4"
+                        className="btn-primary w-full py-4 mt-4"
                       >
-                        Final Step <ArrowRight size={16} className="ml-2" />
+                        Next Step <ArrowRight size={16} className="ml-2" />
                       </button>
-                      <button onClick={() => setAiStep(3)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                      <button onClick={() => setAiStep(3)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto mt-4 text-center w-full">Go Back</button>
                     </div>
                   </motion.div>
                 )}
@@ -340,82 +419,104 @@ export function ResumeBuilderMain() {
                     <div className="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-600/20">
                       <Layout className="text-white" />
                     </div>
-                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 5: Top Project</h2>
-                    <p className="text-slate-500 mb-8">Almost done! Tell us about a project you are proud of.</p>
-                    <div className="space-y-4 max-w-sm mx-auto">
-                      <input 
-                        type="text" placeholder="Project Name" 
-                        value={formData.projects[0]?.name || ""}
-                        onChange={(e) => {
-                          const proj = [...formData.projects];
-                          if (proj[0]) proj[0].name = e.target.value;
-                          else proj.push({ id: 1, name: e.target.value, link: "", techStack: "", desc: "" });
-                          setFormData({...formData, projects: proj});
-                        }}
-                        className="form-input text-center"
-                      />
-                      <textarea 
-                        placeholder="What did you build and what technology did you use?" 
-                        rows={3}
-                        value={formData.projects[0]?.desc || ""}
-                        onChange={(e) => {
-                          const proj = [...formData.projects];
-                          if (proj[0]) proj[0].desc = e.target.value;
-                          setFormData({...formData, projects: proj});
-                        }}
-                        className="form-input text-center"
-                      />
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 5: Projects</h2>
+                    <p className="text-slate-500 mb-8">Add your featured projects here.</p>
+                    
+                    <div className="space-y-4 max-w-sm mx-auto text-left">
+                      {formData.projects.map((proj, index) => (
+                        <div key={proj.id} className="p-4 bg-slate-50 rounded-xl border border-slate-100 relative group">
+                          <button 
+                            onClick={() => {
+                              const newProjs = formData.projects.filter((_, i) => i !== index);
+                              setFormData({...formData, projects: newProjs});
+                            }}
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                          >
+                            ×
+                          </button>
+                          <input 
+                            type="text" placeholder="Project Name" 
+                            value={proj.name}
+                            onChange={(e) => {
+                              const newProjs = [...formData.projects];
+                              newProjs[index].name = e.target.value;
+                              setFormData({...formData, projects: newProjs});
+                            }}
+                            className="form-input text-sm mb-2"
+                          />
+                          <input 
+                            type="text" placeholder="Tech Stack" 
+                            value={proj.techStack}
+                            onChange={(e) => {
+                              const newProjs = [...formData.projects];
+                              newProjs[index].techStack = e.target.value;
+                              setFormData({...formData, projects: newProjs});
+                            }}
+                            className="form-input text-sm mb-2"
+                          />
+                          <textarea 
+                            placeholder="Description..." 
+                            rows={2}
+                            value={proj.desc}
+                            onChange={(e) => {
+                              const newProjs = [...formData.projects];
+                              newProjs[index].desc = e.target.value;
+                              setFormData({...formData, projects: newProjs});
+                            }}
+                            className="form-input text-sm"
+                          />
+                        </div>
+                      ))}
+
                       <button 
-                        onClick={handleAiFinish}
-                        className="btn-amber w-full py-4 shadow-xl shadow-amber-500/20"
+                        onClick={() => {
+                          const newProjs = [...formData.projects];
+                          newProjs.push({ id: Date.now(), name: "", link: "", techStack: "", desc: "" });
+                          setFormData({...formData, projects: newProjs});
+                        }}
+                        className="w-full py-3 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 font-bold text-sm hover:border-emerald-500 hover:text-emerald-500 transition-all flex items-center justify-center gap-2"
                       >
-                        Generate My Resume <Sparkles size={16} className="ml-2" />
+                        + Add Project
                       </button>
-                      <button onClick={() => setAiStep(4)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+
+                      <button 
+                        onClick={() => setAiStep(6)}
+                        className="btn-primary w-full py-4 mt-4"
+                      >
+                        Next Step <ArrowRight size={16} className="ml-2" />
+                      </button>
+                      <button onClick={() => setAiStep(4)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto mt-4 text-center w-full">Go Back</button>
                     </div>
                   </motion.div>
                 )}
 
-                {aiStep === 5 && (
+                {aiStep === 6 && (
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
                     className="card p-10 text-center"
                   >
-                    <div className="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-600/20">
-                      <Layout className="text-white" />
+                    <div className="w-16 h-16 bg-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/20">
+                      <Settings className="text-white" />
                     </div>
-                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 5: Top Project</h2>
-                    <p className="text-slate-500 mb-8">Almost done! Tell us about a project you are proud of.</p>
-                    <div className="space-y-4 max-w-sm mx-auto">
+                    <h2 className="text-3xl font-heading font-extrabold text-slate-900 mb-4">Step 6: Skills</h2>
+                    <p className="text-slate-500 mb-8">Almost done! What are your top 5 skills?</p>
+                    <div className="space-y-4 max-w-sm mx-auto text-left">
                       <input 
-                        type="text" placeholder="Project Name" 
-                        value={formData.projects[0]?.name || ""}
+                        type="text" placeholder="React, Python, AWS, Sales..." 
+                        value={formData.skills.join(', ')}
                         onChange={(e) => {
-                          const proj = [...formData.projects];
-                          if (proj[0]) proj[0].name = e.target.value;
-                          else proj.push({ id: 1, name: e.target.value, link: "", techStack: "", desc: "" });
-                          setFormData({...formData, projects: proj});
-                        }}
-                        className="form-input text-center"
-                      />
-                      <textarea 
-                        placeholder="What did you build and what technology did you use?" 
-                        rows={3}
-                        value={formData.projects[0]?.desc || ""}
-                        onChange={(e) => {
-                          const proj = [...formData.projects];
-                          if (proj[0]) proj[0].desc = e.target.value;
-                          setFormData({...formData, projects: proj});
+                          const skills = e.target.value.split(',').map(s => s.trim()).filter(s => s);
+                          setFormData({...formData, skills});
                         }}
                         className="form-input text-center"
                       />
                       <button 
                         onClick={handleAiFinish}
-                        className="btn-amber w-full py-4 shadow-xl shadow-amber-500/20"
+                        className="btn-amber w-full py-4 shadow-xl shadow-amber-500/20 mt-2"
                       >
                         Generate My Resume <Sparkles size={16} className="ml-2" />
                       </button>
-                      <button onClick={() => setAiStep(4)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto">Go Back</button>
+                      <button onClick={() => setAiStep(5)} className="text-slate-400 text-xs font-bold uppercase tracking-widest block mx-auto mt-4 text-center w-full">Go Back</button>
                     </div>
                   </motion.div>
                 )}

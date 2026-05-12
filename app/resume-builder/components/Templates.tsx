@@ -54,23 +54,25 @@ export function ProfessionalTemplate({ formData }: { formData: ResumeData }) {
               ))}
             </div>
           </section>
-          <section>
-            <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.15em] border-b-2 border-slate-100 pb-2 mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-600" /> Projects
-            </h3>
-            <div className="space-y-6">
-              {formData.projects.map(proj => (
-                <div key={proj.id}>
-                  <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-bold text-slate-900 text-sm">{proj.name}</h4>
-                    {proj.link && <span className="text-[10px] font-bold text-blue-600 truncate max-w-40">{proj.link}</span>}
+          {formData.projects.length > 0 && (
+            <section>
+              <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.15em] border-b-2 border-slate-100 pb-2 mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-600" /> Projects
+              </h3>
+              <div className="space-y-6">
+                {formData.projects.map(proj => (
+                  <div key={proj.id}>
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="font-bold text-slate-900 text-sm">{proj.name}</h4>
+                      {proj.link && <span className="text-[10px] font-bold text-blue-600 truncate max-w-40">{proj.link}</span>}
+                    </div>
+                    <p className="text-slate-400 text-[10px] font-bold uppercase mb-2">{proj.techStack}</p>
+                    <p className="text-slate-500 text-xs leading-relaxed">{proj.desc}</p>
                   </div>
-                  <p className="text-slate-400 text-[10px] font-bold uppercase mb-2">{proj.techStack}</p>
-                  <p className="text-slate-500 text-xs leading-relaxed">{proj.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
         <div className="col-span-4 space-y-8">
           <section>
@@ -131,23 +133,25 @@ export function ModernTemplate({ formData }: { formData: ResumeData }) {
             ))}
           </div>
         </section>
-        <section className="grid grid-cols-12 gap-6">
-          <div className="col-span-4 text-right">
-            <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-300">Projects</h3>
-          </div>
-          <div className="col-span-8 border-l-2 border-slate-100 pl-6 space-y-6">
-            {formData.projects.map(proj => (
-              <div key={proj.id}>
-                <h4 className="font-bold text-slate-900 text-base">{proj.name}</h4>
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-blue-600 text-[10px] font-bold uppercase">{proj.techStack}</p>
-                  {proj.link && <span className="text-[10px] text-slate-400 truncate max-w-32">{proj.link}</span>}
+        {formData.projects.length > 0 && (
+          <section className="grid grid-cols-12 gap-6">
+            <div className="col-span-4 text-right">
+              <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-300">Projects</h3>
+            </div>
+            <div className="col-span-8 border-l-2 border-slate-100 pl-6 space-y-6">
+              {formData.projects.map(proj => (
+                <div key={proj.id}>
+                  <h4 className="font-bold text-slate-900 text-base">{proj.name}</h4>
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-blue-600 text-[10px] font-bold uppercase">{proj.techStack}</p>
+                    {proj.link && <span className="text-[10px] text-slate-400 truncate max-w-32">{proj.link}</span>}
+                  </div>
+                  <p className="text-slate-500 text-xs leading-relaxed">{proj.desc}</p>
                 </div>
-                <p className="text-slate-500 text-xs leading-relaxed">{proj.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
         <section className="grid grid-cols-12 gap-6">
           <div className="col-span-4 text-right">
             <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-300">Expertise</h3>
@@ -193,19 +197,21 @@ export function ModernDoubleTemplate({ formData }: { formData: ResumeData }) {
               ))}
             </div>
           </section>
-          <section>
-            <h3 className="text-xs font-black text-teal-600 uppercase tracking-[0.2em] mb-4">Projects</h3>
-            <div className="space-y-6">
-              {formData.projects.map(proj => (
-                <div key={proj.id}>
-                  <h4 className="font-bold text-slate-900 text-sm">{proj.name}</h4>
-                  <p className="text-teal-600/60 text-[10px] font-bold uppercase mb-2">{proj.techStack}</p>
-                  <p className="text-slate-600 text-[11px] leading-relaxed">{proj.desc}</p>
-                  {proj.link && <p className="text-[9px] text-teal-600 underline mt-1">{proj.link}</p>}
-                </div>
-              ))}
-            </div>
-          </section>
+          {formData.projects.length > 0 && (
+            <section>
+              <h3 className="text-xs font-black text-teal-600 uppercase tracking-[0.2em] mb-4">Projects</h3>
+              <div className="space-y-6">
+                {formData.projects.map(proj => (
+                  <div key={proj.id}>
+                    <h4 className="font-bold text-slate-900 text-sm">{proj.name}</h4>
+                    <p className="text-teal-600/60 text-[10px] font-bold uppercase mb-2">{proj.techStack}</p>
+                    <p className="text-slate-600 text-[11px] leading-relaxed">{proj.desc}</p>
+                    {proj.link && <p className="text-[9px] text-teal-600 underline mt-1">{proj.link}</p>}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
         <div className="space-y-8">
           <section>
@@ -270,20 +276,22 @@ export function ATSFriendlyTemplate({ formData }: { formData: ResumeData }) {
             ))}
           </div>
         </section>
-        <section>
-          <h3 className="text-sm font-bold uppercase border-b border-slate-900 mb-3">Projects</h3>
-          <div className="space-y-4">
-            {formData.projects.map(proj => (
-              <div key={proj.id}>
-                <div className="flex justify-between font-bold text-sm">
-                  <span>{proj.name} {proj.link && <span className="font-normal text-xs ml-2 text-slate-500">({proj.link})</span>}</span>
-                  <span className="text-xs uppercase">{proj.techStack}</span>
+        {formData.projects.length > 0 && (
+          <section>
+            <h3 className="text-sm font-bold uppercase border-b border-slate-900 mb-3">Projects</h3>
+            <div className="space-y-4">
+              {formData.projects.map(proj => (
+                <div key={proj.id}>
+                  <div className="flex justify-between font-bold text-sm">
+                    <span>{proj.name} {proj.link && <span className="font-normal text-xs ml-2 text-slate-500">({proj.link})</span>}</span>
+                    <span className="text-xs uppercase">{proj.techStack}</span>
+                  </div>
+                  <p className="text-sm text-slate-700">{proj.desc}</p>
                 </div>
-                <p className="text-sm text-slate-700">{proj.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
         <section>
           <h3 className="text-sm font-bold uppercase border-b border-slate-900 mb-3">Skills</h3>
           <p className="text-sm text-slate-700 uppercase font-medium">{formData.skills.join(", ")}</p>
@@ -372,24 +380,26 @@ export function ExecutiveTemplate({ formData }: { formData: ResumeData }) {
             ))}
           </div>
         </section>
-        <section className="mt-12">
-          <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-300 mb-8">Featured Projects</h3>
-          <div className="space-y-8">
-            {formData.projects.map(proj => (
-              <div key={proj.id} className="relative pl-8">
-                <div className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-blue-400" />
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="font-black text-slate-900 text-sm uppercase">{proj.name}</h4>
-                    <p className="text-blue-500 text-[10px] font-bold uppercase mt-0.5">{proj.techStack}</p>
+        {formData.projects.length > 0 && (
+          <section className="mt-12">
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-300 mb-8">Featured Projects</h3>
+            <div className="space-y-8">
+              {formData.projects.map(proj => (
+                <div key={proj.id} className="relative pl-8">
+                  <div className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-blue-400" />
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="font-black text-slate-900 text-sm uppercase">{proj.name}</h4>
+                      <p className="text-blue-500 text-[10px] font-bold uppercase mt-0.5">{proj.techStack}</p>
+                    </div>
+                    {proj.link && <span className="text-[10px] font-black text-slate-400 uppercase">{proj.link}</span>}
                   </div>
-                  {proj.link && <span className="text-[10px] font-black text-slate-400 uppercase">{proj.link}</span>}
+                  <p className="text-slate-500 text-[11px] leading-relaxed">{proj.desc}</p>
                 </div>
-                <p className="text-slate-500 text-[11px] leading-relaxed">{proj.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
