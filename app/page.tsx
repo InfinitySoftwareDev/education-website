@@ -155,17 +155,44 @@ const aiFeatures = [
 ];
 
 const industries = [
-  { icon: <FaLaptopCode className="text-blue-500" />, label: "Information Technology" },
-  { icon: <FaNotesMedical className="text-rose-500" />, label: "Healthcare & Pharma" },
+  {
+    icon: <FaLaptopCode className="text-blue-500" />,
+    label: "Information Technology",
+  },
+  {
+    icon: <FaNotesMedical className="text-rose-500" />,
+    label: "Healthcare & Pharma",
+  },
   { icon: <FaIndustry className="text-amber-500" />, label: "Manufacturing" },
-  { icon: <FaBuildingColumns className="text-emerald-500" />, label: "Banking & Finance" },
-  { icon: <FaCartShopping className="text-orange-500" />, label: "Retail & E-Commerce" },
-  { icon: <FaGraduationCap className="text-indigo-500" />, label: "Education & Training" },
-  { icon: <FaHelmetSafety className="text-yellow-600" />, label: "Construction & Real Estate" },
-  { icon: <FaCar className="text-red-500" />, label: "Automobile & Auto Ancillary" },
-  { icon: <FaUtensils className="text-teal-500" />, label: "Hospitality & Hotels" },
+  {
+    icon: <FaBuildingColumns className="text-emerald-500" />,
+    label: "Banking & Finance",
+  },
+  {
+    icon: <FaCartShopping className="text-orange-500" />,
+    label: "Retail & E-Commerce",
+  },
+  {
+    icon: <FaGraduationCap className="text-indigo-500" />,
+    label: "Education & Training",
+  },
+  {
+    icon: <FaHelmetSafety className="text-yellow-600" />,
+    label: "Construction & Real Estate",
+  },
+  {
+    icon: <FaCar className="text-red-500" />,
+    label: "Automobile & Auto Ancillary",
+  },
+  {
+    icon: <FaUtensils className="text-teal-500" />,
+    label: "Hospitality & Hotels",
+  },
   { icon: <FaHeadset className="text-cyan-500" />, label: "ITES " },
-  { icon: <FaPhoneVolume className="text-violet-500" />, label: "BPO / KPO Centre" },
+  {
+    icon: <FaPhoneVolume className="text-violet-500" />,
+    label: "BPO / KPO Centre",
+  },
 ];
 
 const testimonials = [
@@ -266,9 +293,12 @@ export default function HomePage() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="font-heading text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6"
             >
-              10+ Years of <span className="text-white">Recruitment</span>{" "}
-              <br className="hidden sm:block" />
-              Excellence
+              We Connect
+              <br />
+              <span className="whitespace-nowrap">
+                <span className="text-blue-200">Talent</span> to{" "}
+                <span className="text-amber-400">Opportunity</span>
+              </span>
             </motion.h1>
 
             <motion.p
@@ -396,7 +426,8 @@ export default function HomePage() {
             </h2>
             <p className="text-slate-500 mt-4 max-w-xl mx-auto">
               Compare and see why thousands of employers choose Talent Connect
-              India over traditional job boards, local hiring apps, and recruitment agencies.
+              India over traditional job boards, local hiring apps, and
+              recruitment agencies.
             </p>
           </motion.div>
 
@@ -589,7 +620,8 @@ export default function HomePage() {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute top-8 right-8 glass-card-light px-4 py-2 text-xs font-bold text-emerald-700 flex items-center gap-1.5"
               >
-                <CheckCircle size={14} className="text-emerald-500" /> Call Connected
+                <CheckCircle size={14} className="text-emerald-500" /> Call
+                Connected
               </motion.div>
               <motion.div
                 animate={{ x: [0, -6, 0] }}
