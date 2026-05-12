@@ -22,6 +22,7 @@ const analyticsData = [
 
 export default function EmployerPage() {
   const [activeTab, setActiveTab] = useState<"signup" | "login" | "forgot">("signup");
+  const [loginMethod, setLoginMethod] = useState<"password" | "otp">("password");
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
@@ -103,22 +104,74 @@ export default function EmployerPage() {
                       </div>
                     </div>
                   </div>
-                  <button className="btn-amber w-full text-sm py-3.5 mt-2">Create Employer Account <ArrowRight size={16} /></button>
-                  <p className="text-center text-xs text-slate-400">By registering, you agree to our Terms & Privacy Policy.</p>
+                  <button className="btn-primary w-full text-sm py-4 mt-2 font-bold">Register as Employer <ArrowRight size={16} /></button>
+                  <button onClick={() => setActiveTab("login")} className="w-full text-xs text-slate-500 hover:text-blue-600 transition-all mt-4 font-medium text-center">
+                    Already have an account? Login →
+                  </button>
                 </div>
               ) : activeTab === "login" ? (
                 <div className="space-y-4">
-                  <div><label className="form-label">Email / Mobile</label><input className="form-input" placeholder="Email or mobile number" /></div>
-                  <div>
-                    <label className="form-label">Password</label>
-                    <div className="relative">
-                      <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="••••••••" />
-                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                      </button>
-                    </div>
+                  {/* Login Method Switcher */}
+                  <div className="flex p-1 bg-slate-50 rounded-lg mb-4">
+                    <button
+                      onClick={() => { setLoginMethod("password"); setOtpSent(false); }}
+                      className={`flex-1 py-1.5 text-[10px] font-black uppercase tracking-wider rounded-md transition-all ${loginMethod === 'password' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-400'}`}
+                    >
+                      Password
+                    </button>
+                    <button
+                      onClick={() => setLoginMethod("otp")}
+                      className={`flex-1 py-1.5 text-[10px] font-black uppercase tracking-wider rounded-md transition-all ${loginMethod === 'otp' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-400'}`}
+                    >
+                      OTP Login
+                    </button>
                   </div>
-                  <button className="btn-primary w-full py-3.5">Login to Dashboard <ArrowRight size={16} /></button>
+
+                  {loginMethod === "password" ? (
+                    <>
+                      <div><label className="form-label">Email / Mobile</label><input className="form-input" placeholder="Email or mobile number" /></div>
+                      <div>
+                        <label className="form-label">Password</label>
+                        <div className="relative">
+                          <input type={showPassword ? "text" : "password"} className="form-input pr-10" placeholder="••••••••" />
+                          <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                          </button>
+                        </div>
+                      </div>
+                      <Link href="/dashboard/employer" className="btn-primary w-full py-3.5 text-center text-sm font-bold">Login to Dashboard <ArrowRight size={16} /></Link>
+                    </>
+                  ) : (
+                    <div className="space-y-4">
+                      <div>
+                        <label className="form-label">Mobile Number</label>
+                        <div className="flex gap-2">
+                          <div className="flex-1">
+                            <input className="form-input" placeholder="+91 XXXXX XXXXX" disabled={otpSent} />
+                          </div>
+                          {!otpSent && (
+                            <button onClick={handleSendOtp} disabled={loading} className="px-4 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 disabled:opacity-50">
+                              {loading ? "..." : "Send"}
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      {otpSent && (
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4 pt-2">
+                          <div>
+                            <div className="flex justify-between items-center mb-1.5">
+                              <label className="form-label mb-0">Enter OTP</label>
+                              <button onClick={() => setOtpSent(false)} className="text-[10px] text-blue-600 font-bold hover:underline">Resend OTP</button>
+                            </div>
+                            <input className="form-input text-center text-xl tracking-[0.5em] font-bold" maxLength={6} placeholder="000000" value={otp} onChange={(e) => setOtp(e.target.value)} />
+                          </div>
+                          <Link href="/dashboard/employer" className="btn-primary w-full py-3.5 text-center text-sm font-bold">Verify & Login <ArrowRight size={16} /></Link>
+                        </motion.div>
+                      )}
+                    </div>
+                  )}
+
                   <div className="flex justify-between text-xs text-slate-500 mt-2">
                     <button onClick={() => setActiveTab("forgot")} className="hover:text-blue-600 transition-colors">Forgot password?</button>
                     <button onClick={() => setActiveTab("signup")} className="hover:text-blue-600 transition-colors">Create account →</button>
