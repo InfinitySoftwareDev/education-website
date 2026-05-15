@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Search,
   MapPin,
@@ -315,16 +316,18 @@ const categoryChips = [
 export type JobsBrowseMainProps = {
   /** Sidebar “Build Now” target; use `/dashboard/employee/resume` inside the employee dashboard. */
   resumeBuilderHref?: string;
+  isLoggedIn?: boolean;
 };
 
 export function JobsBrowseMain({
   resumeBuilderHref = "/resume-builder",
+  isLoggedIn = false,
 }: JobsBrowseMainProps) {
+  const router = useRouter();
   const [cityFilter, setCityFilter] = useState("All Cities");
   const [catFilter, setCatFilter] = useState("All Categories");
   const [typeFilter, setTypeFilter] = useState("All Types");
   const [search, setSearch] = useState("");
-  const [showRegister, setShowRegister] = useState(false);
   const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
   const [selectedJob, setSelectedJob] = useState<(typeof jobs)[0] | null>(null);
 
@@ -333,7 +336,7 @@ export function JobsBrowseMain({
   }, []);
 
   useEffect(() => {
-    if (selectedJob || showRegister) {
+    if (selectedJob) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -341,7 +344,7 @@ export function JobsBrowseMain({
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [selectedJob, showRegister]);
+  }, [selectedJob]);
 
   useEffect(() => {
     refreshSavedIds();
@@ -614,7 +617,7 @@ export function JobsBrowseMain({
 
                 <button
                   type="button"
-                  onClick={() => setShowRegister(true)}
+                  onClick={() => isLoggedIn ? router.push(resumeBuilderHref) : router.push('/login?role=employee')}
                   className="w-full flex items-center justify-center gap-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm font-bold py-3 rounded-2xl hover:bg-amber-100 transition-colors"
                 >
                   <Upload size={15} /> Upload Resume
@@ -636,13 +639,15 @@ export function JobsBrowseMain({
                     {cityFilter !== "All Cities" ? cityFilter : "All cities"}
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setShowRegister(true)}
-                  className="btn-primary text-sm py-2.5 px-5"
-                >
-                  Create Profile <ArrowRight size={14} />
-                </button>
+                {!isLoggedIn && (
+                  <button
+                    type="button"
+                    onClick={() => router.push('/login?role=employee')}
+                    className="btn-primary text-sm py-2.5 px-5"
+                  >
+                    Create Profile <ArrowRight size={14} />
+                  </button>
+                )}
               </div>
 
               <motion.div
@@ -949,7 +954,11 @@ export function JobsBrowseMain({
                   type="button"
                   onClick={() => {
                     setSelectedJob(null);
-                    setShowRegister(true);
+                    if (isLoggedIn) {
+                      alert('Application submitted successfully!');
+                    } else {
+                      router.push('/login?role=employee');
+                    }
                   }}
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-xl shadow-blue-600/20 transition-all flex items-center justify-center gap-2"
                 >
@@ -985,102 +994,6 @@ export function JobsBrowseMain({
           </motion.div>
         )}
 
-        {showRegister && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setShowRegister(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 20 }}
-              transition={{ duration: 0.25 }}
-              className="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl relative"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={() => setShowRegister(false)}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
-              >
-                <X size={16} />
-              </button>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
-                  <Star size={18} className="text-white" />
-                </div>
-                <div>
-                  <h2 className="font-heading text-xl font-bold text-slate-900">
-                    Create Free Profile
-                  </h2>
-                  <p className="text-slate-400 text-xs">
-                    Get matched with verified jobs instantly
-                  </p>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="form-label">First Name</label>
-                    <input
-                      type="text"
-                      className="form-input"
-                      placeholder="First"
-                    />
-                  </div>
-                  <div>
-                    <label className="form-label">Last Name</label>
-                    <input
-                      type="text"
-                      className="form-input"
-                      placeholder="Last"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="form-label">Mobile *</label>
-                  <input
-                    type="tel"
-                    className="form-input"
-                    placeholder="+91 XXXXX XXXXX"
-                  />
-                </div>
-                <div>
-                  <label className="form-label">Email *</label>
-                  <input
-                    type="email"
-                    className="form-input"
-                    placeholder="you@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="form-label">City</label>
-                  <select className="form-input">
-                    {cities.slice(1).map((c) => (
-                      <option key={c}>{c}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="form-label">Upload Resume</label>
-                  <div className="border-2 border-dashed border-blue-200 rounded-xl p-5 text-center text-sm text-slate-400 hover:border-blue-400 bg-blue-50/30 transition-colors cursor-pointer">
-                    <Upload size={22} className="mx-auto mb-2 text-blue-400" />
-                    <p className="font-semibold text-slate-600 text-sm">
-                      Click to upload PDF / DOC
-                    </p>
-                    <p className="text-xs text-slate-400 mt-0.5">Max 5MB</p>
-                  </div>
-                </div>
-                <button type="button" className="btn-primary w-full py-3.5">
-                  Create Free Profile <ArrowRight size={15} />
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
       </AnimatePresence>
     </div>
   );
